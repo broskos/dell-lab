@@ -46,7 +46,7 @@ nodes:
   memory: '6144'
   disk: '40'
   arch: x86_64
-  pm_type: pxe_ipmitool
+  pm_type: pxe_drac
   pm_user: root
   pm_password: calvin
   pm_addr: 172.17.120.7
@@ -58,11 +58,11 @@ nodes:
   memory: '6144'
   disk: '40'
   arch: x86_64
-  pm_type: pxe_ipmitool
+  pm_type: pxe_drac
   pm_user: root
   pm_password: calvin
   pm_addr: 172.17.120.9
-  capabilities: profile:compute,boot_option:local
+  capabilities: profile:compute,boot_option:local0
 - mac:
   - e4:43:4b:58:33:40
   name: compute3
@@ -70,7 +70,7 @@ nodes:
   memory: '6144'
   disk: '40'
   arch: x86_64
-  pm_type: pxe_ipmitool
+  pm_type: pxe_drac
   pm_user: root
   pm_password: calvin
   pm_addr: 172.17.120.11
@@ -82,7 +82,7 @@ nodes:
   memory: '6144'
   disk: '40'
   arch: x86_64
-  pm_type: pxe_ipmitool
+  pm_type: pxe_drac
   pm_user: root
   pm_password: calvin
   pm_addr: 172.17.120.31
@@ -94,7 +94,7 @@ nodes:
   memory: '6144'
   disk: '40'
   arch: x86_64
-  pm_type: pxe_ipmitool
+  pm_type: pxe_drac
   pm_user: root
   pm_password: calvin
   pm_addr: 172.17.120.13
@@ -106,7 +106,7 @@ nodes:
   memory: '6144'
   disk: '40'
   arch: x86_64
-  pm_type: pxe_ipmitool
+  pm_type: pxe_drac
   pm_user: root
   pm_password: calvin
   pm_addr: 172.17.120.37
@@ -118,7 +118,7 @@ nodes:
   memory: '6144'
   disk: '40'
   arch: x86_64
-  pm_type: pxe_ipmitool
+  pm_type: pxe_drac
   pm_user: root
   pm_password: calvin
   pm_addr: 172.17.120.33
