@@ -1,0 +1,125 @@
+---
+nodes:
+- mac:
+  - 56:6f:03:1b:00:03
+  name: controller1
+  cpu: '4'
+  memory: '6144'
+  disk: '40'
+  arch: x86_64
+  pm_type: staging-ovirt
+  pm_user: admin
+  pm_password: redhat
+  pm_addr: rhvm.lab.roskosb.info
+  pm_vm_name: controller1
+  capabilities: profile:control,boot_option:local
+- mac:
+  - 56:6f:03:1b:00:09
+  name: controller2
+  cpu: '4'
+  memory: '6144'
+  disk: '40'
+  arch: x86_64
+  pm_type: staging-ovirt
+  pm_user: admin
+  pm_password: redhat
+  pm_addr: rhvm.lab.roskosb.info
+  pm_vm_name: controller2
+  capabilities: profile:control,boot_option:local
+- mac:
+  - 56:6f:03:1b:00:0f
+  name: controller3
+  cpu: '4'
+  memory: '6144'
+  disk: '40'
+  arch: x86_64
+  pm_type: staging-ovirt
+  pm_user: admin
+  pm_password: redhat
+  pm_addr: rhvm.lab.roskosb.info
+  pm_vm_name: controller3
+  capabilities: profile:control,boot_option:local
+- mac:
+  - e4:43:4b:58:35:30
+  name: compute1
+  cpu: '4'
+  memory: '6144'
+  disk: '40'
+  arch: x86_64
+  pm_type: pxe_ipmitool
+  pm_user: root
+  pm_password: calvin
+  pm_addr: 172.17.120.7
+  capabilities: profile:compute,boot_option:local
+- mac:
+  - e4:43:4b:58:4f:c0
+  name: compute2
+  cpu: '4'
+  memory: '6144'
+  disk: '40'
+  arch: x86_64
+  pm_type: pxe_ipmitool
+  pm_user: root
+  pm_password: calvin
+  pm_addr: 172.17.120.9
+  capabilities: profile:compute,boot_option:local
+- mac:
+  - e4:43:4b:58:33:40
+  name: compute3
+  cpu: '4'
+  memory: '6144'
+  disk: '40'
+  arch: x86_64
+  pm_type: pxe_ipmitool
+  pm_user: root
+  pm_password: calvin
+  pm_addr: 172.17.120.11
+  capabilities: profile:compute,boot_option:local
+- mac:
+  - e4:43:4b:58:44:40
+  name: edge1vdu-1
+  cpu: '4'
+  memory: '6144'
+  disk: '40'
+  arch: x86_64
+  pm_type: pxe_ipmitool
+  pm_user: root
+  pm_password: calvin
+  pm_addr: 172.17.120.31
+  capabilities: profile:compute-edge1vdu,boot_option:local
+- mac:
+  - e4:43:4b:58:54:10
+  name: edge1-1
+  cpu: '4'
+  memory: '6144'
+  disk: '40'
+  arch: x86_64
+  pm_type: pxe_ipmitool
+  pm_user: root
+  pm_password: calvin
+  pm_addr: 172.17.120.13
+  capabilities: profile:compute-edge1,boot_option:local
+- mac:
+  - e4:43:4b:58:52:70
+  name: edge2vdu-1
+  cpu: '4'
+  memory: '6144'
+  disk: '40'
+  arch: x86_64
+  pm_type: pxe_ipmitool
+  pm_user: root
+  pm_password: calvin
+  pm_addr: 172.17.120.37
+  capabilities: profile:compute-edge2vdu,boot_option:local
+- mac:
+  - e4:43:4b:58:53:40
+  name: edge2-1
+  cpu: '4'
+  memory: '6144'
+  disk: '40'
+  arch: x86_64
+  pm_type: pxe_ipmitool
+  pm_user: root
+  pm_password: calvin
+  pm_addr: 172.17.120.33
+  capabilities: profile:compute-edge2,boot_option:local
