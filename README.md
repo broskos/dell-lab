@@ -4,6 +4,7 @@
 ### RHHI
 - management:  
 rhvm.lab.roskosb.info  
+https://rhvm.lab.roskosb.info/  
 
 - hosts:  
 rhhi-1.lab.roskosb.info  
