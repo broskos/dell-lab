@@ -1,0 +1,90 @@
+resource_registry:
+# Configure Networks
+  OS::TripleO::Controller::Net::SoftwareConfig: ../network/config/multiple-nics/controller.yaml
+  OS::TripleO::Compute::Net::SoftwareConfig: ../network/config/single-nic-vlans/compute.yaml
+  OS::TripleO::ComputeEdge1::Net::SoftwareConfig: ../network/config/single-nic-vlans/compute-e1.yaml
+  OS::TripleO::ComputeEdge1vdu::Net::SoftwareConfig: ../network/config/single-nic-vlans/compute-e1.yaml
+  OS::TripleO::ComputeEdge2::Net::SoftwareConfig: ../network/config/single-nic-vlans/compute-e2.yaml
+  OS::TripleO::ComputeEdge2vdu::Net::SoftwareConfig: ../network/config/single-nic-vlans/compute-e2.yaml
+
+## Disable Swift
+#  OS::TripleO::Services::SwiftProxy: OS::Heat::None
+#  OS::TripleO::Services::SwiftStorage: OS::Heat::None
+#  OS::TripleO::Services::SwiftRingBuilder: OS::Heat::None
+
+# Disable Cinder
+  OS::TripleO::Services::CinderApi: OS::Heat::None
+  OS::TripleO::Services::CinderBackup: OS::Heat::None
+  OS::TripleO::Services::CinderScheduler: OS::Heat::None
+  OS::TripleO::Services::CinderVolume: OS::Heat::None
+
+parameter_defaults:
+  ControlPlaneSubnetCidr: '24'
+  ControlPlaneDefaultRoute: 172.16.100.20
+  EC2MetadataIp: 172.16.100.20
+  DnsServers: ["10.1.198.97"]
+  NeutronExternalNetworkBridge: "''"
+  DockerInsecureRegistryAddress:
+  - 10.1.198.97:5000
+  - pool4-satellite6.practice.redhat.com:5000
+  NtpServer:
+    - clock.corp.redhat.com
+  NeutronBridgeMappings:
+  - tenant:br-tenant
+  - datacentre:br-ex
+  controllerExtraConfig:
+    neutron::agents::dhcp::enable_isolated_metadata: true
+
+
+  NovaReservedHostMemory: 1024
+  OvercloudControllerFlavor: control
+  OvercloudComputeFlavor: compute
+  ControllerCount: 3
+  ComputeCount: 2
+
+  NovaSchedulerDefaultFilters:
+    - RetryFilter
+    - AvailabilityZoneFilter
+    - AggregateRamFilter
+    - AggregateCoreFilter
+    - ComputeFilter
+    - AggregateInstanceExtraSpecsFilter
+    - ComputeCapabilitiesFilter
+    - ImagePropertiesFilter
+    - ServerGroupAntiAffinityFilter
+    - ServerGroupAffinityFilter
+    - RamFilter
+    - DiskFilter
+
+  PublicVirtualFixedIPs: [{'ip_address':'10.1.198.103'}]
+
+# setup glance for gluster (requires glusterfs-fuse rpm pre-installed on image)
+
+#  GlanceNfsShare: pool4-rhhi-1.practice.redhat.com:glance
+
+  SwiftRawDisks:
+    sdb: {}
+
+  rhel_reg_activation_key: "osp13-director-dev"
+  rhel_reg_auto_attach: ""
+  rhel_reg_base_url: ""
+  rhel_reg_environment: "dev"
+  rhel_reg_force: "true"
+  rhel_reg_machine_name: ""
+  rhel_reg_org: "pool4"
+  rhel_reg_password: ""
+  rhel_reg_pool_id: ""
+  rhel_reg_release: ""
+  rhel_reg_repos: ""
+  rhel_reg_sat_url: "http://pool4-satellite6.practice.redhat.com"
+  rhel_reg_server_url: ""
+  rhel_reg_service_level: ""
+  rhel_reg_user: ""
+  rhel_reg_type: "satellite"
+  rhel_reg_method: ""
+  rhel_reg_sat_repo: "rhel-7-server-satellite-tools-6.3-rpms"
+  rhel_reg_http_proxy_host: ""
+  rhel_reg_http_proxy_port: ""
+  rhel_reg_http_proxy_username: ""
+  rhel_reg_http_proxy_password: ""
+

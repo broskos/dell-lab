@@ -1,0 +1,62 @@
+# Generated with the following on 2019-09-30T07:27:06.878562
+#
+#   openstack overcloud container image prepare --namespace=pool4-satellite6.practice.redhat.com:5000 --prefix=pool4-dev-osp13-osp13_containers- --tag-from-label {version}-{release} --output-env-file /home/stack/overcloud_images.yaml -r /home/stack/pod2-osp-d/templates/roles_data.yaml -e /usr/share/openstack-tripleo-heat-templates/environments/network-isolation.yaml -e /usr/share/openstack-tripleo-heat-templates/environments/network-environment.yaml -e /usr/share/openstack-tripleo-heat-templates/environments/disable-telemetry.yaml -e /home/stack/pod2-osp-d/templates/environments/overcloud-images.yaml -e /home/stack/pod2-osp-d/templates/environments/pool4-environment.yaml
+#
+
+parameter_defaults:
+  DockerCinderApiImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-cinder-api:13.0-92
+  DockerCinderConfigImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-cinder-api:13.0-92
+  DockerCinderSchedulerImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-cinder-scheduler:13.0-93
+  DockerCinderVolumeImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-cinder-volume:13.0-91
+  DockerClustercheckConfigImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-mariadb:13.0-88
+  DockerClustercheckImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-mariadb:13.0-88
+  DockerCrondConfigImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-cron:13.0-93
+  DockerCrondImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-cron:13.0-93
+  DockerGlanceApiConfigImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-glance-api:13.0-89
+  DockerGlanceApiImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-glance-api:13.0-89
+  DockerHAProxyConfigImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-haproxy:13.0-90
+  DockerHAProxyImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-haproxy:13.0-90
+  DockerHeatApiCfnConfigImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-heat-api-cfn:13.0-84
+  DockerHeatApiCfnImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-heat-api-cfn:13.0-84
+  DockerHeatApiConfigImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-heat-api:13.0-85
+  DockerHeatApiImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-heat-api:13.0-85
+  DockerHeatConfigImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-heat-api:13.0-85
+  DockerHeatEngineImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-heat-engine:13.0-83
+  DockerHorizonConfigImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-horizon:13.0-87
+  DockerHorizonImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-horizon:13.0-87
+  DockerIscsidConfigImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-iscsid:13.0-85
+  DockerIscsidImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-iscsid:13.0-85
+  DockerKeystoneConfigImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-keystone:13.0-84
+  DockerKeystoneImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-keystone:13.0-84
+  DockerMemcachedConfigImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-memcached:13.0-87
+  DockerMemcachedImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-memcached:13.0-87
+  DockerMysqlClientConfigImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-mariadb:13.0-88
+  DockerMysqlConfigImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-mariadb:13.0-88
+  DockerMysqlImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-mariadb:13.0-88
+  DockerNeutronApiImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-neutron-server:13.0-94
+  DockerNeutronConfigImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-neutron-server:13.0-94
+  DockerNeutronDHCPImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-neutron-dhcp-agent:13.0-94
+  DockerNeutronL3AgentImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-neutron-l3-agent:13.0-93
+  DockerNeutronMetadataImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-neutron-metadata-agent:13.0-95
+  DockerNovaApiImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-nova-api:13.0-93
+  DockerNovaComputeImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-nova-compute:13.0-107
+  DockerNovaConductorImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-nova-conductor:13.0-91
+  DockerNovaConfigImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-nova-api:13.0-93
+  DockerNovaConsoleauthImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-nova-consoleauth:13.0-91
+  DockerNovaLibvirtConfigImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-nova-compute:13.0-107
+  DockerNovaLibvirtImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-nova-libvirt:13.0-110
+  DockerNovaMetadataImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-nova-api:13.0-93
+  DockerNovaPlacementConfigImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-nova-placement-api:13.0-92
+  DockerNovaPlacementImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-nova-placement-api:13.0-92
+  DockerNovaSchedulerImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-nova-scheduler:13.0-93
+  DockerNovaVncProxyImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-nova-novncproxy:13.0-94
+  DockerOpenvswitchImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-neutron-openvswitch-agent:13.0-93
+  DockerRabbitmqConfigImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-rabbitmq:13.0-89
+  DockerRabbitmqImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-rabbitmq:13.0-89
+  DockerRedisConfigImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-redis:13.0-90
+  DockerRedisImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-redis:13.0-90
+  DockerSwiftAccountImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-swift-account:13.0-84
+  DockerSwiftConfigImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-swift-proxy-server:13.0-86
+  DockerSwiftContainerImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-swift-container:13.0-87
+  DockerSwiftObjectImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-swift-object:13.0-84
+  DockerSwiftProxyImage: pool4-satellite6.practice.redhat.com:5000/pool4-dev-osp13-osp13_containers-swift-proxy-server:13.0-86

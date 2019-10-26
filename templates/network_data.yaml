@@ -1,0 +1,64 @@
+
+- name: Storage
+  vip: true
+  vlan: 170
+  name_lower: storage
+  ip_subnet: '192.168.170.0/24'
+  allocation_pools: [{'start': '192.168.170.4', 'end': '192.168.170.250'}]
+
+- name: StorageMgmt
+  name_lower: storage_mgmt
+  vip: true
+  vlan: 180
+  ip_subnet: '192.168.180.0/24'
+  allocation_pools: [{'start': '192.168.180.4', 'end': '192.168.180.250'}]
+
+- name: InternalApi
+  name_lower: internal_api
+  vip: true
+  vlan: 130
+  ip_subnet: '192.168.130.0/26'
+  allocation_pools: [{'start': '192.168.130.4', 'end': '192.168.130.60'}]
+
+- name: Tenant
+  vip: false  # Tenant network does not use VIPs
+  name_lower: tenant
+  vlan: 201
+  ip_subnet: '192.168.201.0/26'
+  allocation_pools: [{'start': '192.168.201.4', 'end': '192.168.201.60'}]
+
+- name: External
+  vip: true
+  name_lower: external
+  vlan: 119
+  ip_subnet: '172.17.119.96/26'
+  allocation_pools: [{'start': '172.17.119.4', 'end': '172.17.119.60'}]
+  gateway_ip: '172.17.119.62'
+
+- name: InternalApiEdge1
+  name_lower: internal_api_edge1
+  vip: false
+  vlan: 1130
+  ip_subnet: '192.168.130.64/26'
+  allocation_pools: [{'start': '192.168.130.68', 'end': '192.168.130.124'}]
+
+- name: TenantEdge1
+  vip: false  # Tenant network does not use VIPs
+  name_lower: tenant_edge1
+  vlan: 1201
+  ip_subnet: '192.168.201.64/26'
+  allocation_pools: [{'start': '192.168.201.68', 'end': '192.168.201.124'}]
+
+- name: InternalApiEdge2
+  name_lower: internal_api_edge2
+  vip: false
+  vlan: 2130
+  ip_subnet: '192.168.130.128/26'
+  allocation_pools: [{'start': '192.168.130.132', 'end': '192.168.130.188'}]
+
+- name: TenantEdge2
+  vip: false  # Tenant network does not use VIPs
+  name_lower: tenant_edge2
+  vlan: 2201
+  ip_subnet: '192.168.201.128/26'
+  allocation_pools: [{'start': '192.168.201.132', 'end': '192.168.201.188'}]
