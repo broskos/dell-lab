@@ -8,7 +8,7 @@ export domain='lab.roskosb.info'
 export stack_password='redhat'
 export osp_version='13'
 
-export stack_name='dellab'
+export stack_name='vranlab'
 
 
 home=~

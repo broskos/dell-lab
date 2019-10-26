@@ -136,13 +136,13 @@ resources:
                 - ip_netmask:
                     get_param: InternalApiIpSubnet
               - type: interface
-                name: nic5
+                name: nic3
                 use_dhcp: false
                 addresses:
                 - ip_netmask:
                     get_param: StorageIpSubnet
               - type: interface
-                name: nic6
+                name: nic4
                 use_dhcp: false
                 addresses:
                 - ip_netmask:
@@ -157,7 +157,7 @@ resources:
                     get_param: TenantIpSubnet
                 members:
                 - type: interface
-                  name: nic3
+                  name: nic6
                   use_dhcp: false
                   primary: true
               - type: ovs_bridge
@@ -174,7 +174,7 @@ resources:
                     get_param: ExternalInterfaceDefaultRoute
                 members:
                 - type: interface
-                  name: nic4
+                  name: nic5
                   use_dhcp: false
                   primary: true
 outputs:
