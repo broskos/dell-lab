@@ -6,7 +6,7 @@
 rhvm.lab.roskosb.info  
 https://rhvm.lab.roskosb.info/  
 
-- generic rhel7 guest
+- generic rhel7 guest  
 rhel76-test.lab.roskosb.info  
 root / redhat
 
