@@ -32,7 +32,7 @@
   name_lower: external
   vlan: 119
   ip_subnet: '172.17.119.96/26'
-  allocation_pools: [{'start': '172.17.119.4', 'end': '172.17.119.60'}]
+  allocation_pools: [{'start': '172.17.119.4', 'end': '172.17.119.9'}]
   gateway_ip: '172.17.119.62'
 
 - name: InternalApiEdge1

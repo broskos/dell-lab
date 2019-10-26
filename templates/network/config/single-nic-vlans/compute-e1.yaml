@@ -1,6 +1,6 @@
 heat_template_version: queens
 description: >
-  Software Config to drive os-net-config to configure VLANs for the Compute role.
+  Software Config to drive os-net-config to configure VLANs for the ComputeEdge1 role.
 parameters:
   ControlPlaneIp:
     default: ''
@@ -26,41 +26,57 @@ parameters:
     default: ''
     description: IP address/subnet on the external network
     type: string
-  ManagementIpSubnet:
+  InternalApiEdge1IpSubnet:
     default: ''
-    description: IP address/subnet on the management network
+    description: IP address/subnet on the internal_api_edge1 network
     type: string
-  BaremetalIpSubnet:
+  TenantEdge1IpSubnet:
     default: ''
-    description: IP address/subnet on the baremetal network
+    description: IP address/subnet on the tenant_edge1 network
+    type: string
+  InternalApiEdge2IpSubnet:
+    default: ''
+    description: IP address/subnet on the internal_api_edge2 network
+    type: string
+  TenantEdge2IpSubnet:
+    default: ''
+    description: IP address/subnet on the tenant_edge2 network
     type: string
   StorageNetworkVlanID:
-    default: 30
+    default: 170
     description: Vlan ID for the storage network traffic.
     type: number
   StorageMgmtNetworkVlanID:
-    default: 40
+    default: 180
     description: Vlan ID for the storage_mgmt network traffic.
     type: number
   InternalApiNetworkVlanID:
-    default: 20
+    default: 130
     description: Vlan ID for the internal_api network traffic.
     type: number
   TenantNetworkVlanID:
-    default: 50
+    default: 201
     description: Vlan ID for the tenant network traffic.
     type: number
   ExternalNetworkVlanID:
-    default: 10
+    default: 119
     description: Vlan ID for the external network traffic.
     type: number
-  ManagementNetworkVlanID:
-    default: 60
-    description: Vlan ID for the management network traffic.
+  InternalApiEdge1NetworkVlanID:
+    default: 1130
+    description: Vlan ID for the internal_api_edge1 network traffic.
     type: number
-  BaremetalNetworkVlanID:
-    default: 70
-    description: Vlan ID for the baremetal network traffic.
+  TenantEdge1NetworkVlanID:
+    default: 1201
+    description: Vlan ID for the tenant_edge1 network traffic.
+    type: number
+  InternalApiEdge2NetworkVlanID:
+    default: 2130
+    description: Vlan ID for the internal_api_edge2 network traffic.
+    type: number
+  TenantEdge2NetworkVlanID:
+    default: 2201
+    description: Vlan ID for the tenant_edge2 network traffic.
     type: number
   ControlPlaneSubnetCidr: # Override this via parameter_defaults
     default: '24'
@@ -70,7 +86,7 @@ parameters:
     description: The default route of the control plane network.
     type: string
   ExternalInterfaceDefaultRoute:
-    default: '10.0.0.1'
+    default: '172.17.119.62'
     description: default route for the external network
     type: string
   DnsServers: # Override this via parameter_defaults
@@ -80,6 +96,10 @@ parameters:
   EC2MetadataIp: # Override this via parameter_defaults
     description: The IP address of the EC2 metadata server.
     type: string
+  DnsSearchDomains: # Override this via parameter_defaults
+    default: []
+    description: A list of DNS search domains to be added (in order) to resolv.conf.
+    type: comma_delimited_list
 resources:
   OsNetConfigImpl:
     type: OS::Heat::SoftwareConfig
@@ -88,15 +108,17 @@ resources:
       config:
         str_replace:
           template:
-            get_file: /usr/share/openstack-tripleo-heat-templates/network/scripts/run-os-net-config.sh
+            get_file: ../../scripts/run-os-net-config.sh
           params:
             $network_config:
               network_config:
               - type: ovs_bridge
-                name: br-tenant
+                name: bridge_name
                 use_dhcp: false
                 dns_servers:
                   get_param: DnsServers
+                domain:
+                  get_param: DnsSearchDomains
                 addresses:
                 - ip_netmask:
                     list_join:
@@ -115,19 +137,18 @@ resources:
                   name: nic1
                   # force the MAC address of the bridge to this interface
                   primary: true
-
                 - type: vlan
                   vlan_id:
-                    get_param: InternalApiNetworkVlanID
+                    get_param: InternalApiEdge1NetworkVlanID
                   addresses:
                   - ip_netmask:
-                      get_param: InternalApiIpSubnet
+                      get_param: InternalApiEdge1IpSubnet
                 - type: vlan
                   vlan_id:
-                    get_param: TenantNetworkVlanID
+                    get_param: TenantEdge1NetworkVlanID
                   addresses:
                   - ip_netmask:
-                      get_param: TenantIpSubnet
+                      get_param: TenantEdge1IpSubnet
 outputs:
   OS::stack_id:
     description: The OsNetConfigImpl resource.
