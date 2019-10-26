@@ -5,10 +5,13 @@ USER=root
 PASSWORD=calvin
 NET=172.17.120
 
-for serverIP in 7 9 11 31 13 37 33
+for SERVERIP in 7 9 11 31 13 37 33
 do
-  echo "working on: $NET.$serverIP"
-  racadm -r $NET.$serverIP -u $USER -p $PASSWORD set  bios.BiosBootSettings.BootMode Bios
-  racadm -r $NET.$serverIP -u $USER -p $PASSWORD jobqueue create BIOS.Setup.1-1
-  racadm -r $NET.$serverIP -u $USER -p $PASSWORD serveraction hardreset
+  echo "working on: $NET.$SERVERIP"
+  racadm -r $NET.$SERVERIP -u $USER -p $PASSWORD set bios.BiosBootSettings.BootMode Bios
+# some systems have the AHCI in a different slot, one of these will error, but whichever is valid should still work
+  racadm -r $NET.$SERVERIP -u $USER -p $PASSWORD set BIOS.BiosBootSettings.HddSeq AHCI.Slot.4-1,NonRAID.Slot.6-1
+  racadm -r $NET.$SERVERIP -u $USER -p $PASSWORD set BIOS.BiosBootSettings.HddSeq AHCI.Slot.5-1,NonRAID.Slot.6-1
+  racadm -r $NET.$SERVERIP -u $USER -p $PASSWORD jobqueue create BIOS.Setup.1-1
+  racadm -r $NET.$SERVERIP -u $USER -p $PASSWORD serveraction hardreset
 done
