@@ -14,7 +14,7 @@ resource_registry:
   OS::TripleO::Services::CinderVolume: OS::Heat::None
 
 parameter_defaults:
-  DnsServers: ["8.8.8.8"]
+  DnsServers: ["192.168.120.10"]
   #NtpServer: ["35.135.192.20", "35.135.192.21"]
   EC2MetadataIp: 192.168.120.10
   NeutronExternalNetworkBridge: "''"
