@@ -44,3 +44,9 @@ popd
 ###########################
 openstack overcloud image upload --image-path /home/stack/images/ --update-existing
 
+###########################
+# Create edge leaf roles #
+###########################
+ROLES="compute_edge1 compute_edge1vdu compute_edge2 compute_edge2vdu"
+for ROLE in $ROLES; do openstack flavor create --id auto --ram 4096 --disk 40 --vcpus 1 $ROLE ; done
+for ROLE in $ROLES; do openstack flavor set --property "cpu_arch"="x86_64" --property "capabilities:boot_option"="local" --property "capabilities:profile"="$ROLE" --property "resources:CUSTOM_BAREMETAL"="1" --property "resources:DISK_GB"="0" --property "resources:MEMORY_MB"="0" --property "resources:VCPU"="0" $ROLE ; done
