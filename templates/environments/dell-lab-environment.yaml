@@ -23,7 +23,7 @@ parameter_defaults:
 #  - 44.154.16.11:5000
 #  - satellite-eng.nfv.charterlab.com:5000
 
-  Controller0ControlPlaneSubnet: leaf0
+  ControllerControlPlaneSubnet: leaf0
   ComputeControlPlaneSubnet: leaf0
   ComputeEdge1ControlPlaneSubnet: edge1
   ComputeEdge1vduControlPlaneSubnet: edge1
@@ -32,12 +32,11 @@ parameter_defaults:
 
   ControlPlaneSubnetCidr: '26'
   ControlPlaneSubnet: leaf0
-  ControlPlane0DefaultRoute: 192.168.120.62
-  ControlPlane0SubnetCidr: '26'
-  ControlPlane1DefaultRoute: 192.168.120.126
-  ControlPlane1SubnetCidr: '26'
-  ControlPlane2DefaultRoute: 192.168.120.190
-  ControlPlane2SubnetCidr: '26'
+  ControlPlaneDefaultRoute: 192.168.120.62
+  ControlPlaneEdge1DefaultRoute: 192.168.120.126
+  ControlPlaneEdge1SubnetCidr: '26'
+  ControlPlaneEdge2DefaultRoute: 192.168.120.190
+  ControlPlaneEdge2SubnetCidr: '26'
 
   NeutronBridgeMappings:
   - tenant:br-tenant
