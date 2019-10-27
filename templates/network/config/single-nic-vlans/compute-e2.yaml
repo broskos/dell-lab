@@ -2,6 +2,18 @@ heat_template_version: queens
 description: >
   Software Config to drive os-net-config to configure VLANs for the ComputeEdge2 role.
 parameters:
+  InternalApiSupernet:
+    type: string
+  TenantSupernet:
+    type: string
+  ControlPlaneEdge1SubnetCidr:
+    type: string
+  ControlPlaneEdge2SubnetCidr:
+    type: string
+  ControlPlaneEdge1DefaultRoute:
+    type: string
+  ControlPlaneEdge2DefaultRoute:
+    type: string
   ControlPlaneIp:
     default: ''
     description: IP address/subnet on the ctlplane network
@@ -130,14 +142,11 @@ resources:
                     list_join:
                     - /
                     - - get_param: ControlPlaneIp
-                      - get_param: ControlPlaneSubnetCidr
+                      - get_param: ControlPlaneEdge2SubnetCidr
                 routes:
-                - ip_netmask: 169.254.169.254/32
-                  next_hop:
-                    get_param: EC2MetadataIp
                 - default: true
                   next_hop:
-                    get_param: ControlPlaneDefaultRoute
+                    get_param: ControlPlaneEdge2DefaultRoute
                 members:
                 - type: linux_bond
                   name: bond0
