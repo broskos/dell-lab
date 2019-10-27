@@ -62,10 +62,10 @@ parameter_defaults:
   NovaReservedHostMemory: 1024
   OvercloudControllerFlavor: control
   OvercloudComputeFlavor: compute
-  OvercloudComputeEdge1Flavor: compute_edge1
-  OvercloudComputeEdge1vduFlavor: compute_edge1vdu
-  OvercloudComputeEdge2Flavor: compute_edge2
-  OvercloudComputeEdge2vduFlavor: compute_edge2vdu
+  OvercloudComputeEdge1Flavor: compute-edge1
+  OvercloudComputeEdge1vduFlavor: compute-edge1vdu
+  OvercloudComputeEdge2Flavor: compute-edge2
+  OvercloudComputeEdge2vduFlavor: compute-edge2vdu
   ControllerCount: 3
   ComputeCount: 3
   ComputeEdge1Count: 1
