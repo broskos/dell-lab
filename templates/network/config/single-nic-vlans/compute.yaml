@@ -157,6 +157,7 @@ resources:
               - type: ovs_bridge
                 name: br-tenant
                 use_dhcp: false
+                mtu: 9000
                 dns_servers:
                   get_param: DnsServers
                 addresses:
@@ -187,6 +188,7 @@ resources:
                   - type: interface
                     name: nic2
                 - type: vlan
+                  mtu: 9000
                   vlan_id:
                     get_param: InternalApiNetworkVlanID
                   addresses:
@@ -198,6 +200,7 @@ resources:
                     next_hop:
                       get_param: InternalApiInterfaceDefaultRoute
                 - type: vlan
+                  mtu: 9000
                   vlan_id:
                     get_param: TenantNetworkVlanID
                   addresses:

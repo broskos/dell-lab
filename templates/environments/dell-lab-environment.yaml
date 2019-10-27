@@ -1,11 +1,17 @@
 resource_registry:
 # Configure Networks
-  OS::TripleO::Controller::Net::SoftwareConfig: ../network/config/multiple-nics/controller.yaml
-  OS::TripleO::Compute::Net::SoftwareConfig: ../network/config/single-nic-vlans/compute.yaml
-  OS::TripleO::ComputeEdge1::Net::SoftwareConfig: ../network/config/single-nic-vlans/compute-e1.yaml
-  OS::TripleO::ComputeEdge1vdu::Net::SoftwareConfig: ../network/config/single-nic-vlans/compute-e1.yaml
-  OS::TripleO::ComputeEdge2::Net::SoftwareConfig: ../network/config/single-nic-vlans/compute-e2.yaml
-  OS::TripleO::ComputeEdge2vdu::Net::SoftwareConfig: ../network/config/single-nic-vlans/compute-e2.yaml
+  OS::TripleO::Controller::Net::SoftwareConfig:
+    ../network/config/multiple-nics/controller.yaml
+  OS::TripleO::Compute::Net::SoftwareConfig:
+    ../network/config/single-nic-vlans/compute.yaml
+  OS::TripleO::ComputeEdge1::Net::SoftwareConfig:
+    ../network/config/single-nic-vlans/compute-e1.yaml
+  OS::TripleO::ComputeEdge1vdu::Net::SoftwareConfig:
+    ../network/config/single-nic-vlans/compute-e1.yaml
+  OS::TripleO::ComputeEdge2::Net::SoftwareConfig:
+    ../network/config/single-nic-vlans/compute-e2.yaml
+  OS::TripleO::ComputeEdge2vdu::Net::SoftwareConfig:
+    ../network/config/single-nic-vlans/compute-e2.yaml
 
 # Disable Cinder
   OS::TripleO::Services::CinderApi: OS::Heat::None

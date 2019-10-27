@@ -155,8 +155,9 @@ resources:
             $network_config:
               network_config:
               - type: ovs_bridge
-                name: bridge_name
+                name: br-tenant
                 use_dhcp: false
+                mtu: 9000
                 dns_servers:
                   get_param: DnsServers
                 domain:
@@ -186,6 +187,7 @@ resources:
                   - type: interface
                     name: nic2
                 - type: vlan
+                  mtu: 9000
                   vlan_id:
                     get_param: InternalApiEdge2NetworkVlanID
                   addresses:
@@ -197,6 +199,7 @@ resources:
                     next_hop:
                       get_param: InternalApiEdge2InterfaceDefaultRoute
                 - type: vlan
+                  mtu: 9000
                   vlan_id:
                     get_param: TenantEdge2NetworkVlanID
                   addresses:
