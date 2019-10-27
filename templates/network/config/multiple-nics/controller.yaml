@@ -97,9 +97,33 @@ parameters:
   ControlPlaneDefaultRoute: # Override this via parameter_defaults
     description: The default route of the control plane network.
     type: string
+  InternalApiInterfaceDefaultRoute:
+    default: '192.168.130.62'
+    description: default route for the internal_api network
+    type: string
+  TenantInterfaceDefaultRoute:
+    default: '192.168.201.62'
+    description: default route for the tenant network
+    type: string
   ExternalInterfaceDefaultRoute:
     default: '172.17.119.62'
     description: default route for the external network
+    type: string
+  InternalApiEdge1InterfaceDefaultRoute:
+    default: '192.168.130.126'
+    description: default route for the internal_api_edge1 network
+    type: string
+  TenantEdge1InterfaceDefaultRoute:
+    default: '192.168.201.126'
+    description: default route for the tenant_edge1 network
+    type: string
+  InternalApiEdge2InterfaceDefaultRoute:
+    default: '192.168.130.190'
+    description: default route for the internal_api_edge2 network
+    type: string
+  TenantEdge2InterfaceDefaultRoute:
+    default: '192.168.201.190'
+    description: default route for the tenant_edge2 network
     type: string
   DnsServers: # Override this via parameter_defaults
     default: []
@@ -112,6 +136,12 @@ parameters:
     default: []
     description: A list of DNS search domains to be added (in order) to resolv.conf.
     type: comma_delimited_list
+  BondInterfaceOvsOptions:
+    default: bond_mode=active-backup
+    description: 'The bonding_options or bonding_options string for the bond
+      interface. Set things like lacp=active and/or bond_mode=balance-slb
+      for OVS bonds or like mode=4 for Linux bonds using this option.'
+    type: string
 resources:
   OsNetConfigImpl:
     type: OS::Heat::SoftwareConfig
