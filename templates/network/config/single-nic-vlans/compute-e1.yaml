@@ -168,12 +168,22 @@ resources:
                   addresses:
                   - ip_netmask:
                       get_param: InternalApiEdge1IpSubnet
+                  routes:
+                  - ip_netmask:
+                      get_param: InternalApiSupernet
+                    next_hop:
+                      get_param: InternalApiEdge1InterfaceDefaultRoute
                 - type: vlan
                   vlan_id:
                     get_param: TenantEdge1NetworkVlanID
                   addresses:
                   - ip_netmask:
                       get_param: TenantEdge1IpSubnet
+                  routes:
+                  - ip_netmask:
+                      get_param: TenantSupernet
+                    next_hop:
+                      get_param: TenantEdge1InterfaceDefaultRoute
 outputs:
   OS::stack_id:
     description: The OsNetConfigImpl resource.
