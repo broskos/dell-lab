@@ -21,6 +21,15 @@ rhhi-1.lab.roskosb.info
 rhhi-2.lab.roskosb.info  
 rhhi-3.lab.roskosb.info  
 
+RHHI servers have a hard dependency on DNS, avoid trying to use /etc/hosts, it just causes problems later on.  
+
+overcloud has a hard dependency on NTP, computes can't access the internet, so make sure NTP is available internally.  Using RHHI servers for internal NTP.  
+- to enable, add to /etc/chrony.conf  
+allow 192.168.0.0/16  
+allow 172.17.0.0/16  
+- add ntp service to firewalld
+
+
 ## OpenStack
 - director:  
 director.lab.lab.roskosb.info  
