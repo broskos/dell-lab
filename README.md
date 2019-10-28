@@ -21,7 +21,7 @@ rhhi-1.lab.roskosb.info
 rhhi-2.lab.roskosb.info  
 rhhi-3.lab.roskosb.info  
 
-## Openstack
+## OpenStack
 - director:  
 director.lab.lab.roskosb.info  
 stack / redhat
