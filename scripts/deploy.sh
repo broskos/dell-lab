@@ -13,5 +13,6 @@ time openstack overcloud deploy --templates \
     -e /usr/share/openstack-tripleo-heat-templates/environments/network-environment.yaml \
     -e /usr/share/openstack-tripleo-heat-templates/environments/disable-telemetry.yaml \
     -e /usr/share/openstack-tripleo-heat-templates/environments/host-config-and-reboot.yaml \
+    -e ~/dell-lab/templates/environments/overcloud-images.yaml \
     -e ~/dell-lab/templates/environments/dell-lab-environment.yaml
 
