@@ -7,6 +7,11 @@ rhvm.lab.roskosb.info
 https://rhvm.lab.roskosb.info/  
 admin / redhat
 
+- packages and containers:  
+satellite.lab.roskosb.info  
+https://satellite.lab.roskosb.info  
+admin /redhat  
+
 - generic rhel7 guest  
 rhel76-test.lab.roskosb.info  
 root / redhat
@@ -20,5 +25,9 @@ rhhi-3.lab.roskosb.info
 - director:  
 director.lab.lab.roskosb.info  
 stack / redhat
+
+- horizon:  
+http://overcloud.lab.roskosb.info  
+admin / 
 
 

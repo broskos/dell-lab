@@ -20,14 +20,14 @@ resource_registry:
   OS::TripleO::Services::CinderVolume: OS::Heat::None
 
 parameter_defaults:
-  DnsServers: ["192.168.120.5"]
+  DnsServers: ["172.17.118.8"]
   #NtpServer: ["35.135.192.20", "35.135.192.21"]
-  EC2MetadataIp: 192.168.120.5
+  EC2MetadataIp: 172.17.118.8
   NeutronExternalNetworkBridge: "''"
   BondInterfaceOvsOptions: "mode=4 miimon=100"
-#  DockerInsecureRegistryAddress:
-#  - 44.154.16.11:5000
-#  - satellite-eng.nfv.charterlab.com:5000
+  DockerInsecureRegistryAddress:
+  - 172.17.118.8:5000
+  - satellite.lab.roskosb.info:5000
 
   ControllerControlPlaneSubnet: leaf0
   ComputeControlPlaneSubnet: leaf0
