@@ -7,12 +7,12 @@ source ~/stackrc
 cd ~
 time openstack overcloud deploy --templates \
     --stack $stack_name \
-    -n ~/dell-lab/templates/network_data.yaml \
-    -r ~/dell-lab/templates/roles_data.yaml \
+    -n "${template_path}/network_data.yaml" \
+    -r "${template_path}/roles_data.yaml" \
     -e /usr/share/openstack-tripleo-heat-templates/environments/network-isolation.yaml \
     -e /usr/share/openstack-tripleo-heat-templates/environments/network-environment.yaml \
     -e /usr/share/openstack-tripleo-heat-templates/environments/disable-telemetry.yaml \
     -e /usr/share/openstack-tripleo-heat-templates/environments/host-config-and-reboot.yaml \
-    -e ~/dell-lab/templates/environments/overcloud-images.yaml \
-    -e ~/dell-lab/templates/environments/dell-lab-environment.yaml
+    -e "${template_path}/environments/overcloud-images.yaml" \
+    -e "${template_path}/environments/dell-lab-environment.yaml"
 
