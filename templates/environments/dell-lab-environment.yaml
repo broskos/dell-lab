@@ -67,7 +67,7 @@ parameter_defaults:
   NeutronEnableIsolatedMetadata: true
   NeutronEnableForceMetadata: true
   NeutronEnableMetadataNetwork: true
-  NeutronGlobalPhysnetMtu: 9000
+#  NeutronGlobalPhysnetMtu: 9000
 
   NovaReservedHostMemory: 4096
   OvercloudControllerFlavor: control
