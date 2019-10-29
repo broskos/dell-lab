@@ -22,6 +22,8 @@ rhhi-2.lab.roskosb.info
 rhhi-3.lab.roskosb.info  
 
 RHHI servers have a hard dependency on DNS, avoid trying to use /etc/hosts, it just causes problems later on.  
+    
+Compute nodes need to resolve satellite server by name.  
 
 overcloud has a hard dependency on NTP, computes can't access the internet, so make sure NTP is available internally.  Using RHHI servers for internal NTP.  
 - to enable, add to /etc/chrony.conf  
