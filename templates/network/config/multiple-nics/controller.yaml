@@ -6,6 +6,8 @@ parameters:
     type: string
   TenantSupernet:
     type: string
+  ControlPlaneSupernet:
+    type: string
   ControlPlaneEdge1SubnetCidr:
     type: string
   ControlPlaneEdge2SubnetCidr:
