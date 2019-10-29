@@ -62,13 +62,30 @@ SATELLITE_SERVER="satellite.lab.roskosb.info"
 TEMPLATE_PATH="~/dell-lab/templates"
 
 openstack overcloud container image prepare   \
---namespace "${SATELLITE_SERVER}:5000"   \
---prefix "${MY_ORG}-${MY_LE}-${MY_CV}-${MY_PRODUCT}-"   \
+--namespace="${SATELLITE_SERVER}:5000"   \
+--prefix="${MY_ORG}-${MY_LE}-${MY_CV}-${MY_PRODUCT}-"   \
 --tag-from-label {version}-{release} \
 --output-env-file /home/stack/overcloud-images.yaml \
     -r "${TEMPLATE_PATH}/roles_data.yaml" \
     -e /usr/share/openstack-tripleo-heat-templates/environments/network-isolation.yaml \
     -e /usr/share/openstack-tripleo-heat-templates/environments/network-environment.yaml \
     -e /usr/share/openstack-tripleo-heat-templates/environments/disable-telemetry.yaml \
+    -e /usr/share/openstack-tripleo-heat-templates/environments/neutron-sriov.yaml \
+    -e /usr/share/openstack-tripleo-heat-templates/environments/host-config-and-reboot.yaml \
     -e "${TEMPLATE_PATH}/environments/dell-lab-environment.yaml"
 
+
+#chasing some trouble with the variables, here is a an explicit copy:
+
+openstack overcloud container image prepare \
+--namespace=satellite.lab.roskosb.info:5000 \
+--prefix=default_organization-osp13_containers- \
+--tag-from-label {version}-{release} \
+--output-env-file /home/stack/overcloud-images.yaml \
+-r /home/stack/dell-lab/templates/roles_data.yaml \
+-e /usr/share/openstack-tripleo-heat-templates/environments/network-isolation.yaml \
+-e /usr/share/openstack-tripleo-heat-templates/environments/network-environment.yaml \
+-e /usr/share/openstack-tripleo-heat-templates/environments/disable-telemetry.yaml \
+-e /usr/share/openstack-tripleo-heat-templates/environments/neutron-sriov.yaml \
+-e /usr/share/openstack-tripleo-heat-templates/environments/host-config-and-reboot.yaml \
+-e /home/stack/dell-lab/templates/environments/dell-lab-environment.yaml
