@@ -172,7 +172,6 @@ resources:
                   next_hop:
                     get_param: EC2MetadataIp
               - type: interface
-                mtu: 9000
                 name: nic2
                 use_dhcp: false
                 addresses:
@@ -202,7 +201,6 @@ resources:
                 dns_servers:
                   get_param: DnsServers
                 use_dhcp: false
-                mtu: 9000
                 addresses:
                 - ip_netmask:
                     get_param: TenantIpSubnet
@@ -213,7 +211,6 @@ resources:
                     get_param: TenantInterfaceDefaultRoute
                 members:
                 - type: interface
-                  mtu: 9000
                   name: nic6
                   use_dhcp: false
                   primary: true
