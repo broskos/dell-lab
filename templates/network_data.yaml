@@ -4,14 +4,14 @@
   vlan: 170
   name_lower: storage
   ip_subnet: '192.168.170.0/24'
-  allocation_pools: [{'start': '192.168.170.4', 'end': '192.168.170.250'}]
+  allocation_pools: [{'start': '192.168.170.10', 'end': '192.168.170.250'}]
 
 - name: StorageMgmt
   name_lower: storage_mgmt
   vip: true
   vlan: 180
   ip_subnet: '192.168.180.0/24'
-  allocation_pools: [{'start': '192.168.180.4', 'end': '192.168.180.250'}]
+  allocation_pools: [{'start': '192.168.180.10', 'end': '192.168.180.250'}]
 
 - name: InternalApi
   name_lower: internal_api

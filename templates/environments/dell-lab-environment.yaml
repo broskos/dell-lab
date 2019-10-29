@@ -69,7 +69,7 @@ parameter_defaults:
   NeutronEnableMetadataNetwork: true
   NeutronGlobalPhysnetMtu: 9000
 
-  NovaReservedHostMemory: 1024
+  NovaReservedHostMemory: 4096
   OvercloudControllerFlavor: control
   OvercloudComputeFlavor: compute
   OvercloudComputeEdge1Flavor: compute-edge1
