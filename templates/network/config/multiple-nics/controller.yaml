@@ -171,6 +171,10 @@ resources:
                 - ip_netmask: 169.254.169.254/32
                   next_hop:
                     get_param: EC2MetadataIp
+                - ip_netmask:
+                    get_param: ControlPlaneSupernet
+                  next_hop:
+                    get_param: ControlPlaneDefaultRoute
               - type: interface
                 name: nic2
                 use_dhcp: false

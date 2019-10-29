@@ -60,6 +60,7 @@ parameter_defaults:
 
   InternalApiSupernet: 192.168.130.0/24
   TenantSupernet: 192.168.201.0/24
+  ControlPlaneSupernet: 192.168.120.0/24
 
   CloudName: overcloud.lab.roskosb.info
   CloudDomain: lab.roskosb.info
