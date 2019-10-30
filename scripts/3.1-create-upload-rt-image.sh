@@ -14,8 +14,10 @@ virt-customize -a overcloud-realtime-compute.qcow2 --run-command \
 "subscription-manager register --username=$cdn_user --password=$CDNPASS" \
 --run-command "subscription-manager attach --pool $pool"
 
-virt-customize -a overcloud-realtime-compute.qcow2 -v --selinux-relabel \
+virt-customize -a overcloud-realtime-compute.qcow2 -v \
 --run ~/dell-lab/scripts/rt.sh 2>&1 | tee ~/virt-customize.log
+
+virt-customize -a overcloud-realtime-compute.qcow2 --selinux-relabel
 
 #############################
 # extract vmliuz and initrd #
