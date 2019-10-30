@@ -204,8 +204,6 @@ resources:
                     get_param: StorageMgmtIpSubnet
               - type: ovs_bridge
                 name: br-tenant
-                dns_servers:
-                  get_param: DnsServers
                 use_dhcp: false
                 addresses:
                 - ip_netmask:
@@ -222,8 +220,6 @@ resources:
                   primary: true
               - type: ovs_bridge
                 name: bridge_name
-                dns_servers:
-                  get_param: DnsServers
                 use_dhcp: false
                 addresses:
                 - ip_netmask:
