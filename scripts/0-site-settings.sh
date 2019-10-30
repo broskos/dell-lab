@@ -1,6 +1,7 @@
 
 
 export pool='8a85f9996977b23d0169d99b5860315d'
+export cdn_user='broskos@redhat.com'
 
 export hostname='director'
 export ip_address='172.17.118.10'

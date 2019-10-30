@@ -4,14 +4,15 @@
 source ~/dell-lab/scripts/0-site-settings.sh
 source /home/stack/stackrc
 
-cd ~/images
-cp -f overcloud-full.qcow2 overcloud-realtime-compute.qcow2
 echo "enter cdn password\n"
 read CDNPASS
+
+cd ~/images
+cp -f overcloud-full.qcow2 overcloud-realtime-compute.qcow2
+
 virt-customize -a overcloud-realtime-compute.qcow2 --run-command \
-"subscription-manager register broskos@redhat.com --password=$CDNPASS"
-virt-customize -a overcloud-realtime-compute.qcow2 --run-command \
-"subscription-manager attach --pool $pool"
+"subscription-manager register --username=$cdn_user --password=$CDNPASS" \
+--run-command "subscription-manager attach --pool $pool"
 
  virt-customize -a overcloud-realtime-compute.qcow2 -v --selinux-relabel \
  --run ~/dell-lab/scripts/rt.sh 2>&1 | tee ~/virt-customize.log
