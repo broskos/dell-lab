@@ -8,21 +8,10 @@ source ~/dell-lab/scripts/0-site-settings.sh
 hostnamectl set-hostname $hostname.$domain
 echo "$ip_address $hostname.$domain $hostname" >> /etc/hosts
 
-# register with cdn
-echo "enter cdn password\n"
-read CDNPASS
-subscription-manager register --username=broskos@redhat.com --password=$CDNPASS
-subscription-manager attach --pool=$pool
-subscription-manager repos --disable "*"
-subscription-manager repos \
---enable=rhel-7-server-rpms \
---enable=rhel-7-server-extras-rpms \
---enable=rhel-7-server-rh-common-rpms \
---enable=rhel-ha-for-rhel-7-server-rpms \
---enable=rhel-7-server-openstack-13-rpms \
---enable=rhel-7-server-rhceph-3-tools-rpms
+# register with satellite
+yum localinstall -y "http://$satellite/pub/katello-ca-consumer-latest.noarch.rpm"
+subscription-manager register --org $org --activationkey $director_activation_key
 yum clean all
-
 
 # add stack user
 useradd stack

@@ -12,7 +12,7 @@ sed -i 's/"//g' satellite_image_names
 # now scp the satellite_image_names filr over to the satellite server and run this from the satellite server:
 
 
-MY_ORG="default_organization"
+MY_ORG="lab"
 MY_PRODUCT="osp13_containers"
 MY_LE="dev"
 UPSTREAM_URL="registry.access.redhat.com"
@@ -54,7 +54,7 @@ hammer product synchronize \
 
 # run this from director
 # use all lower case for these, regardless if they are LC in satellite
-MY_ORG="default_organization"
+MY_ORG="lab"
 MY_LE="dev"
 MY_CV="osp13"
 MY_PRODUCT="osp13_containers"
@@ -79,7 +79,7 @@ openstack overcloud container image prepare   \
 
 openstack overcloud container image prepare \
 --namespace=satellite.lab.roskosb.info:5000 \
---prefix=default_organization-osp13_containers- \
+--prefix=lab-osp13_containers- \
 --tag-from-label {version}-{release} \
 --output-env-file /home/stack/overcloud-images.yaml \
 -r /home/stack/dell-lab/templates/roles_data.yaml \
