@@ -22,6 +22,18 @@ rhhi-2.lab.roskosb.info
 rhhi-3.lab.roskosb.info  
 root /redhat  
 
+When specifying gluster volumes in gluster wizard, use the wwid value, which will differ for each rhhi host:  
+rhhi1: /dev/mapper/36d0946602a4a8d0025826f2a6ac3f40a
+rhhi2: /dev/mapper/36d0946600f82750025826eda52da0537
+rhhi3: /dev/mapper/36d094660106d090025826e62733a0e86
+
+virtual usb created at root of dell-lab folder has ifcfg files for rhhi hosts  
+attach virtual media via idrac  
+mount on rhhi node:  
+mkdir /media/usb 
+mount -o loop,ro,noexec,noload /dev/sdc1 /media/usb/  
+then copy files from /media/usb/{rhhi hostname} to /etc/sysconfig/network-scripts  
+
 RHHI servers have a hard dependency on DNS, avoid trying to use /etc/hosts, it just causes problems later on.  
     
 Compute nodes need to resolve satellite server by name.
