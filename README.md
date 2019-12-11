@@ -13,7 +13,7 @@ https://satellite.lab.roskosb.info
 admin /redhat  
 
 - generic rhel7 guest  
-rhel76-test.lab.roskosb.info  
+rhel77-test.lab.roskosb.info  
 root / redhat
 
 - hosts:  
