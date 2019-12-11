@@ -12,7 +12,7 @@ fi
 
 # we store files in git that need to be in the
 # stack users home directory, fetch them out
-cp ~/dell-lab/stack-home/* ~
+cp ~/dell-lab/stack-home/undercloud.conf ~
 
 if [ ! -f /home/stack/undercloud.conf ] ; then echo "No undercloud.conf" ; exit 1 ; fi
 

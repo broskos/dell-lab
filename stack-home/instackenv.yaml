@@ -1,7 +1,7 @@
 ---
 nodes:
 - mac:
-  - 56:6f:03:1b:00:03
+  - 56:6f:af:be:00:04
   name: controller1
   cpu: '4'
   memory: '6144'
@@ -14,7 +14,7 @@ nodes:
   pm_vm_name: controller1
   capabilities: profile:control,boot_option:local
 - mac:
-  - 56:6f:03:1b:00:1c
+  - 56:6f:af:be:00:0a
   name: controller2
   cpu: '4'
   memory: '6144'
@@ -27,7 +27,7 @@ nodes:
   pm_vm_name: controller2
   capabilities: profile:control,boot_option:local
 - mac:
-  - 56:6f:03:1b:00:0f
+  - 56:6f:af:be:00:10
   name: controller3
   cpu: '4'
   memory: '6144'
