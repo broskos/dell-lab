@@ -23,9 +23,9 @@ rhhi-3.lab.roskosb.info
 root /redhat  
 
 When specifying gluster volumes in gluster wizard, use the wwid value, which will differ for each rhhi host:  
-rhhi1: /dev/mapper/36d0946602a4a8d0025826f2a6ac3f40a
-rhhi2: /dev/mapper/36d0946600f82750025826eda52da0537
-rhhi3: /dev/mapper/36d094660106d090025826e62733a0e86
+rhhi1: /dev/mapper/36d0946602a4a8d0025826f2a6ac3f40a  
+rhhi2: /dev/mapper/36d0946600f82750025826eda52da0537  
+rhhi3: /dev/mapper/36d094660106d090025826e62733a0e86  
 
 virtual usb created at root of dell-lab folder has ifcfg files for rhhi hosts  
 attach virtual media via idrac  
