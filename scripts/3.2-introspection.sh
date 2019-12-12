@@ -20,7 +20,7 @@ PORT=$(openstack baremetal port list --node $NODE -f value -c UUID)
 openstack baremetal port set --physical-network ctlplane $PORT
 done
 
-for NODE in edge1vdu-1 edge1-1;do
+for NODE in edge1vdu-1 edge1-1 edge1-2;do
 PORT=$(openstack baremetal port list --node $NODE -f value -c UUID)
 openstack baremetal port set --physical-network edge1 $PORT
 done
