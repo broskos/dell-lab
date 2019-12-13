@@ -40,8 +40,15 @@ RHHI servers have a hard dependency on DNS, avoid trying to use /etc/hosts, it j
 
 Compute nodes need to resolve satellite server by name.
 
-Enabled dns proxy on satellite, edited /etc/named/options.conf to set: +
-allow-recursion { any; };
+Enabled dns proxy on satellite,
+
+
+....
+satellite-installer --scenario satellite --foreman-initial-organization lab --foreman-initial-admin-password redhat --foreman-initial-location tewksbury --foreman-initial-admin-username admin --foreman-proxy-dns true
+....
+edit /etc/named/options.conf to set: +
+allow-recursion { any; }; +
+restart named
 
 overcloud has a hard dependency on NTP, computes can't access the internet, so make sure NTP is available internally. Using RHHI servers for internal NTP. +
 - to enable, add to /etc/chrony.conf +
