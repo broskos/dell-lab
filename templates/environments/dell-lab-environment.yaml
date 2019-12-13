@@ -13,12 +13,6 @@ resource_registry:
   OS::TripleO::ComputeEdge2vdu::Net::SoftwareConfig:
     ../network/config/single-nic-vlans/compute-e2.yaml
 
-# Disable Cinder
-  OS::TripleO::Services::CinderApi: OS::Heat::None
-  OS::TripleO::Services::CinderBackup: OS::Heat::None
-  OS::TripleO::Services::CinderScheduler: OS::Heat::None
-  OS::TripleO::Services::CinderVolume: OS::Heat::None
-
 parameter_defaults:
   DnsServers:
   - 172.17.118.8
@@ -99,9 +93,6 @@ parameter_defaults:
     - DiskFilter
 
   PublicVirtualFixedIPs: [{'ip_address':'172.17.119.10'}]
-
-  SwiftRawDisks:
-    sdb: {}
 
   ComputeParameters:
     KernelArgs: "default_hugepagesz=1GB hugepagesz=1G hugepages=128 intel_iommu=on iommu=pt"
