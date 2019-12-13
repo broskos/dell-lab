@@ -59,9 +59,9 @@ allow 172.17.0.0/16 +
 == OpenStack
 
 * director: +
-director.lab.lab.roskosb.info +
+director.lab.roskosb.info +
 stack / redhat
 
 * horizon: +
 http://overcloud.lab.roskosb.info +
-see vranlabrc
+see vranlabrc file for credentials
