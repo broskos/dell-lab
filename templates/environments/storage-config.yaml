@@ -1,0 +1,37 @@
+parameter_defaults:
+  CephConfigOverrides:
+    max_open_files: 131072
+  CephPoolDefaultSize: 2
+  CephPoolDefaultPgNum: 32
+  CephConfigOverrides:
+    osd_recovery_op_priority: 2
+    osd_recovery_max_active: 2
+    osd_max_backfills: 1
+  CephAnsibleExtraConfig:
+    nb_retry_wait_osd_up: 60
+    delay_wait_osd_up: 20
+    is_hci: true
+    # 4 OSDs * 1 vCPUs per HDD = 4 vCPUs below not used by VNF on numa node0
+    # fultonj: 6 OSDs so could increase to 6 vCPUs iff you have them, else use 3
+    ceph_osd_docker_cpuset_cpus: "1,2,21,22,41,61"
+    # cpu_limit 0 means no limit as we are limiting CPUs with cpuset above
+    # If more than one CPU per Ceph OSD is required set the correct value
+    # default ceph_osd_docker_cpu_limit: 1
+    ceph_osd_docker_cpu_limit: 1
+    # numactl preferred to cross the numa boundary if we have to but try to only use memory from numa node0
+    # cpuset-mems would not let it cross numa boundary (boundary crossing is preferable to crashing)
+    # lots of memory so NUMA boundary crossing unlikely
+    ceph_osd_numactl_opts: "-N 1 --preferred=1"
+  CephAnsibleDisksConfig:
+    osd_scenario: lvm
+    osd_objectstore: bluestore
+    devices:
+      - /dev/sdb
+      - /dev/sdc
+      - /dev/sdd
+      - /dev/sde
+      - /dev/sdf
+      - /dev/sdg
+      - /dev/sdh
+      - /dev/sdi
+      - /dev/sdj
