@@ -125,7 +125,7 @@ nodes:
   capabilities: profile:compute-edge2vdu,boot_option:local
 - mac:
   - e4:43:4b:58:53:40
-  name: compute1
+  name: edge2-1
   cpu: '4'
   memory: '6144'
   disk: '40'
@@ -134,10 +134,10 @@ nodes:
   pm_user: root
   pm_password: calvin
   pm_addr: 172.17.120.33
-  capabilities: profile:compute,boot_option:local
+  capabilities: profile:compute-edge2,boot_option:local
 - mac:
   - e4:43:4b:58:29:d0
-  name: compute2
+  name: edge2-2
   cpu: '4'
   memory: '6144'
   disk: '40'
@@ -146,4 +146,4 @@ nodes:
   pm_user: root
   pm_password: calvin
   pm_addr: 172.17.120.35
-  capabilities: profile:compute,boot_option:local
+  capabilities: profile:compute-edge2,boot_option:local
