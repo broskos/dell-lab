@@ -76,8 +76,8 @@ parameter_defaults:
   OvercloudComputeEdge2Flavor: compute-edge2
   OvercloudComputeEdge2vduFlavor: compute-edge2vdu
   ControllerCount: 3
-  ComputeCount: 3
-  ComputeHCICount: 1
+  ComputeCount: 2
+  ComputeHCICount: 3
   ComputeEdge1Count: 2
   ComputeEdge1vduCount: 1
   ComputeEdge2Count: 0
@@ -104,7 +104,7 @@ parameter_defaults:
     IsolCpusList: 2-35,38-71
     NovaVcpuPinSet: 2-35,38-71
 
-  ComputeHCIImage: "overcloud-full-hci"
+#  ComputeHCIImage: "overcloud-full-hci"
   ComputeHCIParameters:
     KernelArgs: "default_hugepagesz=1GB hugepagesz=1G hugepages=128 intel_iommu=on iommu=pt"
     IsolCpusList: 2-35,38-71
