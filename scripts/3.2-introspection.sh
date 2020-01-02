@@ -15,7 +15,7 @@ source /home/stack/stackrc
 openstack overcloud node import ~/dell-lab/stack-home/instackenv.yaml
 
 # now we have to map the neutron ports individual servers to their leaf
-for NODE in controller1 controller2 controller3 compute1 compute2 compute3;do
+for NODE in controller1 controller2 controller3 compute-hci1 compute-hci2 compute-hci3 compute1 compute2;do
 PORT=$(openstack baremetal port list --node $NODE -f value -c UUID)
 openstack baremetal port set --physical-network ctlplane $PORT
 done

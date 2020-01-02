@@ -5,7 +5,7 @@ USER=root
 PASSWORD=calvin
 NET=172.17.120
 
-for SERVERIP in 7 9 11 13 15 31 13 37 33
+for SERVERIP in 7 9 11 13 15 31 13 37 33 35
 do
   echo "working on: $NET.$SERVERIP"
 # usefull for clearing out stuck jobqueue:
