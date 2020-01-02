@@ -11,9 +11,8 @@ parameter_defaults:
     nb_retry_wait_osd_up: 60
     delay_wait_osd_up: 20
     is_hci: true
-    # 4 OSDs * 1 vCPUs per HDD = 4 vCPUs below not used by VNF on numa node0
-    # fultonj: 6 OSDs so could increase to 6 vCPUs iff you have them, else use 3
-    ceph_osd_docker_cpuset_cpus: "1,2,21,22,41,61"
+    # To limit CPU quota to a certain NUMA node
+    # ceph_osd_docker_cpuset_cpus: "1,2,21,22,41,61"
     # cpu_limit 0 means no limit as we are limiting CPUs with cpuset above
     # If more than one CPU per Ceph OSD is required set the correct value
     # default ceph_osd_docker_cpu_limit: 1
