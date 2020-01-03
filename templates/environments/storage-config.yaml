@@ -1,12 +1,13 @@
 parameter_defaults:
   CephConfigOverrides:
     max_open_files: 131072
-  CephPoolDefaultSize: 2
-  CephPoolDefaultPgNum: 32
-  CephConfigOverrides:
     osd_recovery_op_priority: 2
     osd_recovery_max_active: 2
     osd_max_backfills: 1
+
+  CephPoolDefaultSize: 2
+  CephPoolDefaultPgNum: 32
+
   CephAnsibleExtraConfig:
     nb_retry_wait_osd_up: 60
     delay_wait_osd_up: 20

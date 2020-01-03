@@ -182,6 +182,7 @@
   networks:
     - InternalApi
     - Tenant
+    - Storage
   HostnameFormatDefault: '%stackname%-compute-%index%'
   uses_deprecated_params: false
   disable_upgrade_deployment: True
@@ -247,6 +248,7 @@
   networks:
     - InternalApiEdge1
     - TenantEdge1
+    - Storage
   HostnameFormatDefault: '%stackname%-compute-e1-%index%'
   uses_deprecated_params: False
   disable_upgrade_deployment: True
@@ -312,6 +314,7 @@
   networks:
     - InternalApiEdge1
     - TenantEdge1
+    - Storage
   HostnameFormatDefault: '%stackname%-computevdu-e1-%index%'
   uses_deprecated_params: False
   disable_upgrade_deployment: True

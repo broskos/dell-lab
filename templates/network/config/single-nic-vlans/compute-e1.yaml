@@ -207,6 +207,12 @@ resources:
                       get_param: TenantSupernet
                     next_hop:
                       get_param: TenantEdge1InterfaceDefaultRoute
+                - type: vlan
+                  vlan_id:
+                    get_param: StorageNetworkVlanID
+                  addresses:
+                  - ip_netmask:
+                      get_param: StorageIpSubnet
 outputs:
   OS::stack_id:
     description: The OsNetConfigImpl resource.
