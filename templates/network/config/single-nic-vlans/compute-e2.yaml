@@ -176,16 +176,20 @@ resources:
                 members:
                 - type: linux_bond
                   name: bond0
+                  mtu: 9000
                   bonding_options:
                     get_param: BondInterfaceOvsOptions
                   members:
                   - type: interface
                     name: nic1
+                    mtu: 9000
                     # force the MAC address of the bridge to this interface
                     primary: true
                   - type: interface
                     name: nic2
+                    mtu: 9000
                 - type: vlan
+                  mtu: 9000
                   vlan_id:
                     get_param: InternalApiEdge2NetworkVlanID
                   addresses:
@@ -197,6 +201,7 @@ resources:
                     next_hop:
                       get_param: InternalApiEdge2InterfaceDefaultRoute
                 - type: vlan
+                  mtu: 9000
                   vlan_id:
                     get_param: TenantEdge2NetworkVlanID
                   addresses:
@@ -207,6 +212,20 @@ resources:
                       get_param: TenantSupernet
                     next_hop:
                       get_param: TenantEdge2InterfaceDefaultRoute
+              - type: interface
+                name: p8p1
+                mtu: 9000
+                use_dhcp: false
+                defroute: false
+                nm_controlled: true
+                hotplug: true
+              - type: interface
+                name: p8p2
+                mtu: 9000
+                use_dhcp: false
+                defroute: false
+                nm_controlled: true
+                hotplug: true
 outputs:
   OS::stack_id:
     description: The OsNetConfigImpl resource.
