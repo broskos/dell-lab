@@ -55,12 +55,6 @@ parameter_defaults:
   - tenant:br-tenant
   - datacentre:br-ex
 
-#  NeutronNetworkVLANRanges:
-#    - tenant:1000:2000
-#    - provider:1000:2000
-#    - leaf2:1000:1000
-#    - edge1:1000:1000
-
   InternalApiSupernet: 192.168.130.0/24
   TenantSupernet: 192.168.201.0/24
   ControlPlaneSupernet: 192.168.120.0/24
@@ -188,7 +182,7 @@ parameter_defaults:
         physical_network: "fronthaul"
       - devname: "p8p1"
         physical_network: "arinterface"
-      - devname: "p7p2"
+      - devname: "p8p2"
         physical_network: "arinterface"
 
   ComputeEdge1ExtraConfig:
@@ -217,7 +211,7 @@ parameter_defaults:
         physical_network: "fronthaul"
       - devname: "p8p1"
         physical_network: "arinterface"
-      - devname: "p7p2"
+      - devname: "p8p2"
         physical_network: "arinterface"
 
   ComputeEdge1vduExtraConfig:
@@ -247,7 +241,7 @@ parameter_defaults:
         physical_network: "fronthaul"
       - devname: "p8p1"
         physical_network: "arinterface"
-      - devname: "p7p2"
+      - devname: "p8p2"
         physical_network: "arinterface"
 
   ComputeEdge2ExtraConfig:
@@ -277,7 +271,7 @@ parameter_defaults:
         physical_network: "fronthaul"
       - devname: "p8p1"
         physical_network: "arinterface"
-      - devname: "p7p2"
+      - devname: "p8p2"
         physical_network: "arinterface"
 
   ComputeEdge2vduExtraConfig:
