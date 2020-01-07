@@ -219,20 +219,20 @@ resources:
                   addresses:
                   - ip_netmask:
                       get_param: StorageIpSubnet
-              - type: interface
-                name: p3p1
-                mtu: 9000
-                use_dhcp: false
-                defroute: false
-                nm_controlled: true
-                hotplug: true
-              - type: interface
-                name: p3p2
-                mtu: 9000
-                use_dhcp: false
-                defroute: false
-                nm_controlled: true
-                hotplug: true
+#              - type: interface
+#                name: p3p1
+#                mtu: 9000
+#                use_dhcp: false
+#                defroute: false
+#                nm_controlled: true
+#                hotplug: true
+#              - type: interface
+#                name: p3p2
+#                mtu: 9000
+#                use_dhcp: false
+#                defroute: false
+#                nm_controlled: true
+#                hotplug: true
               - type: interface
                 name: p7p1
                 mtu: 9000
