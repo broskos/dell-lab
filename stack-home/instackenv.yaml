@@ -76,6 +76,30 @@ nodes:
   pm_addr: 172.17.120.11
   capabilities: profile:compute-hci,boot_option:local
 - mac:
+  - e4:43:4b:58:35:50
+  name: compute-1
+  cpu: '4'
+  memory: '6144'
+  disk: '40'
+  arch: x86_64
+  pm_type: pxe_drac
+  pm_user: root
+  pm_password: calvin
+  pm_addr: 172.17.120.15
+  capabilities: profile:compute,boot_option:local
+- mac:
+  - e4:43:4b:58:53:40
+  name: compute-2
+  cpu: '4'
+  memory: '6144'
+  disk: '40'
+  arch: x86_64
+  pm_type: pxe_drac
+  pm_user: root
+  pm_password: calvin
+  pm_addr: 172.17.120.33
+  capabilities: profile:compute,boot_option:local
+- mac:
   - e4:43:4b:58:44:40
   name: edge1vdu-1
   cpu: '4'
@@ -99,30 +123,7 @@ nodes:
   pm_password: calvin
   pm_addr: 172.17.120.13
   capabilities: profile:compute-edge1,boot_option:local
-- mac:
-  - e4:43:4b:58:35:50
-  name: edge1-2
-  cpu: '4'
-  memory: '6144'
-  disk: '40'
-  arch: x86_64
-  pm_type: pxe_drac
-  pm_user: root
-  pm_password: calvin
-  pm_addr: 172.17.120.15
-  capabilities: profile:compute-edge1,boot_option:local
-- mac:
-  - e4:43:4b:58:53:40
-  name: edge1-3
-  cpu: '4'
-  memory: '6144'
-  disk: '40'
-  arch: x86_64
-  pm_type: pxe_drac
-  pm_user: root
-  pm_password: calvin
-  pm_addr: 172.17.120.33
-  capabilities: profile:compute-edge1,boot_option:local
+
 - mac:
   - e4:43:4b:58:52:70
   name: edge2vdu-1
