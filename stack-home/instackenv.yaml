@@ -123,7 +123,6 @@ nodes:
   pm_password: calvin
   pm_addr: 172.17.120.13
   capabilities: profile:compute-edge1,boot_option:local
-
 - mac:
   - e4:43:4b:58:52:70
   name: edge2vdu-1
