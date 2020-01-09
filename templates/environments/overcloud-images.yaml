@@ -1,10 +1,10 @@
-# Generated with the following on 2019-12-12T05:12:50.338108
+# Generated with the following on 2020-01-09T08:25:20.259766
 #
-#   openstack overcloud container image prepare --namespace=satellite.lab.roskosb.info:5000 --prefix=lab-osp13_containers- --tag-from-label {version}-{release} --output-env-file /home/stack/overcloud-images.yaml -r /home/stack/dell-lab/templates/roles_data.yaml -e /usr/share/openstack-tripleo-heat-templates/environments/network-isolation.yaml -e /usr/share/openstack-tripleo-heat-templates/environments/network-environment.yaml -e /usr/share/openstack-tripleo-heat-templates/environments/disable-telemetry.yaml -e /usr/share/openstack-tripleo-heat-templates/environments/neutron-sriov.yaml -e /usr/share/openstack-tripleo-heat-templates/environments/host-config-and-reboot.yaml -e /home/stack/dell-lab/templates/environments/dell-lab-environment.yaml
+#   openstack overcloud container image prepare --namespace=satellite.lab.roskosb.info:5000 --prefix=lab-osp13_containers- --tag-from-label {version}-{release} --output-env-file /home/stack/overcloud-images.yaml --set ceph_namespace=satellite.lab.roskosb.info:5000 --set ceph_image=lab-osp13_containers-rhceph-3-rhel7 -r /home/stack/dell-lab/templates/roles_data.yaml -e /usr/share/openstack-tripleo-heat-templates/environments/network-isolation.yaml -e /usr/share/openstack-tripleo-heat-templates/environments/network-environment.yaml -e /usr/share/openstack-tripleo-heat-templates/environments/disable-telemetry.yaml -e /usr/share/openstack-tripleo-heat-templates/environments/neutron-sriov.yaml -e /usr/share/openstack-tripleo-heat-templates/environments/host-config-and-reboot.yaml -e /usr/share/openstack-tripleo-heat-templates/environments/ceph-ansible/ceph-ansible.yaml -e /home/stack/dell-lab/templates/environments/storage-config.yaml -e /home/stack/dell-lab/templates/environments/overcloud-images.yaml -e /home/stack/dell-lab/templates/environments/dell-lab-environment.yaml
 #
 
 parameter_defaults:
-  DockerCephDaemonImage: registry.access.redhat.com/rhceph/rhceph-3-rhel7:3-40
+  DockerCephDaemonImage: satellite.lab.roskosb.info:5000/lab-osp13_containers-rhceph-3-rhel7:3-40
   DockerCinderApiImage: satellite.lab.roskosb.info:5000/lab-osp13_containers-cinder-api:13.0-104
   DockerCinderConfigImage: satellite.lab.roskosb.info:5000/lab-osp13_containers-cinder-api:13.0-104
   DockerCinderSchedulerImage: satellite.lab.roskosb.info:5000/lab-osp13_containers-cinder-scheduler:13.0-105
