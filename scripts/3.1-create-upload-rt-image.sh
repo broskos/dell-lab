@@ -17,7 +17,7 @@ virt-customize -a overcloud-realtime-compute.qcow2 --run-command \
 # temporarily include the rpm that we created for the upstream intel i40e for RT
 
 virt-customize -a overcloud-realtime-compute.qcow2 -v \
---copy-in ~/i40e-2.10.19.30-1.x86_64.rpm /root/i40e-2.10.19.30-1.x86_64.rpm \
+--copy-in ~/i40e-2.10.19.30-1.x86_64.rpm:/root/i40e-2.10.19.30-1.x86_64.rpm \
 --run ~/dell-lab/scripts/rt.sh 2>&1 | tee ~/virt-customize.log
 
 virt-customize -a overcloud-realtime-compute.qcow2 --selinux-relabel
