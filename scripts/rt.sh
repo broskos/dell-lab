@@ -13,4 +13,6 @@ yum -v -y install kernel-rt kernel-rt-kvm tuned-profiles-nfv-host
 subscription-manager unregister
 subscription-manager clean
 # temporary - add intel upstream i40e driver
-yum localinstall /root/i40e-2.10.19.30-1.x86_64.rpm -y
+# this doesnt' work here because the new kernel is not running at this point, have to reboot
+# yum localinstall /root/i40e-2.10.19.30-1.x86_64.rpm -y
+
