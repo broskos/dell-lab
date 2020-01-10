@@ -7,15 +7,17 @@ source /home/stack/stackrc
 cd ~/images
 cp -f overcloud-full.qcow2 overcloud-realtime-compute.qcow2
 
-#echo "enter cdn password: "
-#read CDNPASS
-#virt-customize -a overcloud-realtime-compute.qcow2 --run-command \
-#"subscription-manager register --username=$cdn_user --password=$CDNPASS" \
-#--run-command "subscription-manager attach --pool $pool"
+# CDN
+echo "enter cdn password: "
+read CDNPASS
+virt-customize -a overcloud-realtime-compute.qcow2 --run-command \
+"subscription-manager register --username=$cdn_user --password=$CDNPASS" \
+--run-command "subscription-manager attach --pool $pool"
 
-virt-customize -a overcloud-realtime-compute.qcow2 \
---run-command yum localinstall -y "http://$satellite/pub/katello-ca-consumer-latest.noarch.rpm" \
---run-command subscription-manager register --org $org --activationkey $director_activation_key
+# Satellite
+#virt-customize -a overcloud-realtime-compute.qcow2 \
+#--run-command "yum localinstall -y http://$satellite/pub/katello-ca-consumer-latest.noarch.rpm" \
+#--run-command "subscription-manager register --name tempvm.lab.roskosb.info --org $org --activationkey $director_activation_key --force"
 
 virt-customize -a overcloud-realtime-compute.qcow2 -v \
 --copy-in ~/i40e-2.10.19.30-1.x86_64.rpm:/root/ \
