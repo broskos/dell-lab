@@ -35,15 +35,19 @@ parameter_defaults:
       - /dev/sdg
       - /dev/sdh
       - /dev/sdi
-  NodeDataLookup:
-    4C4C4544-0038-4E10-8046-CAC04F395432:
-      devices: 
-        - /dev/sdb
-        - /dev/sdc
-        - /dev/sdd
-        - /dev/sde
-        - /dev/sdf
-        - /dev/sdg
-        - /dev/sdh
-        - /dev/sdi
-        - /dev/sdj
+  NodeDataLookup: |
+    {
+      "4C4C4544-0038-4E10-8046-CAC04F395432": {
+        "devices": [
+          "/dev/sdb",
+          "/dev/sdc",
+          "/dev/sdd",
+          "/dev/sde",
+          "/dev/sdf",
+          "/dev/sdg",
+          "/dev/sdh",
+          "/dev/sdi",
+          "/dev/sdj"
+        ]
+      }
+    }
