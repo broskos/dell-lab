@@ -26,7 +26,7 @@ parameter_defaults:
     osd_scenario: lvm
     osd_objectstore: bluestore
     devices:
-      - /dev/sda
+      - /dev/sdb
       - /dev/sdb
       - /dev/sdc
       - /dev/sdd
@@ -35,19 +35,5 @@ parameter_defaults:
       - /dev/sdg
       - /dev/sdh
       - /dev/sdi
-  NodeDataLookup: |
-    {
-      "4c4c4544-0038-4e10-8046-cac04f395432": {
-        "devices": [
-          "/dev/sdb",
-          "/dev/sdc",
-          "/dev/sdd",
-          "/dev/sde",
-          "/dev/sdf",
-          "/dev/sdg",
-          "/dev/sdh",
-          "/dev/sdi",
-          "/dev/sdj"
-        ]
-      }
-    }
+      - /dev/sdj
+
