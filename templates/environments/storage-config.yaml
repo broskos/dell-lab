@@ -25,4 +25,29 @@ parameter_defaults:
   CephAnsibleDisksConfig:
     osd_scenario: lvm
     osd_objectstore: bluestore
-    osd_auto_discovery: true
+    devices:
+      - /dev/sda
+      - /dev/sdb
+      - /dev/sdc
+      - /dev/sdd
+      - /dev/sde
+      - /dev/sdf
+      - /dev/sdg
+      - /dev/sdh
+      - /dev/sdi
+  NodeDataLookup: |
+    {
+      "4c9a0296-bd87-41e6-b4f3-7d0efda677b4": {
+        "devices": [
+        "/dev/sdb",
+        "/dev/sdc",
+        "/dev/sdd",
+        "/dev/sde",
+        "/dev/sdf",
+        "/dev/sdg",
+        "/dev/sdh",
+        "/dev/sdi",
+        "/dev/sdj"
+            ]
+         }
+       }
