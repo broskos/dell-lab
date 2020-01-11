@@ -37,7 +37,7 @@ parameter_defaults:
       - /dev/sdi
   NodeDataLookup: |
     {
-      "4c9a0296-bd87-41e6-b4f3-7d0efda677b4": {
+      "4c4c4544-0038-4e10-8046-cac04f395432": {
         "devices": [
         "/dev/sdb",
         "/dev/sdc",
