@@ -25,10 +25,4 @@ parameter_defaults:
   CephAnsibleDisksConfig:
     osd_scenario: lvm
     osd_objectstore: bluestore
-    devices:
-      - /dev/sdd
-      - /dev/sde
-      - /dev/sdf
-      - /dev/sdg
-      - /dev/sdh
-      - /dev/sdi
+    osd_auto_discovery: true
