@@ -25,15 +25,45 @@ parameter_defaults:
   CephAnsibleDisksConfig:
     osd_scenario: lvm
     osd_objectstore: bluestore
-    devices:
-      - /dev/sdb
-      - /dev/sdb
-      - /dev/sdc
-      - /dev/sdd
-      - /dev/sde
-      - /dev/sdf
-      - /dev/sdg
-      - /dev/sdh
-      - /dev/sdi
-      - /dev/sdj
-
+  NodeDataLookup: |
+    {
+      "4c4c4544-0038-4d10-804a-cac04f395432": {
+        "devices": [
+          "/dev/disk/by-path/disk/by-path/pci-0000:18:00.0-sas-exp0x500056b39bd935ff-phy0-lun-0",
+          "/dev/disk/by-path/disk/by-path/pci-0000:18:00.0-sas-exp0x500056b39bd935ff-phy1-lun-0",
+          "/dev/disk/by-path/disk/by-path/pci-0000:18:00.0-sas-exp0x500056b39bd935ff-phy2-lun-0",
+          "/dev/disk/by-path/disk/by-path/pci-0000:18:00.0-sas-exp0x500056b39bd935ff-phy3-lun-0",
+          "/dev/disk/by-path/disk/by-path/pci-0000:18:00.0-sas-exp0x500056b39bd935ff-phy4-lun-0",
+          "/dev/disk/by-path/disk/by-path/pci-0000:18:00.0-sas-exp0x500056b39bd935ff-phy5-lun-0",
+          "/dev/disk/by-path/disk/by-path/pci-0000:18:00.0-sas-exp0x500056b39bd935ff-phy6-lun-0",
+          "/dev/disk/by-path/disk/by-path/pci-0000:18:00.0-sas-exp0x500056b39bd935ff-phy7-lun-0",
+          "/dev/disk/by-path/disk/by-path/pci-0000:18:00.0-sas-exp0x500056b39bd935ff-phy8-lun-0"
+        ]
+      },
+      "4c4c4544-0038-4d10-804c-cac04f395432": {
+        "devices": [
+          "/dev/disk/by-path/disk/by-path/pci-0000:18:00.0-sas-exp0x500056b3b664cfff-phy0-lun-0",
+          "/dev/disk/by-path/disk/by-path/pci-0000:18:00.0-sas-exp0x500056b3b664cfff-phy1-lun-0",
+          "/dev/disk/by-path/disk/by-path/pci-0000:18:00.0-sas-exp0x500056b3b664cfff-phy2-lun-0",
+          "/dev/disk/by-path/disk/by-path/pci-0000:18:00.0-sas-exp0x500056b3b664cfff-phy3-lun-0",
+          "/dev/disk/by-path/disk/by-path/pci-0000:18:00.0-sas-exp0x500056b3b664cfff-phy4-lun-0",
+          "/dev/disk/by-path/disk/by-path/pci-0000:18:00.0-sas-exp0x500056b3b664cfff-phy5-lun-0",
+          "/dev/disk/by-path/disk/by-path/pci-0000:18:00.0-sas-exp0x500056b3b664cfff-phy6-lun-0",
+          "/dev/disk/by-path/disk/by-path/pci-0000:18:00.0-sas-exp0x500056b3b664cfff-phy7-lun-0",
+          "/dev/disk/by-path/disk/by-path/pci-0000:18:00.0-sas-exp0x500056b3b664cfff-phy8-lun-0"
+        ]
+      },
+      "4c4c4544-0038-4e10-8046-cac04f395432": {
+        "devices": [
+          "/dev/disk/by-path/disk/by-path/pci-0000:18:00.0-sas-exp0x500056b3c992d9ff-phy0-lun-0",
+          "/dev/disk/by-path/disk/by-path/pci-0000:18:00.0-sas-exp0x500056b3c992d9ff-phy1-lun-0",
+          "/dev/disk/by-path/disk/by-path/pci-0000:18:00.0-sas-exp0x500056b3c992d9ff-phy2-lun-0",
+          "/dev/disk/by-path/disk/by-path/pci-0000:18:00.0-sas-exp0x500056b3c992d9ff-phy3-lun-0",
+          "/dev/disk/by-path/disk/by-path/pci-0000:18:00.0-sas-exp0x500056b3c992d9ff-phy4-lun-0",
+          "/dev/disk/by-path/disk/by-path/pci-0000:18:00.0-sas-exp0x500056b3c992d9ff-phy5-lun-0",
+          "/dev/disk/by-path/disk/by-path/pci-0000:18:00.0-sas-exp0x500056b3c992d9ff-phy6-lun-0",
+          "/dev/disk/by-path/disk/by-path/pci-0000:18:00.0-sas-exp0x500056b3c992d9ff-phy7-lun-0",
+          "/dev/disk/by-path/disk/by-path/pci-0000:18:00.0-sas-exp0x500056b3c992d9ff-phy8-lun-0"
+        ]
+      }
+    }
