@@ -6,7 +6,7 @@ parameter_defaults:
     osd_max_backfills: 1
 
   CephPoolDefaultSize: 2
-  CephPoolDefaultPgNum: 32
+  CephPoolDefaultPgNum: 128
 
   CephAnsibleExtraConfig:
     nb_retry_wait_osd_up: 60

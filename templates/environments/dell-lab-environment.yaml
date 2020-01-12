@@ -202,11 +202,33 @@ parameter_defaults:
     IsolCpusList: 2-35,38-71
     NovaVcpuPinSet: 2-35,38-71
     NovaEnableRbdBackend: false
+    NeutronPhysicalDevMappings:
+      - fronthaul: p7p1
+      - fronthaul: p7p2
+      - arinterface: p8p1
+      - arinterface: p8p2
+      - fpgap4p1: p4p1
+      - fpgap4p2: p4p2
+      - fpgap4p3: p4p3
+      - fpgap4p4: p4p4
+      - fpgap5p1: p5p1
+      - fpgap5p2: p5p2
+      - fpgap5p3: p5p3
+      - fpgap5p4: p5p4
+    NeutronSriovNumVFs:
+      - p7p1:8
+      - p7p2:8
+      - p8p1:8
+      - p8p2:8    
+      - p4p1:8
+      - p4p2:8
+      - p4p3:8
+      - p4p4:8
+      - p5p1:8
+      - p5p2:8
+      - p5p3:8
+      - p5p4:8
     NovaPCIPassthrough:
-      - devname: "p3p1"
-        physical_network: "midhaul"
-      - devname: "p3p2"
-        physical_network: "midhaul"
       - devname: "p7p1"
         physical_network: "fronthaul"
       - devname: "p7p2"
@@ -215,7 +237,23 @@ parameter_defaults:
         physical_network: "arinterface"
       - devname: "p8p2"
         physical_network: "arinterface"
-
+      - devname: "p4p1"
+        physical_network: "fpgap4p1"
+      - devname: "p4p2"
+        physical_network: "fpgap4p2"
+      - devname: "p4p3"
+        physical_network: "fpgap4p3"
+      - devname: "p4p4"
+        physical_network: "fpgap4p4"
+      - devname: "p5p1"
+        physical_network: "fpgap5p1"
+      - devname: "p5p2"
+        physical_network: "fpgap5p2"
+      - devname: "p5p3"
+        physical_network: "fpgap5p3"
+      - devname: "p5p4"
+        physical_network: "fpgap5p4"         
+        
   ComputeEdge1vduExtraConfig:
     nova::compute::libvirt::vncserver_listen: "%{hiera('internal_api_edge1')}"
     nova::compute::vncserver_proxyclient_address: "%{hiera('internal_api_edge1')}"
@@ -262,11 +300,33 @@ parameter_defaults:
     IsolCpusList: 2-35,38-71
     NovaVcpuPinSet: 2-35,38-71
     NovaEnableRbdBackend: false
+    NeutronPhysicalDevMappings:
+      - fronthaul: p7p1
+      - fronthaul: p7p2
+      - arinterface: p8p1
+      - arinterface: p8p2
+      - fpgap4p1: p4p1
+      - fpgap4p2: p4p2
+      - fpgap4p3: p4p3
+      - fpgap4p4: p4p4
+      - fpgap5p1: p5p1
+      - fpgap5p2: p5p2
+      - fpgap5p3: p5p3
+      - fpgap5p4: p5p4
+    NeutronSriovNumVFs:
+      - p7p1:8
+      - p7p2:8
+      - p8p1:8
+      - p8p2:8
+      - p4p1:8
+      - p4p2:8
+      - p4p3:8
+      - p4p4:8
+      - p5p1:8
+      - p5p2:8
+      - p5p3:8
+      - p5p4:8
     NovaPCIPassthrough:
-      - devname: "p3p1"
-        physical_network: "midhaul"
-      - devname: "p3p2"
-        physical_network: "midhaul"
       - devname: "p7p1"
         physical_network: "fronthaul"
       - devname: "p7p2"
@@ -275,6 +335,22 @@ parameter_defaults:
         physical_network: "arinterface"
       - devname: "p8p2"
         physical_network: "arinterface"
+      - devname: "p4p1"
+        physical_network: "fpgap4p1"
+      - devname: "p4p2"
+        physical_network: "fpgap4p2"
+      - devname: "p4p3"
+        physical_network: "fpgap4p3"
+      - devname: "p4p4"
+        physical_network: "fpgap4p4"
+      - devname: "p5p1"
+        physical_network: "fpgap5p1"
+      - devname: "p5p2"
+        physical_network: "fpgap5p2"
+      - devname: "p5p3"
+        physical_network: "fpgap5p3"
+      - devname: "p5p4"
+        physical_network: "fpgap5p4"
 
   ComputeEdge2vduExtraConfig:
     nova::compute::libvirt::vncserver_listen: "%{hiera('internal_api_edge2')}"
