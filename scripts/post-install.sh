@@ -1,7 +1,7 @@
 #################################
 # Upload RHEL 7 Image to Glance
 #################################
-openstack image create --public --file ~/images/rhel-guest-image-7.7-x86_64.qcow2 --disk-format qcow2 --container bare rhel-77
+openstack image create --public --file ~/images/rhel-server-7.7-x86_64-kvm.qcow2 --disk-format qcow2 --container bare rhel-77
 
 ##########################
 # Create Default Flavors #
@@ -11,8 +11,8 @@ openstack flavor create --ram 2048 --disk 20 --vcpus 1 m1.small
 #############################
 # Create Management Network #
 #############################
-openstack network create --project admin --no-share management-net
-openstack subnet create --project admin --network management-net --dhcp --subnet-range 172.17.100.0/24 --dns-nameserver 64.102.6.247 --dns-nameserver 172.17.118.8 management
+openstack network create --project admin --no-share  --provider-network-type vlan --provider-segment 117 --provider-physical-network management management-net
+openstack subnet create --project admin --network management-net --dhcp --subnet-range 172.17.117.0/24 --gateway 172.17.117.254 --allocation-pool start=172.17.117.150,end=172.17.117.250 --dns-nameserver 172.17.118.8 management
 
 
 ######################################

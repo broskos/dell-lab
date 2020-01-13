@@ -47,7 +47,7 @@ parameter_defaults:
 
   NeutronNetworkType: 'vxlan,vlan'
   NeutronNetworkVLANRanges:
-    - tenant:117:117
+    - management:117:117
     - tenant:202:205
   NeutronTunnelTypes: ''
 
