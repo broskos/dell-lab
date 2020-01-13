@@ -54,6 +54,7 @@ parameter_defaults:
   NeutronBridgeMappings:
   - tenant:br-tenant
   - datacentre:br-ex
+  - management:br-mgmt
 
   InternalApiSupernet: 192.168.130.0/24
   TenantSupernet: 192.168.201.0/24

@@ -239,6 +239,21 @@ resources:
                   mtu: 1500
                   use_dhcp: false
                   primary: true
+                - type: interface
+                  name: nic7
+                  mtu: 1500
+                  use_dhcp: false
+                  primary: true
+              - type: ovs_bridge
+                name: br-mgmt
+                use_dhcp: false
+                mtu: 1500
+                members:
+                - type: interface
+                  name: nic8
+                  mtu: 1500
+                  use_dhcp: false
+
 outputs:
   OS::stack_id:
     description: The OsNetConfigImpl resource.
