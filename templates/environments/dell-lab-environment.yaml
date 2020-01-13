@@ -55,6 +55,7 @@ parameter_defaults:
   - tenant:br-tenant
   - datacentre:br-ex
   - management:br-mgmt
+  - floating-ips:br-float
 
   InternalApiSupernet: 192.168.130.0/24
   TenantSupernet: 192.168.201.0/24
