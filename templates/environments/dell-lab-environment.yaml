@@ -118,9 +118,9 @@ parameter_defaults:
       - p7p2:8
     NovaPCIPassthrough:
       - devname: "p3p1"
-        physical_network: "backahaul"
+        physical_network: "backhaul"
       - devname: "p3p2"
-        physical_network: "backahaul"
+        physical_network: "backhaul"
       - devname: "p7p1"
         physical_network: "midhaul"
       - devname: "p7p2"
@@ -144,9 +144,9 @@ parameter_defaults:
       - p7p2:8
     NovaPCIPassthrough:
       - devname: "p3p1"
-        physical_network: "backahaul"
+        physical_network: "backhaul"
       - devname: "p3p2"
-        physical_network: "backahaul"
+        physical_network: "backhaul"
       - devname: "p7p1"
         physical_network: "midhaul"
       - devname: "p7p2"
