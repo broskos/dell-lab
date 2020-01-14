@@ -112,10 +112,10 @@ parameter_defaults:
     IsolCpusList: 2-35,38-71
     NovaVcpuPinSet: 2-35,38-71
     NeutronPhysicalDevMappings:
-      - backhaul: p3p1
-      - backhaul: p3p2
-      - midhaul: p7p1
-      - midhaul: p7p2
+      - backhaul:p3p1
+      - backhaul:p3p2
+      - midhaul:p7p1
+      - midhaul:p7p2
     NeutronSriovNumVFs:
       - p3p1:8
       - p3p2:8
@@ -138,10 +138,10 @@ parameter_defaults:
     NovaVcpuPinSet: 6-35,42-71
     NovaReservedHostMemory: 30720
     NeutronPhysicalDevMappings:
-      - backhaul: p3p1
-      - backhaul: p3p2
-      - midhaul: p7p1
-      - midhaul: p7p2
+      - backhaul:p3p1
+      - backhaul:p3p2
+      - midhaul:p7p1
+      - midhaul:p7p2
     NeutronSriovNumVFs:
       - p3p1:8
       - p3p2:8
@@ -166,12 +166,12 @@ parameter_defaults:
     NovaVcpuPinSet: 2-35,38-71
     NovaEnableRbdBackend: false
     NeutronPhysicalDevMappings:
-      - midhaul: p3p1
-      - midhaul: p3p2
-      - fronthaul: p7p1
-      - fronthaul: p7p2
-      - arinterface: p8p1
-      - arinterface: p8p2
+      - midhaul:p3p1
+      - midhaul:p3p2
+      - fronthaul:p7p1
+      - fronthaul:p7p2
+      - arinterface:p8p1
+      - arinterface:p8p2
     NeutronSriovNumVFs:
       - p3p1:8
       - p3p2:8
@@ -210,18 +210,18 @@ parameter_defaults:
     NovaVcpuPinSet: 2-35,38-71
     NovaEnableRbdBackend: false
     NeutronPhysicalDevMappings:
-      - fronthaul: p7p1
-      - fronthaul: p7p2
-      - arinterface: p8p1
-      - arinterface: p8p2
-      - fpgap4p1: p4p1
-      - fpgap4p2: p4p2
-      - fpgap4p3: p4p3
-      - fpgap4p4: p4p4
-      - fpgap5p1: p5p1
-      - fpgap5p2: p5p2
-      - fpgap5p3: p5p3
-      - fpgap5p4: p5p4
+      - fronthaul:p7p1
+      - fronthaul:p7p2
+      - arinterface:p8p1
+      - arinterface:p8p2
+      - fpgap4p1:p4p1
+      - fpgap4p2:p4p2
+      - fpgap4p3:p4p3
+      - fpgap4p4:p4p4
+      - fpgap5p1p5p1
+      - fpgap5p2:p5p2
+      - fpgap5p3:p5p3
+      - fpgap5p4:p5p4
     NeutronSriovNumVFs:
       - p7p1:8
       - p7p2:8
@@ -308,18 +308,18 @@ parameter_defaults:
     NovaVcpuPinSet: 2-35,38-71
     NovaEnableRbdBackend: false
     NeutronPhysicalDevMappings:
-      - fronthaul: p7p1
-      - fronthaul: p7p2
-      - arinterface: p8p1
-      - arinterface: p8p2
-      - fpgap4p1: p4p1
-      - fpgap4p2: p4p2
-      - fpgap4p3: p4p3
-      - fpgap4p4: p4p4
-      - fpgap5p1: p5p1
-      - fpgap5p2: p5p2
-      - fpgap5p3: p5p3
-      - fpgap5p4: p5p4
+      - fronthaul:p7p1
+      - fronthaul:p7p2
+      - arinterface:p8p1
+      - arinterface:p8p2
+      - fpgap4p1:p4p1
+      - fpgap4p2:p4p2
+      - fpgap4p3:p4p3
+      - fpgap4p4:p4p4
+      - fpgap5p1p5p1
+      - fpgap5p2:p5p2
+      - fpgap5p3:p5p3
+      - fpgap5p4:p5p4
     NeutronSriovNumVFs:
       - p7p1:8
       - p7p2:8
