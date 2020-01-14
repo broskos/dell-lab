@@ -48,7 +48,12 @@ parameter_defaults:
   NeutronNetworkType: 'vxlan,vlan'
   NeutronNetworkVLANRanges:
     - management:117:117
-    - tenant:202:205
+    - tenant:202:204
+    - backhaul:202:202
+    - midhaul:205:205
+    - fronthaul:203:203
+    - arinterface:204:204
+
   NeutronTunnelTypes: ''
 
   NeutronBridgeMappings:
