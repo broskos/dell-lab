@@ -1,3 +1,5 @@
+source ~/vranlabrc
+
 #################################
 # Upload RHEL 7 Image to Glance
 #################################
