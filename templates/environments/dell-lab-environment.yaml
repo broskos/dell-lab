@@ -210,7 +210,7 @@ parameter_defaults:
       - fpgap4p2:p4p2
       - fpgap4p3:p4p3
       - fpgap4p4:p4p4
-      - fpgap5p1p5p1
+      - fpgap5p1:p5p1
       - fpgap5p2:p5p2
       - fpgap5p3:p5p3
       - fpgap5p4:p5p4
@@ -304,7 +304,7 @@ parameter_defaults:
       - fpgap4p2:p4p2
       - fpgap4p3:p4p3
       - fpgap4p4:p4p4
-      - fpgap5p1p5p1
+      - fpgap5p1:p5p1
       - fpgap5p2:p5p2
       - fpgap5p3:p5p3
       - fpgap5p4:p5p4
