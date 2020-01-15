@@ -110,7 +110,7 @@ parameter_defaults:
     nova::api::pci_alias:
       - name: vc_fpga
         vendor_id: '8086'
-        product_id: '8086'
+        product_id: '0d58'
         device_type: 'type-PF'
 
   ComputeParameters:
