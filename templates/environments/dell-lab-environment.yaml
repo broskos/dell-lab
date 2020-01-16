@@ -213,8 +213,6 @@ parameter_defaults:
       - fronthaul:p7p2
       - midhaul:p8p1
       - midhaul:p8p2
-      - fpgap4p1:p4p1
-      - fpgap5p1:p5p1
     NeutronSriovNumVFs:
       - p7p1:8
       - p7p2:8
@@ -231,16 +229,7 @@ parameter_defaults:
         physical_network: "midhaul"
       - devname: "p8p2"
         physical_network: "midhaul"
-      - devname: "p4p1"
-        physical_network: "fpgap4p1"
-        vendor_id: '8086'
-        product_id: '154c'
-      - devname: "p5p1"
-        physical_network: "fpgap5p1"
-        vendor_id: '8086'
-        product_id: '154c'
-      - vendor_id: '1172'
-        product_id: '5052'
+
 
   ComputeEdge1vduExtraConfig:
     nova::compute::libvirt::vncserver_listen: "%{hiera('internal_api_edge1')}"
@@ -293,8 +282,6 @@ parameter_defaults:
       - fronthaul:p7p2
       - midhaul:p8p1
       - midhaul:p8p2
-      - fpgap4p1:p4p1
-      - fpgap5p1:p5p1
     NeutronSriovNumVFs:
       - p7p1:8
       - p7p2:8
@@ -311,16 +298,6 @@ parameter_defaults:
         physical_network: "midhaul"
       - devname: "p8p2"
         physical_network: "midhaul"
-      - devname: "p4p1"
-        physical_network: "fpgap4p1"
-        vendor_id: '8086'
-        product_id: '154c'
-      - devname: "p5p1"
-        physical_network: "fpgap5p1"
-        vendor_id: '8086'
-        product_id: '154c'
-      - vendor_id: '1172'
-        product_id: '5052'
 
   ComputeEdge2vduExtraConfig:
     nova::compute::libvirt::vncserver_listen: "%{hiera('internal_api_edge2')}"
