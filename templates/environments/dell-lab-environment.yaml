@@ -260,7 +260,9 @@ parameter_defaults:
         physical_network: "fpgap5p3"
       - devname: "p5p4"
         physical_network: "fpgap5p4"         
-        
+      - vendor_id: '8086'
+        product_id: '0d58'
+
   ComputeEdge1vduExtraConfig:
     nova::compute::libvirt::vncserver_listen: "%{hiera('internal_api_edge1')}"
     nova::compute::vncserver_proxyclient_address: "%{hiera('internal_api_edge1')}"
@@ -354,6 +356,8 @@ parameter_defaults:
         physical_network: "fpgap5p3"
       - devname: "p5p4"
         physical_network: "fpgap5p4"
+      - vendor_id: '8086'
+        product_id: '0d58'
 
   ComputeEdge2vduExtraConfig:
     nova::compute::libvirt::vncserver_listen: "%{hiera('internal_api_edge2')}"
