@@ -110,8 +110,8 @@ parameter_defaults:
   ControllerExtraConfig:
     nova::api::pci_alias:
       - name: vc_fpga
-        vendor_id: '8086'
-        product_id: '0d58'
+        vendor_id: '1172'
+        product_id: '5052'
         device_type: 'type-VF'
 
   ComputeParameters:
@@ -191,7 +191,6 @@ parameter_defaults:
         physical_network: "midhaul"
       - devname: "p7p2"
         physical_network: "midhaul"
-      - devname: "p8p1"
 
   ComputeEdge1ExtraConfig:
     nova::compute::libvirt::vncserver_listen: "%{hiera('internal_api_edge1')}"
@@ -215,26 +214,14 @@ parameter_defaults:
       - midhaul:p8p1
       - midhaul:p8p2
       - fpgap4p1:p4p1
-      - fpgap4p2:p4p2
-      - fpgap4p3:p4p3
-      - fpgap4p4:p4p4
       - fpgap5p1:p5p1
-      - fpgap5p2:p5p2
-      - fpgap5p3:p5p3
-      - fpgap5p4:p5p4
     NeutronSriovNumVFs:
       - p7p1:8
       - p7p2:8
       - p8p1:8
       - p8p2:8    
       - p4p1:8
-      - p4p2:8
-      - p4p3:8
-      - p4p4:8
       - p5p1:8
-      - p5p2:8
-      - p5p3:8
-      - p5p4:8
     NovaPCIPassthrough:
       - devname: "p7p1"
         physical_network: "fronthaul"
@@ -246,20 +233,14 @@ parameter_defaults:
         physical_network: "midhaul"
       - devname: "p4p1"
         physical_network: "fpgap4p1"
-      - devname: "p4p2"
-        physical_network: "fpgap4p2"
-      - devname: "p4p3"
-        physical_network: "fpgap4p3"
-      - devname: "p4p4"
-        physical_network: "fpgap4p4"
+        vendor_id: '8086'
+        product_id: '154c'
       - devname: "p5p1"
         physical_network: "fpgap5p1"
-      - devname: "p5p2"
-        physical_network: "fpgap5p2"
-      - devname: "p5p3"
-        physical_network: "fpgap5p3"
-      - devname: "p5p4"
-        physical_network: "fpgap5p4"         
+        vendor_id: '8086'
+        product_id: '154c'
+      - vendor_id: '1172'
+        product_id: '5052'
 
   ComputeEdge1vduExtraConfig:
     nova::compute::libvirt::vncserver_listen: "%{hiera('internal_api_edge1')}"
@@ -270,7 +251,11 @@ parameter_defaults:
     nova::migration::libvirt::live_migration_inbound_addr: "%{hiera('internal_api_edge1')}"
     nova::my_ip: "%{hiera('internal_api_edge1')}"
     tripleo::profile::base::database::mysql::client::mysql_client_bind_address: "%{hiera('internal_api_edge1')}"
-
+    nova::api::pci_alias:
+      - name: vc_fpga
+        vendor_id: '1172'
+        product_id: '5052'
+        device_type: 'type-VF'
 
   ComputeEdge2Parameters:
     KernelArgs: "default_hugepagesz=1GB hugepagesz=1G hugepages=128 intel_iommu=on iommu=pt"
@@ -309,26 +294,14 @@ parameter_defaults:
       - midhaul:p8p1
       - midhaul:p8p2
       - fpgap4p1:p4p1
-      - fpgap4p2:p4p2
-      - fpgap4p3:p4p3
-      - fpgap4p4:p4p4
       - fpgap5p1:p5p1
-      - fpgap5p2:p5p2
-      - fpgap5p3:p5p3
-      - fpgap5p4:p5p4
     NeutronSriovNumVFs:
       - p7p1:8
       - p7p2:8
       - p8p1:8
       - p8p2:8
       - p4p1:8
-      - p4p2:8
-      - p4p3:8
-      - p4p4:8
       - p5p1:8
-      - p5p2:8
-      - p5p3:8
-      - p5p4:8
     NovaPCIPassthrough:
       - devname: "p7p1"
         physical_network: "fronthaul"
@@ -340,22 +313,14 @@ parameter_defaults:
         physical_network: "midhaul"
       - devname: "p4p1"
         physical_network: "fpgap4p1"
-      - devname: "p4p2"
-        physical_network: "fpgap4p2"
-      - devname: "p4p3"
-        physical_network: "fpgap4p3"
-      - devname: "p4p4"
-        physical_network: "fpgap4p4"
+        vendor_id: '8086'
+        product_id: '154c'
       - devname: "p5p1"
         physical_network: "fpgap5p1"
-      - devname: "p5p2"
-        physical_network: "fpgap5p2"
-      - devname: "p5p3"
-        physical_network: "fpgap5p3"
-      - devname: "p5p4"
-        physical_network: "fpgap5p4"
-      - vendor_id: '8086'
-        product_id: '0d58'
+        vendor_id: '8086'
+        product_id: '154c'
+      - vendor_id: '1172'
+        product_id: '5052'
 
   ComputeEdge2vduExtraConfig:
     nova::compute::libvirt::vncserver_listen: "%{hiera('internal_api_edge2')}"
@@ -366,3 +331,8 @@ parameter_defaults:
     nova::migration::libvirt::live_migration_inbound_addr: "%{hiera('internal_api_edge2')}"
     nova::my_ip: "%{hiera('internal_api_edge2')}"
     tripleo::profile::base::database::mysql::client::mysql_client_bind_address: "%{hiera('internal_api_edge2')}"
+    nova::api::pci_alias:
+      - name: vc_fpga
+        vendor_id: '1172'
+        product_id: '5052'
+        device_type: 'type-VF'
