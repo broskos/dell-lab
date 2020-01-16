@@ -103,6 +103,7 @@ parameter_defaults:
     - PciPassthroughFilter
     - RamFilter
     - DiskFilter
+    - NUMATopologyFilter
 
   PublicVirtualFixedIPs: [{'ip_address':'172.17.119.10'}]
 
