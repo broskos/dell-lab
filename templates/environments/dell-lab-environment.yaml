@@ -111,7 +111,7 @@ parameter_defaults:
     nova::pci::aliases:
       - name: vc_fpga
         vendor_id: '1172'
-        product_id: '5052'
+        product_id: '5050'
         device_type: 'type-VF'
 
   ComputeParameters:
@@ -229,7 +229,8 @@ parameter_defaults:
         physical_network: "midhaul"
       - devname: "p8p2"
         physical_network: "midhaul"
-
+      - vendor_id: 1172
+        product_id: 5050
 
   ComputeEdge1vduExtraConfig:
     nova::compute::libvirt::vncserver_listen: "%{hiera('internal_api_edge1')}"
@@ -243,7 +244,7 @@ parameter_defaults:
     nova::pci::aliases:
       - name: vc_fpga
         vendor_id: '1172'
-        product_id: '5052'
+        product_id: '5050'
         device_type: 'type-VF'
 
   ComputeEdge2Parameters:
@@ -298,6 +299,8 @@ parameter_defaults:
         physical_network: "midhaul"
       - devname: "p8p2"
         physical_network: "midhaul"
+      - vendor_id: 1172
+        product_id: 5050
 
   ComputeEdge2vduExtraConfig:
     nova::compute::libvirt::vncserver_listen: "%{hiera('internal_api_edge2')}"
@@ -311,5 +314,5 @@ parameter_defaults:
     nova::pci::aliases:
       - name: vc_fpga
         vendor_id: '1172'
-        product_id: '5052'
+        product_id: '5050'
         device_type: 'type-VF'
