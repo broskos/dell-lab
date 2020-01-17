@@ -108,7 +108,7 @@ parameter_defaults:
   PublicVirtualFixedIPs: [{'ip_address':'172.17.119.10'}]
 
   ControllerExtraConfig:
-    nova::api::pci_alias:
+    nova::pci::aliases:
       - name: vc_fpga
         vendor_id: '1172'
         product_id: '5052'
@@ -240,7 +240,7 @@ parameter_defaults:
     nova::migration::libvirt::live_migration_inbound_addr: "%{hiera('internal_api_edge1')}"
     nova::my_ip: "%{hiera('internal_api_edge1')}"
     tripleo::profile::base::database::mysql::client::mysql_client_bind_address: "%{hiera('internal_api_edge1')}"
-    nova::api::pci_alias:
+    nova::pci::aliases:
       - name: vc_fpga
         vendor_id: '1172'
         product_id: '5052'
@@ -308,7 +308,7 @@ parameter_defaults:
     nova::migration::libvirt::live_migration_inbound_addr: "%{hiera('internal_api_edge2')}"
     nova::my_ip: "%{hiera('internal_api_edge2')}"
     tripleo::profile::base::database::mysql::client::mysql_client_bind_address: "%{hiera('internal_api_edge2')}"
-    nova::api::pci_alias:
+    nova::pci::aliases:
       - name: vc_fpga
         vendor_id: '1172'
         product_id: '5052'
