@@ -175,8 +175,8 @@ parameter_defaults:
     NeutronPhysicalDevMappings:
       - backhaul:p3p1
       - midhaul:p3p2
-      - midhaul:p7p1
-      - backhaul:p7p2
+      - backhaul:p7p1
+      - midhaul:p7p2
     NeutronSriovNumVFs:
       - p3p1:8
       - p3p2:8
@@ -255,8 +255,8 @@ parameter_defaults:
     NeutronPhysicalDevMappings:
       - backhaul:p3p1
       - midhaul:p3p2
-      - midhaul:p7p1
-      - backhaul:p7p2
+      - backhaul:p7p1
+      - midhaul:p7p2
     NeutronSriovNumVFs:
       - p3p1:8
       - p3p2:8
