@@ -174,9 +174,9 @@ parameter_defaults:
     NovaEnableRbdBackend: false
     NeutronPhysicalDevMappings:
       - backhaul:p3p1
-      - backhaul:p3p2
+      - midhaul:p3p2
       - midhaul:p7p1
-      - midhaul:p7p2
+      - backhaul:p7p2
     NeutronSriovNumVFs:
       - p3p1:8
       - p3p2:8
@@ -186,9 +186,9 @@ parameter_defaults:
       - devname: "p3p1"
         physical_network: "backhaul"
       - devname: "p3p2"
-        physical_network: "backhaul"
-      - devname: "p7p1"
         physical_network: "midhaul"
+      - devname: "p7p1"
+        physical_network: "backhaul"
       - devname: "p7p2"
         physical_network: "midhaul"
 
@@ -252,13 +252,23 @@ parameter_defaults:
     IsolCpusList: 2-35,38-71
     NovaVcpuPinSet: 2-35,38-71
     NovaEnableRbdBackend: false
+    NeutronPhysicalDevMappings:
+      - backhaul:p3p1
+      - midhaul:p3p2
+      - midhaul:p7p1
+      - backhaul:p7p2
+    NeutronSriovNumVFs:
+      - p3p1:8
+      - p3p2:8
+      - p7p1:8
+      - p7p2:8
     NovaPCIPassthrough:
       - devname: "p3p1"
         physical_network: "backhaul"
       - devname: "p3p2"
-        physical_network: "backhaul"
-      - devname: "p7p1"
         physical_network: "midhaul"
+      - devname: "p7p1"
+        physical_network: "backhaul"
       - devname: "p7p2"
         physical_network: "midhaul"
 

@@ -13,3 +13,5 @@ cd /root
 
 modprobe vfio-pci
 echo "${vendor} ${vf_device}" > /sys/bus/pci/drivers/vfio-pci/new_id
+
+# remember to run:  docker restart nova_compute
