@@ -229,8 +229,8 @@ parameter_defaults:
         physical_network: "midhaul"
       - devname: "p8p2"
         physical_network: "midhaul"
-      - vendor_id: 1172
-        product_id: 5050
+      - vendor_id: "1172"
+        product_id: "5050"
 
   ComputeEdge1vduExtraConfig:
     nova::compute::libvirt::vncserver_listen: "%{hiera('internal_api_edge1')}"
@@ -299,8 +299,8 @@ parameter_defaults:
         physical_network: "midhaul"
       - devname: "p8p2"
         physical_network: "midhaul"
-      - vendor_id: 1172
-        product_id: 5050
+      - vendor_id: "1172"
+        product_id: "5050"
 
   ComputeEdge2vduExtraConfig:
     nova::compute::libvirt::vncserver_listen: "%{hiera('internal_api_edge2')}"
