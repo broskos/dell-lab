@@ -319,7 +319,7 @@
   uses_deprecated_params: False
   disable_upgrade_deployment: True
   RoleParametersDefault:
-    TunedProfileName: "cpu-partitioning"
+    TunedProfileName: "realtime-virtual-host"
   ServicesDefault:
     - OS::TripleO::Services::Aide
     - OS::TripleO::Services::AuditD
@@ -451,7 +451,7 @@
   uses_deprecated_params: False
   disable_upgrade_deployment: True
   RoleParametersDefault:
-    TunedProfileName: "cpu-partitioning"
+    TunedProfileName: "realtime-virtual-host"
   ServicesDefault:
     - OS::TripleO::Services::Aide
     - OS::TripleO::Services::AuditD
