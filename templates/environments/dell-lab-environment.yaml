@@ -108,6 +108,7 @@ parameter_defaults:
   PublicVirtualFixedIPs: [{'ip_address':'172.17.119.10'}]
 
   ControllerExtraConfig:
+    nova::cpu_allocation_ratio: 1
     nova::pci::aliases:
       - name: vc_fpga
         vendor_id: '1172'
@@ -138,6 +139,10 @@ parameter_defaults:
       - devname: "p7p2"
         physical_network: "midhaul"
 
+  ComputeExtraConfig:
+    nova::cpu_allocation_ratio: 1
+    nova::compute::resume_guests_state_on_host_boot: true
+
 #  ComputeHCIImage: "overcloud-full-hci"
   ComputeHCIParameters:
     KernelArgs: "default_hugepagesz=1GB hugepagesz=1G hugepages=128 intel_iommu=on iommu=pt"
@@ -166,6 +171,7 @@ parameter_defaults:
 
   ComputeHCIExtraConfig:
     nova::cpu_allocation_ratio: 1
+    nova::compute::resume_guests_state_on_host_boot: true
 
   ComputeEdge1Parameters:
     KernelArgs: "default_hugepagesz=1GB hugepagesz=1G hugepages=128 intel_iommu=on iommu=pt"
@@ -201,6 +207,8 @@ parameter_defaults:
     nova::migration::libvirt::live_migration_inbound_addr: "%{hiera('internal_api_edge1')}"
     nova::my_ip: "%{hiera('internal_api_edge1')}"
     tripleo::profile::base::database::mysql::client::mysql_client_bind_address: "%{hiera('internal_api_edge1')}"
+    nova::cpu_allocation_ratio: 1
+    nova::compute::resume_guests_state_on_host_boot: true
 
   ComputeEdge1vduImage: "overcloud-realtime-compute"
   ComputeEdge1vduParameters:
@@ -241,6 +249,8 @@ parameter_defaults:
     nova::migration::libvirt::live_migration_inbound_addr: "%{hiera('internal_api_edge1')}"
     nova::my_ip: "%{hiera('internal_api_edge1')}"
     tripleo::profile::base::database::mysql::client::mysql_client_bind_address: "%{hiera('internal_api_edge1')}"
+    nova::cpu_allocation_ratio: 1
+    nova::compute::resume_guests_state_on_host_boot: true
     nova::pci::aliases:
       - name: vc_fpga
         vendor_id: '1172'
@@ -281,6 +291,8 @@ parameter_defaults:
     nova::migration::libvirt::live_migration_inbound_addr: "%{hiera('internal_api_edge2')}"
     nova::my_ip: "%{hiera('internal_api_edge2')}"
     tripleo::profile::base::database::mysql::client::mysql_client_bind_address: "%{hiera('internal_api_edge2')}"
+    nova::cpu_allocation_ratio: 1
+    nova::compute::resume_guests_state_on_host_boot: true
 
   ComputeEdge2vduImage: "overcloud-realtime-compute78"
   ComputeEdge2vduParameters:
@@ -321,6 +333,8 @@ parameter_defaults:
     nova::migration::libvirt::live_migration_inbound_addr: "%{hiera('internal_api_edge2')}"
     nova::my_ip: "%{hiera('internal_api_edge2')}"
     tripleo::profile::base::database::mysql::client::mysql_client_bind_address: "%{hiera('internal_api_edge2')}"
+    nova::cpu_allocation_ratio: 1
+    nova::compute::resume_guests_state_on_host_boot: true
     nova::pci::aliases:
       - name: vc_fpga
         vendor_id: '1172'
