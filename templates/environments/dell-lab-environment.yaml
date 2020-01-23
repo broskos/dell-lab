@@ -300,7 +300,7 @@ parameter_defaults:
     nova::cpu_allocation_ratio: 1
     nova::compute::resume_guests_state_on_host_boot: true
 
-  ComputeEdge2vduImage: "overcloud-realtime-compute78"
+  ComputeEdge2vduImage: "overcloud-realtime-compute"
   ComputeEdge2vduParameters:
     KernelArgs: "default_hugepagesz=1GB hugepagesz=1G hugepages=128 intel_iommu=on iommu=pt"
     IsolCpusList: 2-35,38-71
