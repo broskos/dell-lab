@@ -87,7 +87,7 @@ parameter_defaults:
   ComputeEdge1Count: 1
   ComputeEdge1vduCount: 1
   ComputeEdge2Count: 1
-  ComputeEdge2vduCount: 0
+  ComputeEdge2vduCount: 1
 
   NovaSchedulerDefaultFilters:
     - RetryFilter
