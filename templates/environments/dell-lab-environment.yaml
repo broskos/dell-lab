@@ -215,7 +215,7 @@ parameter_defaults:
 
   ComputeEdge1vduImage: "overcloud-realtime-compute"
   ComputeEdge1vduParameters:
-    KernelArgs: "default_hugepagesz=1GB hugepagesz=1G hugepages=128 intel_iommu=on iommu=pt"
+    KernelArgs: "default_hugepagesz=1GB hugepagesz=1G hugepages=128 nx_huge_pages_recovery_ratio=0 intel_iommu=on iommu=pt"
     IsolCpusList: 2-35,38-71
     NovaVcpuPinSet: 2-35,38-71
     NovaComputeCpuSharedSet: 0,1,36,37
@@ -302,7 +302,7 @@ parameter_defaults:
 
   ComputeEdge2vduImage: "overcloud-realtime-compute"
   ComputeEdge2vduParameters:
-    KernelArgs: "default_hugepagesz=1GB hugepagesz=1G hugepages=128 intel_iommu=on iommu=pt"
+    KernelArgs: "default_hugepagesz=1GB hugepagesz=1G hugepages=128 nx_huge_pages_recovery_ratio=0 intel_iommu=on iommu=pt"
     IsolCpusList: 2-35,38-71
     NovaVcpuPinSet: 2-35,38-71
     NovaComputeCpuSharedSet: 0,1,36,37
