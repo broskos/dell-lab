@@ -9,11 +9,11 @@ resource_registry:
   OS::TripleO::ComputeEdge1::Net::SoftwareConfig:
     ../network/config/single-nic-vlans/compute-e1.yaml
   OS::TripleO::ComputeEdge1vdu::Net::SoftwareConfig:
-    ../network/config/single-nic-vlans/compute-e1.yaml
+    ../network/config/single-nic-vlans/compute-e1vdu.yaml
   OS::TripleO::ComputeEdge2::Net::SoftwareConfig:
     ../network/config/single-nic-vlans/compute-e2.yaml
   OS::TripleO::ComputeEdge2vdu::Net::SoftwareConfig:
-    ../network/config/single-nic-vlans/compute-e2.yaml
+    ../network/config/single-nic-vlans/compute-e2vdu.yaml
 
 parameter_defaults:
   DnsServers:
@@ -121,10 +121,10 @@ parameter_defaults:
     NovaVcpuPinSet: 2-35,38-71
     NovaComputeCpuSharedSet: 0,1,36,37
     NeutronPhysicalDevMappings:
-      - backhaul:p3p1
-      - backhaul:p3p2
-      - midhaul:p7p1
-      - midhaul:p7p2
+      - numa0-physnet:p3p1
+      - numa0-physnet:p3p2
+      - numa1-physnet:p7p1
+      - numa1-physnet:p7p2
     NeutronSriovNumVFs:
       - p3p1:8
       - p3p2:8
@@ -132,13 +132,13 @@ parameter_defaults:
       - p7p2:8
     NovaPCIPassthrough:
       - devname: "p3p1"
-        physical_network: "backhaul"
+        physical_network: "numa0-physnet"
       - devname: "p3p2"
-        physical_network: "backhaul"
+        physical_network: "numa0-physnet"
       - devname: "p7p1"
-        physical_network: "midhaul"
+        physical_network: "numa1-physnet"
       - devname: "p7p2"
-        physical_network: "midhaul"
+        physical_network: "numa1-physnet"
 
   ComputeExtraConfig:
     nova::cpu_allocation_ratio: 1
@@ -152,10 +152,10 @@ parameter_defaults:
     NovaComputeCpuSharedSet: 0,1,36,37
     NovaReservedHostMemory: 30720
     NeutronPhysicalDevMappings:
-      - backhaul:p3p1
-      - backhaul:p3p2
-      - midhaul:p7p1
-      - midhaul:p7p2
+      - numa0-physnet:p3p1
+      - numa0-physnet:p3p2
+      - numa1-physnet:p7p1
+      - numa1-physnet:p7p2
     NeutronSriovNumVFs:
       - p3p1:8
       - p3p2:8
@@ -163,13 +163,13 @@ parameter_defaults:
       - p7p2:8
     NovaPCIPassthrough:
       - devname: "p3p1"
-        physical_network: "backhaul"
+        physical_network: "numa0-physnet"
       - devname: "p3p2"
-        physical_network: "backhaul"
+        physical_network: "numa0-physnet"
       - devname: "p7p1"
-        physical_network: "midhaul"
+        physical_network: "numa1-physnet"
       - devname: "p7p2"
-        physical_network: "midhaul"
+        physical_network: "numa1-physnet"
 
   ComputeHCIExtraConfig:
     nova::cpu_allocation_ratio: 1
@@ -182,10 +182,10 @@ parameter_defaults:
     NovaComputeCpuSharedSet: 0,1,36,37
     NovaEnableRbdBackend: false
     NeutronPhysicalDevMappings:
-      - backhaul:p3p1
-      - midhaul:p3p2
-      - backhaul:p7p1
-      - midhaul:p7p2
+      - numa0-physnet:p3p1
+      - numa0-physnet:p3p2
+      - numa1-physnet:p7p1
+      - numa1-physnet:p7p2
     NeutronSriovNumVFs:
       - p3p1:8
       - p3p2:8
@@ -193,13 +193,13 @@ parameter_defaults:
       - p7p2:8
     NovaPCIPassthrough:
       - devname: "p3p1"
-        physical_network: "backhaul"
+        physical_network: "numa0-physnet"
       - devname: "p3p2"
-        physical_network: "midhaul"
+        physical_network: "numa0-physnet"
       - devname: "p7p1"
-        physical_network: "backhaul"
+        physical_network: "numa1-physnet"
       - devname: "p7p2"
-        physical_network: "midhaul"
+        physical_network: "numa1-physnet"
 
   ComputeEdge1ExtraConfig:
     nova::compute::libvirt::vncserver_listen: "%{hiera('internal_api_edge1')}"
@@ -223,11 +223,13 @@ parameter_defaults:
     NeutronPhysicalDevMappings:
       - fronthaul:p4p1
       - fronthaul:p5p1
-      - midhaul:p8p1
-      - midhaul:p8p2
+      - numa0-physnet:p1p1
+      - numa0-physnet:p1p2
+      - numa1-physnet:p8p1
+      - numa1-physnet:p8p2
     NeutronSriovNumVFs:
-      - p7p1:8
-      - p7p2:8
+      - p1p1:8
+      - p1p2:8
       - p8p1:8
       - p8p2:8    
       - p4p1:8
@@ -237,10 +239,14 @@ parameter_defaults:
         physical_network: "fronthaul"
       - devname: "p5p1"
         physical_network: "fronthaul"
+      - devname: "p1p1"
+        physical_network: "numa0-physnet"
+      - devname: "p1p2"
+        physical_network: "numa0-physnet"
       - devname: "p8p1"
-        physical_network: "midhaul"
+        physical_network: "numa1-physnet"
       - devname: "p8p2"
-        physical_network: "midhaul"
+        physical_network: "numa1-physnet"
       - vendor_id: "1172"
         product_id: "5050"
 
@@ -269,10 +275,10 @@ parameter_defaults:
     NovaComputeCpuSharedSet: 0,1,36,37
     NovaEnableRbdBackend: false
     NeutronPhysicalDevMappings:
-      - backhaul:p3p1
-      - midhaul:p3p2
-      - backhaul:p7p1
-      - midhaul:p7p2
+      - numa0-physnet:p3p1
+      - numa0-physnet:p3p2
+      - numa1-physnet:p7p1
+      - numa1-physnet:p7p2
     NeutronSriovNumVFs:
       - p3p1:8
       - p3p2:8
@@ -280,13 +286,13 @@ parameter_defaults:
       - p7p2:8
     NovaPCIPassthrough:
       - devname: "p3p1"
-        physical_network: "backhaul"
+        physical_network: "numa0-physnet"
       - devname: "p3p2"
-        physical_network: "midhaul"
+        physical_network: "numa0-physnet"
       - devname: "p7p1"
-        physical_network: "backhaul"
+        physical_network: "numa1-physnet"
       - devname: "p7p2"
-        physical_network: "midhaul"
+        physical_network: "numa1-physnet"
 
   ComputeEdge2ExtraConfig:
     nova::compute::libvirt::vncserver_listen: "%{hiera('internal_api_edge2')}"
@@ -310,11 +316,13 @@ parameter_defaults:
     NeutronPhysicalDevMappings:
       - fronthaul:p4p1
       - fronthaul:p5p1
-      - midhaul:p8p1
-      - midhaul:p8p2
+      - numa0-physnet:p1p1
+      - numa0-physnet:p1p2
+      - numa1-physnet:p8p1
+      - numa1-physnet:p8p2
     NeutronSriovNumVFs:
-      - p7p1:8
-      - p7p2:8
+      - p1p1:8
+      - p1p2:8
       - p8p1:8
       - p8p2:8
       - p4p1:8
@@ -324,10 +332,14 @@ parameter_defaults:
         physical_network: "fronthaul"
       - devname: "p5p1"
         physical_network: "fronthaul"
+      - devname: "p1p1"
+        physical_network: "numa0-physnet"
+      - devname: "p1p2"
+        physical_network: "numa0-physnet"
       - devname: "p8p1"
-        physical_network: "midhaul"
+        physical_network: "numa1-physnet"
       - devname: "p8p2"
-        physical_network: "midhaul"
+        physical_network: "numa1-physnet"
       - vendor_id: "1172"
         product_id: "5050"
 

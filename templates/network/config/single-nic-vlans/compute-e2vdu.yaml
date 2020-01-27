@@ -1,0 +1,271 @@
+heat_template_version: queens
+description: >
+  Software Config to drive os-net-config to configure VLANs for the ComputeEdge2 role.
+parameters:
+  InternalApiSupernet:
+    type: string
+  TenantSupernet:
+    type: string
+  ControlPlaneSupernet:
+    type: string
+  ControlPlaneEdge1SubnetCidr:
+    type: string
+  ControlPlaneEdge2SubnetCidr:
+    type: string
+  ControlPlaneEdge1DefaultRoute:
+    type: string
+  ControlPlaneEdge2DefaultRoute:
+    type: string
+  ControlPlaneIp:
+    default: ''
+    description: IP address/subnet on the ctlplane network
+    type: string
+  StorageIpSubnet:
+    default: ''
+    description: IP address/subnet on the storage network
+    type: string
+  StorageMgmtIpSubnet:
+    default: ''
+    description: IP address/subnet on the storage_mgmt network
+    type: string
+  InternalApiIpSubnet:
+    default: ''
+    description: IP address/subnet on the internal_api network
+    type: string
+  TenantIpSubnet:
+    default: ''
+    description: IP address/subnet on the tenant network
+    type: string
+  ExternalIpSubnet:
+    default: ''
+    description: IP address/subnet on the external network
+    type: string
+  InternalApiEdge1IpSubnet:
+    default: ''
+    description: IP address/subnet on the internal_api_edge1 network
+    type: string
+  TenantEdge1IpSubnet:
+    default: ''
+    description: IP address/subnet on the tenant_edge1 network
+    type: string
+  InternalApiEdge2IpSubnet:
+    default: ''
+    description: IP address/subnet on the internal_api_edge2 network
+    type: string
+  TenantEdge2IpSubnet:
+    default: ''
+    description: IP address/subnet on the tenant_edge2 network
+    type: string
+  StorageNetworkVlanID:
+    default: 170
+    description: Vlan ID for the storage network traffic.
+    type: number
+  StorageMgmtNetworkVlanID:
+    default: 180
+    description: Vlan ID for the storage_mgmt network traffic.
+    type: number
+  InternalApiNetworkVlanID:
+    default: 130
+    description: Vlan ID for the internal_api network traffic.
+    type: number
+  TenantNetworkVlanID:
+    default: 201
+    description: Vlan ID for the tenant network traffic.
+    type: number
+  ExternalNetworkVlanID:
+    default: 119
+    description: Vlan ID for the external network traffic.
+    type: number
+  InternalApiEdge1NetworkVlanID:
+    default: 1130
+    description: Vlan ID for the internal_api_edge1 network traffic.
+    type: number
+  TenantEdge1NetworkVlanID:
+    default: 1201
+    description: Vlan ID for the tenant_edge1 network traffic.
+    type: number
+  InternalApiEdge2NetworkVlanID:
+    default: 2130
+    description: Vlan ID for the internal_api_edge2 network traffic.
+    type: number
+  TenantEdge2NetworkVlanID:
+    default: 2201
+    description: Vlan ID for the tenant_edge2 network traffic.
+    type: number
+  ControlPlaneSubnetCidr: # Override this via parameter_defaults
+    default: '24'
+    description: The subnet CIDR of the control plane network.
+    type: string
+  ControlPlaneDefaultRoute: # Override this via parameter_defaults
+    description: The default route of the control plane network.
+    type: string
+  InternalApiInterfaceDefaultRoute:
+    default: '192.168.130.62'
+    description: default route for the internal_api network
+    type: string
+  TenantInterfaceDefaultRoute:
+    default: '192.168.201.62'
+    description: default route for the tenant network
+    type: string
+  ExternalInterfaceDefaultRoute:
+    default: '172.17.119.62'
+    description: default route for the external network
+    type: string
+  InternalApiEdge1InterfaceDefaultRoute:
+    default: '192.168.130.126'
+    description: default route for the internal_api_edge1 network
+    type: string
+  TenantEdge1InterfaceDefaultRoute:
+    default: '192.168.201.126'
+    description: default route for the tenant_edge1 network
+    type: string
+  InternalApiEdge2InterfaceDefaultRoute:
+    default: '192.168.130.190'
+    description: default route for the internal_api_edge2 network
+    type: string
+  TenantEdge2InterfaceDefaultRoute:
+    default: '192.168.201.190'
+    description: default route for the tenant_edge2 network
+    type: string
+  DnsServers: # Override this via parameter_defaults
+    default: []
+    description: A list of DNS servers (2 max for some implementations) that will be added to resolv.conf.
+    type: comma_delimited_list
+  EC2MetadataIp: # Override this via parameter_defaults
+    description: The IP address of the EC2 metadata server.
+    type: string
+  DnsSearchDomains: # Override this via parameter_defaults
+    default: []
+    description: A list of DNS search domains to be added (in order) to resolv.conf.
+    type: comma_delimited_list
+  BondInterfaceOvsOptions:
+    default: bond_mode=active-backup
+    description: 'The bonding_options or bonding_options string for the bond
+      interface. Set things like lacp=active and/or bond_mode=balance-slb
+      for OVS bonds or like mode=4 for Linux bonds using this option.'
+    type: string
+resources:
+  OsNetConfigImpl:
+    type: OS::Heat::SoftwareConfig
+    properties:
+      group: script
+      config:
+        str_replace:
+          template:
+            get_file: /usr/share/openstack-tripleo-heat-templates/network/scripts/run-os-net-config.sh
+          params:
+            $network_config:
+              network_config:
+              - type: ovs_bridge
+                name: br-tenant
+                use_dhcp: false
+                dns_servers:
+                  get_param: DnsServers
+                domain:
+                  get_param: DnsSearchDomains
+                addresses:
+                - ip_netmask:
+                    list_join:
+                    - /
+                    - - get_param: ControlPlaneIp
+                      - get_param: ControlPlaneEdge2SubnetCidr
+                routes:
+                - default: true
+                  next_hop:
+                    get_param: ControlPlaneEdge2DefaultRoute
+                members:
+                - type: linux_bond
+                  name: bond0
+                  bonding_options:
+                    get_param: BondInterfaceOvsOptions
+                  members:
+                  - type: interface
+                    name: nic1
+                    # force the MAC address of the bridge to this interface
+                    primary: true
+                  - type: interface
+                    name: nic2
+                - type: vlan
+                  vlan_id:
+                    get_param: InternalApiEdge2NetworkVlanID
+                  addresses:
+                  - ip_netmask:
+                      get_param: InternalApiEdge2IpSubnet
+                  routes:
+                  - ip_netmask:
+                      get_param: InternalApiSupernet
+                    next_hop:
+                      get_param: InternalApiEdge2InterfaceDefaultRoute
+                - type: vlan
+                  vlan_id:
+                    get_param: TenantEdge2NetworkVlanID
+                  addresses:
+                  - ip_netmask:
+                      get_param: TenantEdge2IpSubnet
+                  routes:
+                  - ip_netmask:
+                      get_param: TenantSupernet
+                    next_hop:
+                      get_param: TenantEdge2InterfaceDefaultRoute
+              - type: ovs_bridge
+                name: br-mgmt
+                use_dhcp: false
+                members:
+                - type: linux_bond
+                  name: bond1
+                  bonding_options:
+                    get_param: BondInterfaceOvsOptions
+                  members:
+                  - type: interface
+                    name: p7p1
+                    # force the MAC address of the bridge to this interface
+                    primary: true
+                  - type: interface
+                    name: p7p2
+#              - type: interface
+#                name: p3p1
+#                mtu: 9000
+#                use_dhcp: false
+#                defroute: false
+#                nm_controlled: true
+#                hotplug: true
+#              - type: interface
+#                name: p3p2
+#                mtu: 9000
+#                use_dhcp: false
+#                defroute: false
+#                nm_controlled: true
+#                hotplug: true
+              - type: interface
+                name: p1p1
+                mtu: 9000
+                use_dhcp: false
+                defroute: false
+                nm_controlled: true
+                hotplug: true
+              - type: interface
+                name: p1p2
+                mtu: 9000
+                use_dhcp: false
+                defroute: false
+                nm_controlled: true
+                hotplug: true
+              - type: interface
+                name: p8p1
+                mtu: 9000
+                use_dhcp: false
+                defroute: false
+                nm_controlled: true
+                hotplug: true
+              - type: interface
+                name: p8p2
+                mtu: 9000
+                use_dhcp: false
+                defroute: false
+                nm_controlled: true
+                hotplug: true
+outputs:
+  OS::stack_id:
+    description: The OsNetConfigImpl resource.
+    value:
+      get_resource: OsNetConfigImpl
