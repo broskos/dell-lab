@@ -221,8 +221,8 @@ parameter_defaults:
     NovaComputeCpuSharedSet: 0,1,36,37
     NovaEnableRbdBackend: false
     NeutronPhysicalDevMappings:
+      - fronthaul:p1p1
       - fronthaul:p4p1
-      - fronthaul:p5p1
       - numa0-physnet:p3p1
       - numa0-physnet:p3p2
       - numa1-physnet:p8p1
@@ -232,12 +232,12 @@ parameter_defaults:
       - p3p2:8
       - p8p1:8
       - p8p2:8    
+      - p1p1:8
       - p4p1:8
-      - p5p1:8
     NovaPCIPassthrough:
-      - devname: "p4p1"
+      - devname: "p1p1"
         physical_network: "fronthaul"
-      - devname: "p5p1"
+      - devname: "p4p1"
         physical_network: "fronthaul"
       - devname: "p3p1"
         physical_network: "numa0-physnet"
