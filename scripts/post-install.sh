@@ -4,6 +4,7 @@ source ~/vranlabrc
 # Upload RHEL 7 Image to Glance
 #################################
 openstack image create --public --file ~/images/rhel-server-7.7-x86_64-kvm.qcow2 --disk-format qcow2 --container bare rhel-77
+openstack image create --public --file ~/images/rhel-server-77-RT.qcow2 --disk-format qcow2 --container bare rhel-server-77-RT
 
 ##########################
 # Create Default Flavors #
