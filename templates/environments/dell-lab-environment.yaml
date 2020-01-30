@@ -223,10 +223,10 @@ parameter_defaults:
     NeutronPhysicalDevMappings:
       - fronthaul:p1p1
       - fronthaul:p4p1
-      - numa0-physnet:p3p1
-      - numa0-physnet:p3p2
-      - numa1-physnet:p8p1
-      - numa1-physnet:p8p2
+      - sriov-1:p3p1
+      - sriov-2:p3p2
+      - sriov-1:p8p1
+      - sriov-2:p8p2
     NeutronSriovNumVFs:
       - p3p1:8
       - p3p2:8
@@ -240,13 +240,13 @@ parameter_defaults:
       - devname: "p4p1"
         physical_network: "fronthaul"
       - devname: "p3p1"
-        physical_network: "numa0-physnet"
+        physical_network: "sriov-1"
       - devname: "p3p2"
-        physical_network: "numa0-physnet"
+        physical_network: "sriov-2"
       - devname: "p8p1"
-        physical_network: "numa1-physnet"
+        physical_network: "sriov-1"
       - devname: "p8p2"
-        physical_network: "numa1-physnet"
+        physical_network: "sriov-2"
       - vendor_id: "1172"
         product_id: "5050"
 
