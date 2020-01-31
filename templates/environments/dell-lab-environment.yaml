@@ -314,36 +314,44 @@ parameter_defaults:
     nova::cpu_allocation_ratio: 1
     nova::compute::resume_guests_state_on_host_boot: true
 
-#TODO Copy NIC config down from Edge1vdu
+# TODO: set for no HT
   ComputeEdge2vduImage: "overcloud-realtime-compute"
   ComputeEdge2vduParameters:
     KernelArgs: "default_hugepagesz=1GB hugepagesz=1G hugepages=128 nx_huge_pages_recovery_ratio=0 intel_iommu=on iommu=pt"
-    IsolCpusList: 2-35,38-71
-    NovaVcpuPinSet: 2-35,38-71
-    NovaComputeCpuSharedSet: 0,1,36,37
+    IsolCpusList: 2-35
+    NovaVcpuPinSet: 2-35
+    NovaComputeCpuSharedSet: 0,1
     NovaEnableRbdBackend: false
     NeutronPhysicalDevMappings:
-      - fronthaul:p4p1
-      - fronthaul:p5p1
-      - sriov-1:p1p1
-      - sriov-2:p1p2
+      - fronthaul-1:p1p1
+      - fronthaul-2:p1p2
+      - fronthaul-1:p4p1
+      - fronthaul-2:p4p2
+      - sriov-1:p3p1
+      - sriov-2:p3p2
       - sriov-1:p8p1
       - sriov-2:p8p2
     NeutronSriovNumVFs:
-      - p1p1:8
-      - p1p2:8
+      - p3p1:8
+      - p3p2:8
       - p8p1:8
       - p8p2:8
+      - p1p1:8
+      - p1p2:8
       - p4p1:8
-      - p5p1:8
+      - p4p2:8
     NovaPCIPassthrough:
-      - devname: "p4p1"
-        physical_network: "fronthaul"
-      - devname: "p5p1"
-        physical_network: "fronthaul"
       - devname: "p1p1"
-        physical_network: "sriov-1"
+        physical_network: "fronthaul-1"
       - devname: "p1p2"
+        physical_network: "fronthaul-2"
+      - devname: "p4p1"
+        physical_network: "fronthaul-1"
+      - devname: "p4p2"
+        physical_network: "fronthaul-2"
+      - devname: "p3p1"
+        physical_network: "sriov-1"
+      - devname: "p3p2"
         physical_network: "sriov-2"
       - devname: "p8p1"
         physical_network: "sriov-1"
