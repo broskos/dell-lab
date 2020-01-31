@@ -27,7 +27,9 @@ virt-customize -a overcloud-realtime-compute.qcow2 -v \
 # Temporary, until we have a rhel 7.8 image
 virt-customize -a overcloud-realtime-compute.qcow2 -v \
 --copy-in ~/i40e-2.10.19.30-1.x86_64.rpm:/root/ \
---run-command "yum localinstall -y /root/i40e-2.10.19.30-1.x86_64.rpm"
+--copy-in ~/fpga-drivers-1.0-1.el7.x86_64.rpm:/root/ \
+--run-command "yum localinstall -y /root/i40e-2.10.19.30-1.x86_64.rpm /root/fpga-drivers-1.0-1.el7.x86_64.rpm" \
+--run-command "dracut -f"
 
 virt-customize -a overcloud-realtime-compute.qcow2 --selinux-relabel
 
