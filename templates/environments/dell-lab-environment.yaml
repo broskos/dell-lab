@@ -48,8 +48,8 @@ parameter_defaults:
   NeutronNetworkType: 'vxlan,vlan'
   NeutronNetworkVLANRanges:
     - management:117:117
-    - sriov-1:200-300
-    - sriov-2:200-300
+    - sriov-1:200:300
+    - sriov-2:200:300
     - fronthaul:200:300
 
   NeutronTunnelTypes: ''
