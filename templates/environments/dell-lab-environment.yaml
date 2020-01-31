@@ -48,10 +48,9 @@ parameter_defaults:
   NeutronNetworkType: 'vxlan,vlan'
   NeutronNetworkVLANRanges:
     - management:117:117
-    - tenant:300:400
-    - backhaul:202:202
-    - midhaul:204:205
-    - fronthaul:203:203
+    - sriov-1:200-300
+    - sriov-2:200-300
+    - fronthaul:200:300
 
   NeutronTunnelTypes: ''
 
@@ -121,10 +120,10 @@ parameter_defaults:
     NovaVcpuPinSet: 2-35,38-71
     NovaComputeCpuSharedSet: 0,1,36,37
     NeutronPhysicalDevMappings:
-      - numa0-physnet:p3p1
-      - numa0-physnet:p3p2
-      - numa1-physnet:p7p1
-      - numa1-physnet:p7p2
+      - sriov-1:p3p1
+      - sriov-2:p3p2
+      - sriov-1:p7p1
+      - sriov-2:p7p2
     NeutronSriovNumVFs:
       - p3p1:8
       - p3p2:8
@@ -132,13 +131,13 @@ parameter_defaults:
       - p7p2:8
     NovaPCIPassthrough:
       - devname: "p3p1"
-        physical_network: "numa0-physnet"
+        physical_network: "sriov-1"
       - devname: "p3p2"
-        physical_network: "numa0-physnet"
+        physical_network: "sriov-2"
       - devname: "p7p1"
-        physical_network: "numa1-physnet"
+        physical_network: "sriov-1"
       - devname: "p7p2"
-        physical_network: "numa1-physnet"
+        physical_network: "sriov-2"
 
   ComputeExtraConfig:
     nova::cpu_allocation_ratio: 1
@@ -157,19 +156,24 @@ parameter_defaults:
       - numa1-physnet:p7p1
       - numa1-physnet:p7p2
     NeutronSriovNumVFs:
+      - sriov-1:p3p1
+      - sriov-2:p3p2
+      - sriov-1:p7p1
+      - sriov-2:p7p2
+    NeutronSriovNumVFs:
       - p3p1:8
       - p3p2:8
       - p7p1:8
       - p7p2:8
     NovaPCIPassthrough:
       - devname: "p3p1"
-        physical_network: "numa0-physnet"
+        physical_network: "sriov-1"
       - devname: "p3p2"
-        physical_network: "numa0-physnet"
+        physical_network: "sriov-2"
       - devname: "p7p1"
-        physical_network: "numa1-physnet"
+        physical_network: "sriov-1"
       - devname: "p7p2"
-        physical_network: "numa1-physnet"
+        physical_network: "sriov-2"
 
   ComputeHCIExtraConfig:
     nova::cpu_allocation_ratio: 1
@@ -182,10 +186,10 @@ parameter_defaults:
     NovaComputeCpuSharedSet: 0,1,36,37
     NovaEnableRbdBackend: false
     NeutronPhysicalDevMappings:
-      - numa0-physnet:p3p1
-      - numa0-physnet:p3p2
-      - numa1-physnet:p7p1
-      - numa1-physnet:p7p2
+      - sriov-1:p3p1
+      - sriov-2:p3p2
+      - sriov-1:p7p1
+      - sriov-2:p7p2
     NeutronSriovNumVFs:
       - p3p1:8
       - p3p2:8
@@ -193,13 +197,13 @@ parameter_defaults:
       - p7p2:8
     NovaPCIPassthrough:
       - devname: "p3p1"
-        physical_network: "numa0-physnet"
+        physical_network: "sriov-1"
       - devname: "p3p2"
-        physical_network: "numa0-physnet"
+        physical_network: "sriov-2"
       - devname: "p7p1"
-        physical_network: "numa1-physnet"
+        physical_network: "sriov-1"
       - devname: "p7p2"
-        physical_network: "numa1-physnet"
+        physical_network: "sriov-2"
 
   ComputeEdge1ExtraConfig:
     nova::compute::libvirt::vncserver_listen: "%{hiera('internal_api_edge1')}"
@@ -272,13 +276,12 @@ parameter_defaults:
     IsolCpusList: 2-35,38-71
     NovaVcpuPinSet: 2-35,38-71
     NovaComputeCpuSharedSet: 0,1,36,37
-    NovaComputeCpuSharedSet: 0,1,36,37
     NovaEnableRbdBackend: false
     NeutronPhysicalDevMappings:
-      - numa0-physnet:p3p1
-      - numa0-physnet:p3p2
-      - numa1-physnet:p7p1
-      - numa1-physnet:p7p2
+      - sriov-1:p3p1
+      - sriov-2:p3p2
+      - sriov-1:p7p1
+      - sriov-2:p7p2
     NeutronSriovNumVFs:
       - p3p1:8
       - p3p2:8
@@ -286,13 +289,13 @@ parameter_defaults:
       - p7p2:8
     NovaPCIPassthrough:
       - devname: "p3p1"
-        physical_network: "numa0-physnet"
+        physical_network: "sriov-1"
       - devname: "p3p2"
-        physical_network: "numa0-physnet"
+        physical_network: "sriov-2"
       - devname: "p7p1"
-        physical_network: "numa1-physnet"
+        physical_network: "sriov-1"
       - devname: "p7p2"
-        physical_network: "numa1-physnet"
+        physical_network: "sriov-2"
 
   ComputeEdge2ExtraConfig:
     nova::compute::libvirt::vncserver_listen: "%{hiera('internal_api_edge2')}"
@@ -306,6 +309,7 @@ parameter_defaults:
     nova::cpu_allocation_ratio: 1
     nova::compute::resume_guests_state_on_host_boot: true
 
+#TODO Copy NIC config down from Edge1vdu
   ComputeEdge2vduImage: "overcloud-realtime-compute"
   ComputeEdge2vduParameters:
     KernelArgs: "default_hugepagesz=1GB hugepagesz=1G hugepages=128 nx_huge_pages_recovery_ratio=0 intel_iommu=on iommu=pt"
@@ -316,10 +320,10 @@ parameter_defaults:
     NeutronPhysicalDevMappings:
       - fronthaul:p4p1
       - fronthaul:p5p1
-      - numa0-physnet:p1p1
-      - numa0-physnet:p1p2
-      - numa1-physnet:p8p1
-      - numa1-physnet:p8p2
+      - sriov-1:p1p1
+      - sriov-2:p1p2
+      - sriov-1:p8p1
+      - sriov-2:p8p2
     NeutronSriovNumVFs:
       - p1p1:8
       - p1p2:8
@@ -333,13 +337,13 @@ parameter_defaults:
       - devname: "p5p1"
         physical_network: "fronthaul"
       - devname: "p1p1"
-        physical_network: "numa0-physnet"
+        physical_network: "sriov-1"
       - devname: "p1p2"
-        physical_network: "numa0-physnet"
+        physical_network: "sriov-2"
       - devname: "p8p1"
-        physical_network: "numa1-physnet"
+        physical_network: "sriov-1"
       - devname: "p8p2"
-        physical_network: "numa1-physnet"
+        physical_network: "sriov-2"
       - vendor_id: "1172"
         product_id: "5050"
 
