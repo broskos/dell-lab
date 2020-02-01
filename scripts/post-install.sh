@@ -29,7 +29,7 @@ openstack aggregate create --zone edge2 edge2
 openstack aggregate create --zone edge2vdu edge2vdu
 
 # add computes to central site
-for vm_host in compute-0 computehci-0 computehci-1 computehci-2; do
+for vm_host in compute-0 compute-1 computehci-0 computehci-1 computehci-2; do
  openstack aggregate add host central "vranlab-$vm_host.lab.roskosb.info"
 done
 
