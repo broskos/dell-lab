@@ -251,11 +251,11 @@ resources:
               - type: ovs_bridge
                 name: br-mgmt
                 use_dhcp: false
-                mtu: 1500
+                mtu: 9000
                 members:
                 - type: interface
                   name: nic8
-                  mtu: 1500
+                  mtu: 9000
                   use_dhcp: false
 
 outputs:
