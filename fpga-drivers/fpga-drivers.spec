@@ -24,11 +24,11 @@ tar -xvf /root/rpmbuild/SOURCES/fpga-drivers.tgz -C $RPM_BUILD_ROOT
 %systemd_post config-fpga.service
       if [ $1 -eq 1 ]; then
         /usr/bin/systemctl daemon-reload
-        /usr/bin/systemctl start config-fpga.service
+        /usr/bin/systemctl enable --now config-fpga.service
       fi
       if [ $1 -eq 2 ]; then
         /usr/bin/systemctl daemon-reload
-        /usr/bin/systemctl start config-fpga.service
+        /usr/bin/systemctl enable --now config-fpga.service
       fi
 
 %preun
