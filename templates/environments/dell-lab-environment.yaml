@@ -213,6 +213,9 @@ parameter_defaults:
     tripleo::profile::base::database::mysql::client::mysql_client_bind_address: "%{hiera('internal_api_edge1')}"
     nova::cpu_allocation_ratio: 1
     nova::compute::resume_guests_state_on_host_boot: true
+    nova::compute::libvirt::libvirt_cpu_model: host-passthrough
+    nova::compute::libvirt::libvirt_cpu_model_extra_flags: host-tsc-deadline
+    nova::compute::libvirt::mem_stats_period_seconds: 0
 
   ComputeEdge1vduImage: "overcloud-realtime-compute"
   ComputeEdge1vduParameters:
@@ -313,6 +316,9 @@ parameter_defaults:
     tripleo::profile::base::database::mysql::client::mysql_client_bind_address: "%{hiera('internal_api_edge2')}"
     nova::cpu_allocation_ratio: 1
     nova::compute::resume_guests_state_on_host_boot: true
+    nova::compute::libvirt::libvirt_cpu_model: host-passthrough
+    nova::compute::libvirt::libvirt_cpu_model_extra_flags: host-tsc-deadline
+    nova::compute::libvirt::mem_stats_period_seconds: 0
 
 # TODO: set for no HT
   ComputeEdge2vduImage: "overcloud-realtime-compute"
