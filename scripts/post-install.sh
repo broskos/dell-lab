@@ -6,7 +6,7 @@ source ~/vranlabrc
 ####################################
 if ! grep -Fq "TRIPLEO_PLAN_NAME" ~/stackrc
 then
-  echo "TRIPLEO_PLAN_NAME=$stack_name" >> ~/stackrc
+  echo "export TRIPLEO_PLAN_NAME=$stack_name" >> ~/stackrc
 fi
 
 #################################
