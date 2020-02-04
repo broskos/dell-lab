@@ -1,4 +1,13 @@
+source ~/dell-lab/scripts/0-site-settings.sh
 source ~/vranlabrc
+
+####################################
+# fix stackrc for non standard stack name
+####################################
+if ! grep -Fq "TRIPLEO_PLAN_NAME" ~/stackrc
+then
+  echo "TRIPLEO_PLAN_NAME=$stack_name" >> ~/stackrc
+fi
 
 #################################
 # Upload RHEL 7 Image to Glance
