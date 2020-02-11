@@ -31,7 +31,7 @@ virt-customize -a overcloud-realtime-compute.qcow2 -v \
 --run-command "chmod +x /etc/rc.d/rc.local" \
 --run-command 'cat << EOF >>  /etc/rc.d/rc.local
 
-# manually set snmp_smp_affinity
+# manually set smp_affinity
 for i in /proc/irq/*/smp_affinity; do
  echo 00000030,00000003 > \$i 2>/dev/null
 done
