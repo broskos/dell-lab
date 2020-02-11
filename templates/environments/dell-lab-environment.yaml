@@ -87,7 +87,7 @@ parameter_defaults:
   ComputeHCICount: 3
   ComputeEdge1Count: 1
   ComputeEdge1vduCount: 1
-  ComputeEdge2Count: 1
+  ComputeEdge2Count: 0
   ComputeEdge2vduCount: 1
 
   NovaSchedulerDefaultFilters:
