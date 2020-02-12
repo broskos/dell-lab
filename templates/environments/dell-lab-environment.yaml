@@ -219,7 +219,7 @@ parameter_defaults:
 
   ComputeEdge1vduImage: "overcloud-realtime-compute"
   ComputeEdge1vduParameters:
-    KernelArgs: "default_hugepagesz=1GB hugepagesz=1G hugepages=128 nx_huge_pages_recovery_ratio=0 intel_iommu=on iommu=pt"
+    KernelArgs: "default_hugepagesz=1GB hugepagesz=1G hugepages=128 nx_huge_pages_recovery_ratio=0 intel_iommu=on iommu=pt elevator=cfq audit=1 nomodeset intel_idle.max_cstate=1 tsc=reliable idle=poll rcu_nocb_poll=1 clocksource=tsc pcie_aspm.policy=performance"
     IsolCpusList: 2-35,38-71
     NovaVcpuPinSet: 2-35,38-71
     NovaComputeCpuSharedSet: 0,1,36,37
@@ -320,13 +320,12 @@ parameter_defaults:
     nova::compute::libvirt::libvirt_cpu_model_extra_flags: host-tsc-deadline
     nova::compute::libvirt::mem_stats_period_seconds: 0
 
-# TODO: set for no HT
   ComputeEdge2vduImage: "overcloud-realtime-compute"
   ComputeEdge2vduParameters:
-    KernelArgs: "default_hugepagesz=1GB hugepagesz=1G hugepages=128 nx_huge_pages_recovery_ratio=0 intel_iommu=on iommu=pt"
-    IsolCpusList: 2-35
-    NovaVcpuPinSet: 2-35
-    NovaComputeCpuSharedSet: 0,1
+    KernelArgs: "default_hugepagesz=1GB hugepagesz=1G hugepages=128 nx_huge_pages_recovery_ratio=0 intel_iommu=on iommu=pt elevator=cfq audit=1 nomodeset intel_idle.max_cstate=1 tsc=reliable idle=poll rcu_nocb_poll=1 clocksource=tsc pcie_aspm.policy=performance"
+    IsolCpusList: 2-35,38-71
+    NovaVcpuPinSet: 2-35,38-71
+    NovaComputeCpuSharedSet: 0,1,36,37
     NovaEnableRbdBackend: false
     NeutronPhysicalDevMappings:
       - fronthaul-1:p1p1
