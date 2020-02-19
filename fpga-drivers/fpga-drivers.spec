@@ -2,7 +2,7 @@ Name:           fpga-drivers
 Version:        1.0
 Release:        1%{?dist}
 License: 	apache2
-Summary:        Fast command line image viewer using Imlib2
+Summary:        load igb_uio kernel module configure 2 VFs on each FPGA
 Source0:        fpga-drivers.tgz
 
 
