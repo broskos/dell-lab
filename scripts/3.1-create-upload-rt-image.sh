@@ -37,9 +37,9 @@ for i in /proc/irq/*/smp_affinity; do
 done
 
 if rpm -q i40e-2.10.19.30-1.x86_64 > /dev/null;then
- echo "rpm present"
+ echo "i40e rpm present"
 else
- echo "install rpm"
+ echo "install i40e rpm"
  yum localinstall -y /root/i40e-2.10.19.30-1.x86_64.rpm
 fi
 
