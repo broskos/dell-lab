@@ -1,0 +1,30 @@
+# Generated with the following on 2020-02-14T08:20:45.302504
+#
+#   openstack tripleo container image prepare default --output-env-file pod2-osp-d/templates/containers-prepare-parameter.yaml
+#
+
+parameter_defaults:
+  ContainerImagePrepare:
+  - set:
+      ceph_alertmanager_image: lab-dev-osp16-osp16_containers-ose-prometheus-alertmanager
+      ceph_alertmanager_namespace: satellite.lab.roskosb.info:5000
+      ceph_alertmanager_tag: 4.1
+      ceph_grafana_image: lab-dev-osp16-osp16_containers-ose-grafana
+      ceph_grafana_namespace: satellite.lab.roskosb.info:5000
+      ceph_grafana_tag: 4.1
+      ceph_image: lab-dev-osp16-osp16_containers-rhceph-4-rhel8
+      ceph_namespace: satellite.lab.roskosb.info:5000
+      ceph_node_exporter_image: lab-dev-osp16-osp16_containers-ose-prometheus-node-exporter
+      ceph_node_exporter_namespace: satellite.lab.roskosb.info:5000
+      ceph_node_exporter_tag: v4.1
+      ceph_prometheus_image: lab-dev-osp16-osp16_containers-ose-prometheus
+      ceph_prometheus_namespace: satellite.lab.roskosb.info:5000
+      ceph_prometheus_tag: 4.1
+      ceph_tag: latest
+      name_prefix: lab-dev-osp16-osp16_containers
+      name_suffix: ''
+      namespace: satellite.lab.roskosb.info:5000
+      neutron_driver: ovs
+      rhel_containers: false
+      tag: '16.0'
+    tag_from_label: '{version}-{release}'

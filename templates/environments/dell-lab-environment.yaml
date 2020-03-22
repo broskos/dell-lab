@@ -381,3 +381,11 @@ parameter_defaults:
         vendor_id: '1172'
         product_id: '5050'
         device_type: 'type-VF'
+
+  RhsmVars:
+    rhsm_method: "satellite"
+    rhsm_server_hostname: "satellite.lab.roskosb.info"
+    rhsm_baseurl: "https://satellite.lab.roskosb.info/pulp/repos"
+    rhsm_activation_key: "osp16-dev"
+    rhsm_org_id: "lab"
+    rhsm_force_register: True

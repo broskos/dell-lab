@@ -7,14 +7,14 @@ export cdn_user='broskos@redhat.com'
 # then we use regular satellite
 export satellite=satellite.lab.roskosb.info
 export org=lab
-export director_activation_key='osp13-director-dev'
+export director_activation_key='osp16-director-dev'
 
 
 export hostname='director'
 export ip_address='172.17.118.10'
 export domain='lab.roskosb.info'
 export stack_password='redhat'
-export osp_version='13'
+export osp_version='16'
 export template_path='~/dell-lab/templates'
 
 export stack_name='vranlab'
