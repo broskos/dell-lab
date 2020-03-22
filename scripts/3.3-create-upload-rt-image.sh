@@ -14,11 +14,6 @@ virt-customize -a overcloud-realtime-compute.qcow2 --run-command \
 "subscription-manager register --username=$cdn_user --password=$CDNPASS" \
 --run-command "subscription-manager attach --pool $pool"
 
-# Satellite
-#virt-customize -a overcloud-realtime-compute.qcow2 \
-#--run-command "yum localinstall -y http://$satellite/pub/katello-ca-consumer-latest.noarch.rpm" \
-#--run-command "subscription-manager register --name tempvm.lab.roskosb.info --org $org --activationkey $director_activation_key --force"
-
 virt-customize -a overcloud-realtime-compute.qcow2 -v \
 --run ~/dell-lab/scripts/rt.sh 2>&1 | tee ~/virt-customize.log
 
@@ -50,7 +45,7 @@ virt-customize -a overcloud-realtime-compute.qcow2 --selinux-relabel
 #############################
 # extract vmliuz and initrd #
 #############################
-rm -Rf /var/tmp/.guestfs*
+sudo rm -Rf /var/tmp/.guestfs*
 mkdir -p ~/images/rt-image
 guestmount -a overcloud-realtime-compute.qcow2 -i --ro rt-image
 cp rt-image/boot/vmlinuz-*.rt56.1033.el7.x86_64 ./overcloud-realtime-compute.vmlinuz

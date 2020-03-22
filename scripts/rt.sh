@@ -4,11 +4,14 @@ set -eux
 
 subscription-manager repos --disable '*'
 subscription-manager repos \
---enable=rhel-7-server-nfv-rpms \
---enable=rhel-7-server-rpms \
---enable=rhel-7-server-rh-common-rpms \
---enable=rhel-7-server-extras-rpms \
---enable=rhel-7-server-openstack-13-rpms
+--enable=rhel-8-for-x86_64-baseos-rpms \
+--enable=rhel-8-for-x86_64-appstream-rpms \
+--enable=rhel-8-for-x86_64-highavailability-rpms \
+--enable=ansible-2.8-for-rhel-8-x86_64-rpms \
+--enable=openstack-16-for-rhel-8-x86_64-rpms \
+--enable=rhel-8-for-x86_64-nfv-rpms \
+--enable=advanced-virt-for-rhel-8-x86_64-rpms \
+--enable=fast-datapath-for-rhel-8-x86_64-rpms
 yum -v -y --setopt=protected_packages= erase kernel.$(uname -m)
 yum -v -y install kernel-rt kernel-rt-kvm kernel-rt-devel tuned-profiles-nfv-host kernel-devel gcc
 subscription-manager unregister
