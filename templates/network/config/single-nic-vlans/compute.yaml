@@ -123,6 +123,12 @@ parameters:
     default: []
     description: A list of DNS search domains to be added (in order) to resolv.conf.
     type: comma_delimited_list
+  BondInterfaceOvsOptions:
+    default: bond_mode=active-backup
+    description: 'The bonding_options or bonding_options string for the bond
+      interface. Set things like lacp=active and/or bond_mode=balance-slb
+      for OVS bonds or like mode=4 for Linux bonds using this option.'
+    type: string
 
 resources:
 
