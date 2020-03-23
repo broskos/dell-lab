@@ -152,7 +152,7 @@ resources:
                     - get_param: ControlPlaneStaticRoutes
                     - - default: true
                         next_hop:
-                    get_param: ControlPlaneEdge2DefaultRoute
+                          get_param: ControlPlaneEdge2DefaultRoute
                 members:
                 - type: linux_bond
                   name: bond0
