@@ -73,10 +73,6 @@ parameters:
     default: 1201
     description: Vlan ID for the tenant_edge1 network traffic.
     type: number
-  ControlPlaneEdge1SubnetCidr: # Override this via parameter_defaults
-    default: '24'
-    description: The subnet CIDR of the control plane network.
-    type: string
   InternalApiInterfaceDefaultRoute:
     default: '192.168.130.62'
     description: default route for the internal_api network
