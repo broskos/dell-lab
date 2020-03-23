@@ -48,8 +48,8 @@ virt-customize -a overcloud-realtime-compute.qcow2 --selinux-relabel
 sudo rm -Rf /var/tmp/.guestfs*
 mkdir -p ~/images/rt-image
 guestmount -a overcloud-realtime-compute.qcow2 -i --ro rt-image
-cp rt-image/boot/vmlinuz-*.rt56.1033.el7.x86_64 ./overcloud-realtime-compute.vmlinuz
-cp rt-image/boot/initramfs-*.rt56.1033.el7.x86_64.img ./overcloud-realtime-compute.initrd
+cp rt-image/boot/vml*rt* ./overcloud-realtime-compute.vmlinuz
+cp rt-image/boot/init*rt* ./overcloud-realtime-compute.initrd
 guestunmount rt-image
 rm -Rf ~/images/rt-image
 
