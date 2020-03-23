@@ -46,7 +46,8 @@ parameters:
       guaranteed to pass through the data path of the segments in the network.
       (The parameter is automatically resolved from the ctlplane network's mtu attribute.)
     type: number
-
+  InternalApiInterfaceDefaultRoute:
+    type: string
   StorageIpSubnet:
     default: ''
     description: IP address/subnet on the storage network

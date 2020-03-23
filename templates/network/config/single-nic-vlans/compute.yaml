@@ -82,6 +82,8 @@ parameters:
       guaranteed to pass through the data path of the segments in the
       InternalApi network.
     type: number
+  InternalApiInterfaceDefaultRoute:
+    type: string
   InternalApiInterfaceRoutes:
     default: []
     description: >

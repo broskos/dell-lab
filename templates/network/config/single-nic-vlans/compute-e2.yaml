@@ -27,6 +27,8 @@ parameters:
       Unless the default is changed, the parameter is automatically resolved
       from the subnet host_routes attribute.
     type: json
+  InternalApiInterfaceDefaultRoute:
+    type: string
   StorageMgmtInterfaceRoutes:
     default: []
     description: >

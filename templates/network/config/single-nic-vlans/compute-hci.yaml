@@ -113,6 +113,8 @@ parameters:
       Unless the default is changed, the parameter is automatically resolved
       from the subnet host_routes attribute.
     type: json
+  InternalApiInterfaceDefaultRoute:
+    type: string
   TenantIpSubnet:
     default: ''
     description: IP address/subnet on the tenant network
