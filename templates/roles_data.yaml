@@ -186,7 +186,6 @@
     - OS::TripleO::Services::Vpp
     - OS::TripleO::Services::Zaqar
 
-
 ###############################################################################
 # Role: Compute                                                               #
 ###############################################################################
@@ -256,7 +255,6 @@
     - OS::TripleO::Services::Vpp
     - OS::TripleO::Services::OVNController
 
-
 ###############################################################################
 # Role: ComputeEdge1                                                               #
 ###############################################################################
@@ -265,8 +263,8 @@
     Basic Compute Node role for Edge1
   CountDefault: 1
   # Create external Neutron bridge (unset if using ML2/OVS without DVR)
-  tags:
-    - external_bridge
+#  tags:
+#    - external_bridge
   networks:
     InternalApi1:
       subnet: internal_api1_subnet
@@ -340,7 +338,7 @@
       subnet: tenant1_subnet
   HostnameFormatDefault: '%stackname%-computevdu-e1-%index%'
   RoleParametersDefault:
-    TunedProfileName: "cpu-partitioning"
+    TunedProfileName: "realtime-virtual-host"
   update_serial: 25
   ServicesDefault:
     - OS::TripleO::Services::Aide
@@ -399,8 +397,8 @@
     Basic Compute Node role for Edge1
   CountDefault: 1
   # Create external Neutron bridge (unset if using ML2/OVS without DVR)
-  tags:
-    - external_bridge
+#  tags:
+#    - external_bridge
   networks:
     InternalApi2:
       subnet: internal_api2_subnet
@@ -472,7 +470,7 @@
       subnet: tenant2_subnet
   HostnameFormatDefault: '%stackname%-computevdu-e2-%index%'
   RoleParametersDefault:
-    TunedProfileName: "cpu-partitioning"
+    TunedProfileName: "realtime-virtual-host"
   update_serial: 25
   ServicesDefault:
     - OS::TripleO::Services::Aide
@@ -522,7 +520,7 @@
     - OS::TripleO::Services::Vpp
     - OS::TripleO::Services::OVNController
     - OS::TripleO::Services::OVNMetadataAgent
-    -
+
 ###############################################################################
 # Role: ComputeHCI                                                            #
 ###############################################################################
@@ -592,4 +590,3 @@
     - OS::TripleO::Services::Vpp
     - OS::TripleO::Services::OVNController
     - OS::TripleO::Services::OVNMetadataAgent
-
