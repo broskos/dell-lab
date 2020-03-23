@@ -21,6 +21,12 @@ parameters:
     default: ''
     description: IP address/subnet on the ctlplane network
     type: string
+  ControlPlaneSubnetCidr:
+    default: ''
+    description: >
+      The subnet CIDR of the control plane network. (The parameter is
+      automatically resolved from the ctlplane subnet's cidr attribute.)
+    type: string
   InternalApiEdge1IpSubnet:
     default: ''
     description: IP address/subnet on the internal_api_edge1 network
