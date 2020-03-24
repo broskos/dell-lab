@@ -36,7 +36,6 @@ parameter_defaults:
   ComputeEdge1vduControlPlaneSubnet: edge1
   ComputeEdge2ControlPlaneSubnet: edge2
   ComputeEdge2vduControlPlaneSubnet: edge2
-
   VipSubnetMap:
     ctlplane: leaf0
 
