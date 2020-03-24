@@ -200,64 +200,64 @@ resources:
                     get_param: BondInterfaceOvsOptions
                   members:
                   - type: interface
-                    name: p7p1
+                    name: ens7f0
                     mtu: 9000
                     # force the MAC address of the bridge to this interface
                     primary: true
                   - type: interface
-                    name: p7p2
+                    name: ens7f1
                     mtu: 9000
               - type: interface
-                name: p3p1
+                name: ens3f0
                 mtu: 9000
                 use_dhcp: false
                 defroute: false
                 nm_controlled: true
                 hotplug: true
               - type: interface
-                name: p3p2
+                name: ens3f1
                 mtu: 9000
                 use_dhcp: false
                 defroute: false
                 nm_controlled: true
                 hotplug: true
               - type: interface
-                name: p8p1
+                name: ens8f0
                 mtu: 9000
                 use_dhcp: false
                 defroute: false
                 nm_controlled: true
                 hotplug: true
               - type: interface
-                name: p8p2
+                name: ens8f1
                 mtu: 9000
                 use_dhcp: false
                 defroute: false
                 nm_controlled: true
                 hotplug: true
               - type: interface
-                name: p1p1
+                name: ens1f0
                 mtu: 9000
                 use_dhcp: false
                 defroute: false
                 nm_controlled: true
                 hotplug: true
               - type: interface
-                name: p1p2
+                name: ens1f1
                 mtu: 9000
                 use_dhcp: false
                 defroute: false
                 nm_controlled: true
                 hotplug: true
               - type: interface
-                name: p4p1
+                name: ens4f0
                 mtu: 9000
                 use_dhcp: false
                 defroute: false
                 nm_controlled: true
                 hotplug: true
               - type: interface
-                name: p4p2
+                name: ens4f1
                 mtu: 9000
                 use_dhcp: false
                 defroute: false

@@ -198,12 +198,12 @@ resources:
                     get_param: BondInterfaceOvsOptions
                   members:
                   - type: interface
-                    name: p1p1
+                    name: ens1f0
                     mtu: 9000
                     # force the MAC address of the bridge to this interface
                     primary: true
                   - type: interface
-                    name: p1p2
+                    name: ens1f1
                     mtu: 9000
 outputs:
   OS::stack_id:
