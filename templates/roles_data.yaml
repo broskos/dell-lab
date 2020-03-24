@@ -193,9 +193,6 @@
   description: |
     Basic Compute Node role
   CountDefault: 1
-  # Create external Neutron bridge (unset if using ML2/OVS without DVR)
-  tags:
-    - external_bridge
   networks:
     InternalApi:
       subnet: internal_api_subnet
@@ -262,9 +259,6 @@
   description: |
     Basic Compute Node role for Edge1
   CountDefault: 1
-  # Create external Neutron bridge (unset if using ML2/OVS without DVR)
-#  tags:
-#    - external_bridge
   networks:
     InternalApi:
       subnet: internal_api_edge1_subnet
@@ -394,9 +388,6 @@
   description: |
     Basic Compute Node role for Edge1
   CountDefault: 1
-  # Create external Neutron bridge (unset if using ML2/OVS without DVR)
-#  tags:
-#    - external_bridge
   networks:
     InternalApi:
       subnet: internal_api_edge2_subnet
