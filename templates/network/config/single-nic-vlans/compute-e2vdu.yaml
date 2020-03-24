@@ -113,7 +113,6 @@ resources:
             - {get_param: InternalApiMtu}
             - {get_param: TenantMtu}
 
-
   OsNetConfigImpl:
     type: OS::Heat::SoftwareConfig
     properties:

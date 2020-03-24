@@ -94,6 +94,7 @@ parameters:
       for OVS bonds or like mode=4 for Linux bonds using this option.'
     type: string
 
+resources:
 
   MinViableMtu:
     # This resource resolves the minimum viable MTU for interfaces, bonds and
