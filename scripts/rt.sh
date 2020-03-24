@@ -15,7 +15,9 @@ subscription-manager repos \
 #dnf -v -y --setopt=protected_packages= erase kernel.$(uname -m)
 dnf -v -y install kernel-rt kernel-rt-kvm kernel-rt-devel tuned-profiles-nfv-host kernel-devel gcc
 grubby --set-default /boot/vmlinux*rt*
+sleep 5
 subscription-manager unregister
+sleep 10
 subscription-manager clean
 
 

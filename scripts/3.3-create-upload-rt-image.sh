@@ -22,7 +22,7 @@ virt-customize -a overcloud-realtime-compute.qcow2 -v \
 virt-customize -a overcloud-realtime-compute.qcow2 -v \
 --copy-in ~/i40e-2.10.19.30-1.x86_64.rpm:/root/ \
 --copy-in ~/fpga-drivers-1.0-1.el7.x86_64.rpm:/root/ \
---run-command "yum localinstall -y /root/fpga-drivers-1.0-1.el7.x86_64.rpm" \
+--run-command "dnf localinstall -y /root/fpga-drivers-1.0-1.el7.x86_64.rpm" \
 --run-command "chmod +x /etc/rc.d/rc.local" \
 --run-command 'cat << EOF >>  /etc/rc.d/rc.local
 
@@ -35,7 +35,7 @@ if rpm -q i40e-2.10.19.30-1.x86_64 > /dev/null;then
  echo "i40e rpm present"
 else
  echo "install i40e rpm"
- yum localinstall -y /root/i40e-2.10.19.30-1.x86_64.rpm
+ dnf localinstall -y /root/i40e-2.10.19.30-1.x86_64.rpm
 fi
 
 EOF'

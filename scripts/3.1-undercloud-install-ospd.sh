@@ -39,6 +39,8 @@ for i in /usr/share/rhosp-director-images/overcloud-full-latest-16.0.tar /usr/sh
 done
 popd
 
+virt-customize -a ~/images/overcloud-full.qcow2 --root-password password:redhat
+
 ###########################
 # Upload Images to Glance #
 ###########################

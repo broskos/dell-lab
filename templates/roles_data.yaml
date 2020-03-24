@@ -203,9 +203,9 @@
       subnet: tenant_subnet
     Storage:
       subnet: storage_subnet
-  HostnameFormatDefault: '%stackname%-novacompute-%index%'
+  HostnameFormatDefault: '%stackname%-compute-%index%'
   RoleParametersDefault:
-    TunedProfileName: "virtual-host"
+    TunedProfileName: "cpu-partitioning"
   update_serial: 25
   ServicesDefault:
     - OS::TripleO::Services::Aide
@@ -272,7 +272,7 @@
       subnet: tenant_edge1_subnet
   HostnameFormatDefault: '%stackname%-compute-e1-%index%'
   RoleParametersDefault:
-    TunedProfileName: "virtual-host"
+    TunedProfileName: "cpu-partitioning"
   update_serial: 25
   ServicesDefault:
     - OS::TripleO::Services::Aide
@@ -404,7 +404,7 @@
       subnet: tenant_edge2_subnet
   HostnameFormatDefault: '%stackname%-compute-e2-%index%'
   RoleParametersDefault:
-    TunedProfileName: "virtual-host"
+    TunedProfileName: "cpu-partitioning"
   update_serial: 25
   ServicesDefault:
     - OS::TripleO::Services::Aide
