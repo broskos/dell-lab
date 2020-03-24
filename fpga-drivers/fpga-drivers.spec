@@ -21,6 +21,10 @@ tar -xvf /root/rpmbuild/SOURCES/fpga-drivers.tgz -C $RPM_BUILD_ROOT
 /etc
 
 %post
+mkdir -p /lib/modules/`uname -r`/kernel/drivers/igb_uio
+cp /usr/local/lib/igb_uio.ko /lib/modules/`uname -r`/kernel/drivers/igb_uio/
+restorecon -R /lib/modules/`uname -r`/kernel/drivers
+
 %systemd_post config-fpga.service
       if [ $1 -eq 1 ]; then
         /usr/bin/systemctl daemon-reload
