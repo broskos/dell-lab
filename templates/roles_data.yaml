@@ -536,7 +536,7 @@
       subnet: storage_mgmt_subnet
   HostnameFormatDefault: '%stackname%-computehci-%index%'
   RoleParametersDefault:
-    TunedProfileName: "throughput-performance"
+    TunedProfileName: "cpu-partitioning"
   # CephOSD present so serial has to be 1
   update_serial: 1
   ServicesDefault:
