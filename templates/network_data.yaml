@@ -15,12 +15,12 @@
   allocation_pools: [{'start': '192.168.130.4', 'end': '192.168.130.60'}]
   gateway_ip: '192.168.130.62'
   subnets:
-    internal_api_edge1:
+    internal_api_edge1_subnet:
       vlan: 1130
       ip_subnet: '192.168.130.64/26'
       allocation_pools: [{'start': '192.168.130.68', 'end': '192.168.130.124'}]
       gateway_ip: '192.168.130.126'
-    internal_api_edge2:
+    internal_api_edge2_subnet:
       vlan: 2130
       ip_subnet: '192.168.130.128/26'
       allocation_pools: [{'start': '192.168.130.132', 'end': '192.168.130.188'}]
@@ -48,12 +48,12 @@
   allocation_pools: [{'start': '192.168.201.4', 'end': '192.168.201.60'}]
   gateway_ip: '192.168.201.62'
   subnets:
-    tenant_edge1:
+    tenant_edge1_subnet:
       vlan: 1201
       ip_subnet: '192.168.201.64/26'
       allocation_pools: [{'start': '192.168.201.68', 'end': '192.168.201.124'}]
       gateway_ip: '192.168.201.126'
-    tenant_edge2:
+    tenant_edge2_subnet:
       vlan: 2201
       ip_subnet: '192.168.201.128/26'
       allocation_pools: [{'start': '192.168.201.132', 'end': '192.168.201.188'}]

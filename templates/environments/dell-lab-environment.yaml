@@ -22,9 +22,9 @@ parameter_defaults:
   - 172.17.118.1
   - 172.17.118.3
   - 172.17.118.5
-  EC2MetadataIp: 192.168.120.5
-  NeutronExternalNetworkBridge: "''"
+
   BondInterfaceOvsOptions: "mode=4 miimon=100"
+
   DockerInsecureRegistryAddress:
   - 172.17.118.8:5000
   - satellite.lab.roskosb.info:5000
@@ -37,13 +37,9 @@ parameter_defaults:
   ComputeEdge2ControlPlaneSubnet: edge2
   ComputeEdge2vduControlPlaneSubnet: edge2
 
-  ControlPlaneSubnetCidr: '26'
-  ControlPlaneSubnet: leaf0
-  ControlPlaneDefaultRoute: 192.168.120.62
-  ControlPlaneEdge1DefaultRoute: 192.168.120.126
-  ControlPlaneEdge1SubnetCidr: '26'
-  ControlPlaneEdge2DefaultRoute: 192.168.120.190
-  ControlPlaneEdge2SubnetCidr: '26'
+#  ControlPlaneSubnetCidr: '26'
+#  ControlPlaneSubnet: leaf0
+#  ControlPlaneDefaultRoute: 192.168.120.62
 
   NeutronNetworkType: 'vxlan,vlan'
   NeutronTunnelTypes: ''
@@ -61,10 +57,6 @@ parameter_defaults:
     - datacentre:br-ex
     - management:br-mgmt
     - floating-ips:br-float
-
-  InternalApiSupernet: 192.168.130.0/24
-  TenantSupernet: 192.168.201.0/24
-  ControlPlaneSupernet: 192.168.120.0/24
 
   CloudName: overcloud.lab.roskosb.info
   CloudDomain: lab.roskosb.info
@@ -87,7 +79,7 @@ parameter_defaults:
   ComputeHCICount: 3
   ComputeEdge1Count: 1
   ComputeEdge1vduCount: 1
-  ComputeEdge2Count: 0
+  ComputeEdge2Count: 1
   ComputeEdge2vduCount: 1
 
   NovaSchedulerDefaultFilters:
