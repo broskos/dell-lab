@@ -1,22 +1,7 @@
-
 heat_template_version: rocky
 description: >
   Software Config to drive os-net-config to configure multiple interfaces for the Controller role.
 parameters:
-  InternalApiSupernet:
-    type: string
-  TenantSupernet:
-    type: string
-  ControlPlaneSupernet:
-    type: string
-  ControlPlaneEdge1SubnetCidr:
-    type: string
-  ControlPlaneEdge2SubnetCidr:
-    type: string
-  ControlPlaneEdge1DefaultRoute:
-    type: string
-  ControlPlaneEdge2DefaultRoute:
-    type: string
   ControlPlaneIp:
     default: ''
     description: IP address/subnet on the ctlplane network
@@ -46,8 +31,7 @@ parameters:
       guaranteed to pass through the data path of the segments in the network.
       (The parameter is automatically resolved from the ctlplane network's mtu attribute.)
     type: number
-  InternalApiInterfaceDefaultRoute:
-    type: string
+
   StorageIpSubnet:
     default: ''
     description: IP address/subnet on the storage network
@@ -174,6 +158,7 @@ parameters:
     default: []
     description: A list of DNS search domains to be added (in order) to resolv.conf.
     type: comma_delimited_list
+
 resources:
   OsNetConfigImpl:
     type: OS::Heat::SoftwareConfig

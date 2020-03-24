@@ -2,20 +2,6 @@ heat_template_version: rocky
 description: >
   Software Config to drive os-net-config to configure VLANs for the Compute role.
 parameters:
-  InternalApiSupernet:
-    type: string
-  TenantSupernet:
-    type: string
-  ControlPlaneSupernet:
-    type: string
-  ControlPlaneEdge1SubnetCidr:
-    type: string
-  ControlPlaneEdge2SubnetCidr:
-    type: string
-  ControlPlaneEdge1DefaultRoute:
-    type: string
-  ControlPlaneEdge2DefaultRoute:
-    type: string
   ControlPlaneIp:
     default: ''
     description: IP address/subnet on the ctlplane network
@@ -82,8 +68,6 @@ parameters:
       guaranteed to pass through the data path of the segments in the
       InternalApi network.
     type: number
-  InternalApiInterfaceDefaultRoute:
-    type: string
   InternalApiInterfaceRoutes:
     default: []
     description: >
@@ -125,6 +109,7 @@ parameters:
     default: []
     description: A list of DNS search domains to be added (in order) to resolv.conf.
     type: comma_delimited_list
+
   BondInterfaceOvsOptions:
     default: bond_mode=active-backup
     description: 'The bonding_options or bonding_options string for the bond

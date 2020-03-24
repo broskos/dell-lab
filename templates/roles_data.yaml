@@ -266,12 +266,10 @@
 #  tags:
 #    - external_bridge
   networks:
-    InternalApi1:
-      subnet: internal_api1_subnet
-    Tenant1:
-      subnet: tenant1_subnet
-    Storage:
-      subnet: storage_subnet
+    InternalApi:
+      subnet: internal_api_edge1_subnet
+    Tenant:
+      subnet: tenant_edge1_subnet
   HostnameFormatDefault: '%stackname%-compute-e1-%index%'
   RoleParametersDefault:
     TunedProfileName: "virtual-host"
@@ -332,10 +330,10 @@
     Basic ComputeVdu Node role for Edge1
   CountDefault: 1
   networks:
-    InternalApi1:
-      subnet: internal_api1_subnet
-    Tenant1:
-      subnet: tenant1_subnet
+    InternalApi:
+      subnet: internal_api_edge1_subnet
+    Tenant:
+      subnet: tenant_edge1_subnet
   HostnameFormatDefault: '%stackname%-computevdu-e1-%index%'
   RoleParametersDefault:
     TunedProfileName: "realtime-virtual-host"
@@ -400,10 +398,10 @@
 #  tags:
 #    - external_bridge
   networks:
-    InternalApi2:
-      subnet: internal_api2_subnet
-    Tenant2:
-      subnet: tenant2_subnet
+    InternalApi:
+      subnet: internal_api_edge2_subnet
+    Tenant:
+      subnet: tenant_edge2_subnet
   HostnameFormatDefault: '%stackname%-compute-e2-%index%'
   RoleParametersDefault:
     TunedProfileName: "virtual-host"
@@ -464,10 +462,10 @@
     Basic ComputeVdu Node role for Edge2
   CountDefault: 1
   networks:
-    InternalApi2:
-      subnet: internal_api2_subnet
-    Tenant2:
-      subnet: tenant2_subnet
+    InternalApi:
+      subnet: internal_api_edge2_subnet
+    Tenant:
+      subnet: tenant_edge2_subnet
   HostnameFormatDefault: '%stackname%-computevdu-e2-%index%'
   RoleParametersDefault:
     TunedProfileName: "realtime-virtual-host"
