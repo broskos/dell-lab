@@ -1,37 +1,12 @@
-
 heat_template_version: rocky
 description: >
-  Software Config to drive os-net-config to configure VLANs for the ComputeEdge1 role.
+  Software Config to drive os-net-config with 2 bonded nics on a bridge with VLANs attached for the ComputeEdge1 role.
 parameters:
-  InternalApiSupernet:
-    type: string
-  TenantSupernet:
-    type: string
-  ControlPlaneSupernet:
-    type: string
-  ControlPlaneEdge1SubnetCidr:
-    type: string
-  ControlPlaneEdge2SubnetCidr:
-    type: string
-  ControlPlaneEdge1DefaultRoute:
-    type: string
-  ControlPlaneEdge2DefaultRoute:
-    type: string
   ControlPlaneIp:
     default: ''
     description: IP address/subnet on the ctlplane network
     type: string
   ControlPlaneSubnetCidr:
-    default: ''
-    description: >
-      The subnet CIDR of the control plane network. (The parameter is
-      automatically resolved from the ctlplane subnet's cidr attribute.)
-    type: string
-  InternalApiEdge1IpSubnet:
-    default: ''
-    description: IP address/subnet on the internal_api_edge1 network
-    type: string
-  TenantEdge1IpSubnet:
     default: ''
     description: >
       The subnet CIDR of the control plane network. (The parameter is
@@ -56,63 +31,51 @@ parameters:
       guaranteed to pass through the data path of the segments in the network.
       (The parameter is automatically resolved from the ctlplane network's mtu attribute.)
     type: number
-  StorageInterfaceRoutes:
-    default: []
-    description: >
-      Routes for the storage network traffic.
-      JSON route e.g. [{'destination':'10.0.0.0/16', 'nexthop':'10.0.0.1'}]
-      Unless the default is changed, the parameter is automatically resolved
-      from the subnet host_routes attribute.
-    type: json
-  StorageMgmtInterfaceRoutes:
-    default: []
-    description: >
-      Routes for the storage_mgmt network traffic.
-      JSON route e.g. [{'destination':'10.0.0.0/16', 'nexthop':'10.0.0.1'}]
-      Unless the default is changed, the parameter is automatically resolved
-      from the subnet host_routes attribute.
-    type: json
-  InternalApiInterfaceDefaultRoute:
-    type: string
-  StorageIpSubnet:
+
+  InternalApiIpSubnet:
     default: ''
-    description: IP address/subnet on the storage network
+    description: IP address/subnet on the internal_api network
     type: string
-  StorageNetworkVlanID:
-    default: 170
-    description: Vlan ID for the storage network traffic.
+  InternalApiNetworkVlanID:
+    default: 130
+    description: Vlan ID for the internal_api network traffic.
     type: number
-  StorageMtu:
+  InternalApiMtu:
     default: 1500
     description: The maximum transmission unit (MTU) size(in bytes) that is
       guaranteed to pass through the data path of the segments in the
-      Storage network.
+      InternalApi network.
     type: number
-  InternalApiEdge1NetworkVlanID:
-    default: 1130
-    description: Vlan ID for the internal_api_edge1 network traffic.
+  InternalApiInterfaceRoutes:
+    default: []
+    description: >
+      Routes for the internal_api network traffic.
+      JSON route e.g. [{'destination':'10.0.0.0/16', 'nexthop':'10.0.0.1'}]
+      Unless the default is changed, the parameter is automatically resolved
+      from the subnet host_routes attribute.
+    type: json
+  TenantIpSubnet:
+    default: ''
+    description: IP address/subnet on the tenant network
+    type: string
+  TenantNetworkVlanID:
+    default: 201
+    description: Vlan ID for the tenant network traffic.
     type: number
-  TenantEdge1NetworkVlanID:
-    default: 1201
-    description: Vlan ID for the tenant_edge1 network traffic.
+  TenantMtu:
+    default: 1500
+    description: The maximum transmission unit (MTU) size(in bytes) that is
+      guaranteed to pass through the data path of the segments in the
+      Tenant network.
     type: number
-  InternalApiInterfaceDefaultRoute:
-    default: '192.168.130.62'
-    description: default route for the internal_api network
-    type: string
-  ExternalInterfaceDefaultRoute:
-    default: '172.17.119.62'
-    description: default route for the external network
-    type: string
-  InternalApiEdge1InterfaceDefaultRoute:
-    default: '192.168.130.126'
-    description: default route for the internal_api_edge1 network
-    type: string
-  TenantEdge1InterfaceDefaultRoute:
-    default: '192.168.201.126'
-    description: default route for the tenant_edge1 network
-    type: string
-
+  TenantInterfaceRoutes:
+    default: []
+    description: >
+      Routes for the tenant network traffic.
+      JSON route e.g. [{'destination':'10.0.0.0/16', 'nexthop':'10.0.0.1'}]
+      Unless the default is changed, the parameter is automatically resolved
+      from the subnet host_routes attribute.
+    type: json
   DnsServers: # Override this via parameter_defaults
     default: []
     description: >
@@ -124,14 +87,13 @@ parameters:
     default: []
     description: A list of DNS search domains to be added (in order) to resolv.conf.
     type: comma_delimited_list
-
   BondInterfaceOvsOptions:
     default: bond_mode=active-backup
-    description: 'The bonding_options or bonding_options string for the bond
+    description: 'The ovs_options or bonding_options string for the bond
       interface. Set things like lacp=active and/or bond_mode=balance-slb
       for OVS bonds or like mode=4 for Linux bonds using this option.'
     type: string
-resources:
+
 
   MinViableMtu:
     # This resource resolves the minimum viable MTU for interfaces, bonds and
@@ -146,7 +108,9 @@ resources:
           expression: $.data.max()
           data:
             - {get_param: ControlPlaneMtu}
-            - {get_param: StorageMtu}
+            - {get_param: InternalApiMtu}
+            - {get_param: TenantMtu}
+
 
   OsNetConfigImpl:
     type: OS::Heat::SoftwareConfig
@@ -173,13 +137,13 @@ resources:
                     list_join:
                     - /
                     - - get_param: ControlPlaneIp
-                      - get_param: ControlPlaneEdge1SubnetCidr
+                      - get_param: ControlPlaneSubnetCidr
                 routes:
                   list_concat_unique:
                     - get_param: ControlPlaneStaticRoutes
                     - - default: true
                         next_hop:
-                          get_param: ControlPlaneEdge1DefaultRoute
+                          get_param: ControlPlaneDefaultRoute
                 members:
                 - type: linux_bond
                   name: bond0
@@ -191,32 +155,36 @@ resources:
                   members:
                   - type: interface
                     name: nic1
+                    mtu:
+                      get_attr: [MinViableMtu, value]
                     # force the MAC address of the bridge to this interface
                     primary: true
                   - type: interface
                     name: nic2
+                    mtu:
+                      get_attr: [MinViableMtu, value]
                 - type: vlan
+                  mtu:
+                    get_param: InternalApiMtu
                   vlan_id:
-                    get_param: InternalApiEdge1NetworkVlanID
+                    get_param: InternalApiNetworkVlanID
                   addresses:
                   - ip_netmask:
-                      get_param: InternalApiEdge1IpSubnet
+                      get_param: InternalApiIpSubnet
                   routes:
-                  - ip_netmask:
-                      get_param: InternalApiSupernet
-                    next_hop:
-                      get_param: InternalApiEdge1InterfaceDefaultRoute
+                    list_concat_unique:
+                      - get_param: InternalApiInterfaceRoutes
                 - type: vlan
+                  mtu:
+                    get_param: TenantMtu
                   vlan_id:
-                    get_param: TenantEdge1NetworkVlanID
+                    get_param: TenantNetworkVlanID
                   addresses:
                   - ip_netmask:
-                      get_param: TenantEdge1IpSubnet
+                      get_param: TenantIpSubnet
                   routes:
-                  - ip_netmask:
-                      get_param: TenantSupernet
-                    next_hop:
-                      get_param: TenantEdge1InterfaceDefaultRoute
+                    list_concat_unique:
+                      - get_param: TenantInterfaceRoutes
               - type: ovs_bridge
                 name: br-mgmt
                 use_dhcp: false

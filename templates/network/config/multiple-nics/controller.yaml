@@ -222,7 +222,6 @@ resources:
                 routes:
                   list_concat_unique:
                     - get_param: StorageMgmtInterfaceRoutes
-
               - type: ovs_bridge
                 name: br-tenant
                 mtu:
