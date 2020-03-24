@@ -37,6 +37,9 @@ parameter_defaults:
   ComputeEdge2ControlPlaneSubnet: edge2
   ComputeEdge2vduControlPlaneSubnet: edge2
 
+  VipSubnetMap:
+    ctlplane: leaf0
+
 #  ControlPlaneSubnetCidr: '26'
 #  ControlPlaneSubnet: leaf0
 #  ControlPlaneDefaultRoute: 192.168.120.62
