@@ -60,7 +60,7 @@ parameter_defaults:
     - floating-ips:br-float
 
   CloudName: overcloud.lab.roskosb.info
-  CloudDomain: lab.roskosb.info
+#  CloudDomain: lab.roskosb.info
 
   NeutronEnableIsolatedMetadata: true
   NeutronEnableForceMetadata: true
