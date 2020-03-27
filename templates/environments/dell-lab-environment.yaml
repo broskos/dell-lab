@@ -75,7 +75,7 @@ parameter_defaults:
   OvercloudComputeEdge1vduFlavor: compute-edge1vdu
   OvercloudComputeEdge2Flavor: compute-edge2
   OvercloudComputeEdge2vduFlavor: compute-edge2vdu
-  ControllerCount: 3
+  ControllerCount: 1
   ComputeCount: 2
   ComputeHCICount: 3
   ComputeEdge1Count: 1
