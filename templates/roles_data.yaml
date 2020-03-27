@@ -186,6 +186,7 @@
     - OS::TripleO::Services::Vpp
     - OS::TripleO::Services::Zaqar
 
+
 ###############################################################################
 # Role: Compute                                                               #
 ###############################################################################
@@ -228,7 +229,8 @@
     - OS::TripleO::Services::Multipathd
     - OS::TripleO::Services::MySQLClient
     - OS::TripleO::Services::NeutronBgpVpnBagpipe
-    - OS::TripleO::Services::NeutronLinuxbridgeAgent
+    - OS::TripleO::Services::NeutronSriovAgent
+    - OS::TripleO::Services::NeutronSriovHostConfig
     - OS::TripleO::Services::NeutronVppAgent
     - OS::TripleO::Services::NovaAZConfig
     - OS::TripleO::Services::NovaCompute
@@ -248,9 +250,9 @@
     - OS::TripleO::Services::Timezone
     - OS::TripleO::Services::TripleoFirewall
     - OS::TripleO::Services::TripleoPackages
-    - OS::TripleO::Services::Tuned
     - OS::TripleO::Services::Vpp
     - OS::TripleO::Services::OVNController
+    - OS::TripleO::Services::OVNMetadataAgent
 
 ###############################################################################
 # Role: ComputeEdge1                                                               #
@@ -292,7 +294,8 @@
     - OS::TripleO::Services::Multipathd
     - OS::TripleO::Services::MySQLClient
     - OS::TripleO::Services::NeutronBgpVpnBagpipe
-    - OS::TripleO::Services::NeutronLinuxbridgeAgent
+    - OS::TripleO::Services::NeutronSriovAgent
+    - OS::TripleO::Services::NeutronSriovHostConfig
     - OS::TripleO::Services::NeutronVppAgent
     - OS::TripleO::Services::NovaAZConfig
     - OS::TripleO::Services::NovaCompute
@@ -312,9 +315,10 @@
     - OS::TripleO::Services::Timezone
     - OS::TripleO::Services::TripleoFirewall
     - OS::TripleO::Services::TripleoPackages
-    - OS::TripleO::Services::Tuned
     - OS::TripleO::Services::Vpp
     - OS::TripleO::Services::OVNController
+    - OS::TripleO::Services::OVNMetadataAgent
+
 
 ###############################################################################
 # Role: ComputeEdge1vdu                                                               #
@@ -331,6 +335,7 @@
   HostnameFormatDefault: '%stackname%-computevdu-e1-%index%'
   RoleParametersDefault:
     TunedProfileName: "realtime-virtual-host"
+    NovaLibvirtMemStatsPeriodSeconds: 0
   update_serial: 25
   ServicesDefault:
     - OS::TripleO::Services::Aide
@@ -380,6 +385,8 @@
     - OS::TripleO::Services::Vpp
     - OS::TripleO::Services::OVNController
     - OS::TripleO::Services::OVNMetadataAgent
+
+
 
 ###############################################################################
 # Role: ComputeEdge2                                                               #
@@ -421,7 +428,8 @@
     - OS::TripleO::Services::Multipathd
     - OS::TripleO::Services::MySQLClient
     - OS::TripleO::Services::NeutronBgpVpnBagpipe
-    - OS::TripleO::Services::NeutronLinuxbridgeAgent
+    - OS::TripleO::Services::NeutronSriovAgent
+    - OS::TripleO::Services::NeutronSriovHostConfig
     - OS::TripleO::Services::NeutronVppAgent
     - OS::TripleO::Services::NovaAZConfig
     - OS::TripleO::Services::NovaCompute
@@ -441,9 +449,10 @@
     - OS::TripleO::Services::Timezone
     - OS::TripleO::Services::TripleoFirewall
     - OS::TripleO::Services::TripleoPackages
-    - OS::TripleO::Services::Tuned
     - OS::TripleO::Services::Vpp
     - OS::TripleO::Services::OVNController
+    - OS::TripleO::Services::OVNMetadataAgent
+
 
 ###############################################################################
 # Role: ComputeEdge2u                                                               #
@@ -460,6 +469,7 @@
   HostnameFormatDefault: '%stackname%-computevdu-e2-%index%'
   RoleParametersDefault:
     TunedProfileName: "realtime-virtual-host"
+    NovaLibvirtMemStatsPeriodSeconds: 0
   update_serial: 25
   ServicesDefault:
     - OS::TripleO::Services::Aide
@@ -510,6 +520,8 @@
     - OS::TripleO::Services::OVNController
     - OS::TripleO::Services::OVNMetadataAgent
 
+
+
 ###############################################################################
 # Role: ComputeHCI                                                            #
 ###############################################################################
@@ -536,8 +548,8 @@
     - OS::TripleO::Services::BootParams
     - OS::TripleO::Services::CACerts
     - OS::TripleO::Services::CephClient
-    - OS::TripleO::Services::CephExternal
     - OS::TripleO::Services::CephOSD
+    - OS::TripleO::Services::CephExternal
     - OS::TripleO::Services::CertmongerUser
     - OS::TripleO::Services::Collectd
     - OS::TripleO::Services::ComputeCeilometerAgent
@@ -555,7 +567,8 @@
     - OS::TripleO::Services::Multipathd
     - OS::TripleO::Services::MySQLClient
     - OS::TripleO::Services::NeutronBgpVpnBagpipe
-    - OS::TripleO::Services::NeutronLinuxbridgeAgent
+    - OS::TripleO::Services::NeutronSriovAgent
+    - OS::TripleO::Services::NeutronSriovHostConfig
     - OS::TripleO::Services::NeutronVppAgent
     - OS::TripleO::Services::NovaAZConfig
     - OS::TripleO::Services::NovaCompute
@@ -575,7 +588,7 @@
     - OS::TripleO::Services::Timezone
     - OS::TripleO::Services::TripleoFirewall
     - OS::TripleO::Services::TripleoPackages
-    - OS::TripleO::Services::Tuned
     - OS::TripleO::Services::Vpp
     - OS::TripleO::Services::OVNController
     - OS::TripleO::Services::OVNMetadataAgent
+
