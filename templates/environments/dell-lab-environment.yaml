@@ -3,7 +3,7 @@ resource_registry:
 #  OS::TripleO::Controller::Net::SoftwareConfig:
 #    ../network/config/multiple-nics/controller.yaml
   OS::TripleO::Controller::Net::SoftwareConfig:
-    /usr/share/openstack-tripleo-heat-templates/network/config/bond-with-vlans/controller.yaml
+    ../network/config/bond-with-vlans/compute-hci.yaml
   OS::TripleO::Compute::Net::SoftwareConfig:
     ../network/config/bond-with-vlans/compute.yaml
   OS::TripleO::ComputeHCI::Net::SoftwareConfig:
