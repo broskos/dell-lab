@@ -1,7 +1,9 @@
 resource_registry:
 # Configure Networks
+#  OS::TripleO::Controller::Net::SoftwareConfig:
+#    ../network/config/multiple-nics/controller.yaml
   OS::TripleO::Controller::Net::SoftwareConfig:
-    ../network/config/multiple-nics/controller.yaml
+    /usr/share/openstack-tripleo-heat-templates/network/config/bond-with-vlans/controller.yaml
   OS::TripleO::Compute::Net::SoftwareConfig:
     ../network/config/bond-with-vlans/compute.yaml
   OS::TripleO::ComputeHCI::Net::SoftwareConfig:
@@ -76,12 +78,12 @@ parameter_defaults:
   OvercloudComputeEdge2Flavor: compute-edge2
   OvercloudComputeEdge2vduFlavor: compute-edge2vdu
   ControllerCount: 3
-  ComputeCount: 2
-  ComputeHCICount: 3
-  ComputeEdge1Count: 1
-  ComputeEdge1vduCount: 1
-  ComputeEdge2Count: 1
-  ComputeEdge2vduCount: 1
+  ComputeCount: 0
+  ComputeHCICount: 0
+  ComputeEdge1Count: 0
+  ComputeEdge1vduCount: 0
+  ComputeEdge2Count: 0
+  ComputeEdge2vduCount: 0
 
   NovaSchedulerDefaultFilters:
     - RetryFilter
