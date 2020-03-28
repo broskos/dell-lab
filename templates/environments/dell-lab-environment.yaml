@@ -1,9 +1,7 @@
 resource_registry:
 # Configure Networks
-#  OS::TripleO::Controller::Net::SoftwareConfig:
-#    ../network/config/multiple-nics/controller.yaml
   OS::TripleO::Controller::Net::SoftwareConfig:
-    ../network/config/bond-with-vlans/compute-hci.yaml
+    ../network/config/multiple-nics/controller.yaml
   OS::TripleO::Compute::Net::SoftwareConfig:
     ../network/config/bond-with-vlans/compute.yaml
   OS::TripleO::ComputeHCI::Net::SoftwareConfig:
@@ -18,8 +16,6 @@ resource_registry:
     ../network/config/bond-with-vlans/compute-e2vdu.yaml
 
 parameter_defaults:
-
-  NetworkDeploymentActions: ['CREATE','UPDATE']
 
   DnsServers:
   - 172.17.118.8
@@ -81,7 +77,7 @@ parameter_defaults:
   OvercloudComputeEdge2Flavor: compute-edge2
   OvercloudComputeEdge2vduFlavor: compute-edge2vdu
   ControllerCount: 3
-  ComputeCount: 0
+  ComputeCount: 2
   ComputeHCICount: 0
   ComputeEdge1Count: 0
   ComputeEdge1vduCount: 0

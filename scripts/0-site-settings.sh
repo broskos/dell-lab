@@ -17,7 +17,7 @@ export stack_password='redhat'
 export osp_version='16'
 export template_path='~/dell-lab/templates'
 
-export stack_name='vranlab'
+export stack_name='overcloud'
 
 
 home=~
