@@ -39,10 +39,6 @@ parameter_defaults:
   VipSubnetMap:
     ctlplane: leaf0
 
-#  ControlPlaneSubnetCidr: '26'
-#  ControlPlaneSubnet: leaf0
-#  ControlPlaneDefaultRoute: 192.168.120.62
-
   NeutronNetworkType: 'vxlan,vlan'
   NeutronTunnelTypes: ''
   NeutronNetworkVLANRanges:
