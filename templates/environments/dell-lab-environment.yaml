@@ -72,13 +72,13 @@ parameter_defaults:
   OvercloudComputeEdge1vduFlavor: compute-edge1vdu
   OvercloudComputeEdge2Flavor: compute-edge2
   OvercloudComputeEdge2vduFlavor: compute-edge2vdu
-  ControllerCount: 3
-  ComputeCount: 0
-  ComputeHCICount: 0
-  ComputeEdge1Count: 0
-  ComputeEdge1vduCount: 0
-  ComputeEdge2Count: 0
-  ComputeEdge2vduCount: 0
+  ControllerCount: 1
+  ComputeCount: 2
+  ComputeHCICount: 3
+  ComputeEdge1Count: 1
+  ComputeEdge1vduCount: 1
+  ComputeEdge2Count: 1
+  ComputeEdge2vduCount: 1
 
   NovaSchedulerDefaultFilters:
     - RetryFilter
