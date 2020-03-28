@@ -18,6 +18,9 @@ resource_registry:
     ../network/config/bond-with-vlans/compute-e2vdu.yaml
 
 parameter_defaults:
+
+  NetworkDeploymentActions: ['CREATE','UPDATE']
+
   DnsServers:
   - 172.17.118.8
   NtpServer:
