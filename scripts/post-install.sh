@@ -39,16 +39,16 @@ openstack aggregate create --zone edge2vdu edge2vdu
 
 # add computes to central site
 for vm_host in compute-0 compute-1 computehci-0 computehci-1 computehci-2; do
- openstack aggregate add host central "vranlab-$vm_host.localdomain"
+ openstack aggregate add host central "vranlab-$vm_host.lab.local"
 done
 
 # add computes to edge1 site
-openstack aggregate add host edge1 vranlab-compute-e1-0.localdomain
-openstack aggregate add host edge1vdu vranlab-computevdu-e1-0.localdomain
+openstack aggregate add host edge1 vranlab-compute-e1-0.lab.local
+openstack aggregate add host edge1vdu vranlab-computevdu-e1-0.lab.local
 
 # add computes to edge2 site
-openstack aggregate add host edge2 vranlab-compute-e2-0.localdomain
-openstack aggregate add host edge2vdu vranlab-computevdu-e2-0.localdomain
+openstack aggregate add host edge2 vranlab-compute-e2-0.lab.local
+openstack aggregate add host edge2vdu vranlab-computevdu-e2-0.lab.local
 
 # increase quotas for admin project
 openstack quota set --cores 200 --instances 100 --ram 500000 --volumes 100 --secgroups 100 --volumes 100 --gigabytes 3072 admin

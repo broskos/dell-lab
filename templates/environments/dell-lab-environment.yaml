@@ -29,15 +29,15 @@ parameter_defaults:
   - 172.17.118.8:5000
   - satellite.lab.roskosb.info:5000
 
-  ControllerControlPlaneSubnet: leaf0
-  ComputeControlPlaneSubnet: leaf0
-  ComputeHCIControlPlaneSubnet: leaf0
+  ControllerControlPlaneSubnet: ctlplane-subnet
+  ComputeControlPlaneSubnet: ctlplane-subnet
+  ComputeHCIControlPlaneSubnet: ctlplane-subnet
   ComputeEdge1ControlPlaneSubnet: edge1
   ComputeEdge1vduControlPlaneSubnet: edge1
   ComputeEdge2ControlPlaneSubnet: edge2
   ComputeEdge2vduControlPlaneSubnet: edge2
   VipSubnetMap:
-    ctlplane: leaf0
+    ctlplane: ctlplane-subnet
 
   NeutronNetworkType: 'vxlan,vlan'
   NeutronTunnelTypes: ''
