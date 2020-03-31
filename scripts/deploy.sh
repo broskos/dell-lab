@@ -11,6 +11,9 @@ time openstack overcloud deploy --templates \
     -e /usr/share/openstack-tripleo-heat-templates/environments/network-isolation.yaml \
     -e /usr/share/openstack-tripleo-heat-templates/environments/network-environment.yaml \
     -e /usr/share/openstack-tripleo-heat-templates/environments/disable-telemetry.yaml \
+    -e /usr/share/openstack-tripleo-heat-templates/environments/services/neutron-ovs.yaml \
+    -e /usr/share/openstack-tripleo-heat-templates/environments/services/neutron-sriov.yaml \
+    -e /usr/share/openstack-tripleo-heat-templates/environments/host-config-and-reboot.yaml \
     -e ~/dell-lab/templates/containers-prepare-parameter.yaml \
     -e ~/dell-lab/templates/environments/dell-lab-environment.yaml \
     --log-file deployment.log
