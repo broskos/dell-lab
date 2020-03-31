@@ -100,36 +100,35 @@ parameter_defaults:
         product_id: '5050'
         device_type: 'type-VF'
 
-#  ComputeParameters:
-#    KernelArgs: "default_hugepagesz=1GB hugepagesz=1G hugepages=128 intel_iommu=on iommu=pt"
-#    IsolCpusList: 2-35,38-71
-#    NovaComputeCpuDedicatedSet: 2-35,38-71
-#    NovaComputeCpuSharedSet: 0,1,36,37
-#    NeutronPhysicalDevMappings:
-#      - sriov-1:ens3f0
-#      - sriov-2:ens3f1
-#      - sriov-1:ens7f0
-#      - sriov-2:ens7f1
-#    NeutronSriovNumVFs:
-#      - ens3f0:8
-#      - ens3f1:8
-#      - ens7f0:8
-#      - ens7f1:8
-#    NovaPCIPassthrough:
-#      - devname: "ens3f0"
-#        physical_network: "sriov-1"
-#      - devname: "ens3f1"
-#        physical_network: "sriov-2"
-#      - devname: "ens7f0"
-#        physical_network: "sriov-1"
-#      - devname: "ens7f1"
-#        physical_network: "sriov-2"
-#
-#  ComputeExtraConfig:
-#    nova::cpu_allocation_ratio: 1
-#    nova::compute::resume_guests_state_on_host_boot: true
+  ComputeParameters:
+    KernelArgs: "default_hugepagesz=1GB hugepagesz=1G hugepages=128 intel_iommu=on iommu=pt"
+    IsolCpusList: 2-35,38-71
+    NovaComputeCpuDedicatedSet: 2-35,38-71
+    NovaComputeCpuSharedSet: 0,1,36,37
+    NeutronPhysicalDevMappings:
+      - sriov-1:ens3f0
+      - sriov-2:ens3f1
+      - sriov-1:ens7f0
+      - sriov-2:ens7f1
+    NeutronSriovNumVFs:
+      - ens3f0:8
+      - ens3f1:8
+      - ens7f0:8
+      - ens7f1:8
+    NovaPCIPassthrough:
+      - devname: "ens3f0"
+        physical_network: "sriov-1"
+      - devname: "ens3f1"
+        physical_network: "sriov-2"
+      - devname: "ens7f0"
+        physical_network: "sriov-1"
+      - devname: "ens7f1"
+        physical_network: "sriov-2"
 
-##  ComputeHCIImage: "overcloud-full-hci"
+  ComputeExtraConfig:
+    nova::cpu_allocation_ratio: 1
+    nova::compute::resume_guests_state_on_host_boot: true
+
 #  ComputeHCIParameters:
 #    KernelArgs: "default_hugepagesz=1GB hugepagesz=1G hugepages=128 intel_iommu=on iommu=pt"
 #    IsolCpusList: 2-35,38-71
