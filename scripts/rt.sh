@@ -14,6 +14,6 @@ subscription-manager repos \
 --enable=fast-datapath-for-rhel-8-x86_64-rpms
 #dnf -v -y --setopt=protected_packages= erase kernel.$(uname -m)
 dnf -v -y install kernel-rt kernel-rt-kvm kernel-rt-devel tuned-profiles-nfv-host kernel-devel gcc
-grubby --set-default /boot/vmlinux*rt*
+grubby --set-default /boot/vmlinuz*rt*
 
 

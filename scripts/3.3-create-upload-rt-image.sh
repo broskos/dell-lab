@@ -19,6 +19,8 @@ virt-customize -a overcloud-realtime-compute.qcow2 --run-command \
 virt-customize -a overcloud-realtime-compute.qcow2 -v \
 --run ~/dell-lab/scripts/rt.sh 2>&1 | tee ~/virt-customize.log
 
+exit 0
+
 # now that the new kernel is installed we can install the igb_uio driver and config tools
 virt-customize -a overcloud-realtime-compute.qcow2 -v \
 --run-command "subscription-manager unregister" \
