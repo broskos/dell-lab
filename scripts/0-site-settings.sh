@@ -1,7 +1,7 @@
 
 
 # these are used for RT Image, script needs updated for satellite
-export pool='8a85f9996977b23d0169d99b5860315d'
+export pool='8a85f98c60c2c2b40160c32447481b48'
 export cdn_user='broskos@redhat.com'
 
 # then we use regular satellite
