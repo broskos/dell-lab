@@ -1,9 +1,9 @@
-Name:           fpga-drivers
-Version:        1.0
+Name:           config-fpga
+Version:        2.0
 Release:        1%{?dist}
 License: 	apache2
-Summary:        load igb_uio kernel module configure 2 VFs on each FPGA
-Source0:        fpga-drivers.tgz
+Summary:        Configure 2 VFs on each FPGA
+Source0:        config-fpga.tgz
 
 
 %description
@@ -14,16 +14,14 @@ BuildRequires: systemd
 BuildRequires: systemd-rpm-macros
 
 %install
-tar -xvf /root/rpmbuild/SOURCES/fpga-drivers.tgz -C $RPM_BUILD_ROOT
+tar -xvf /root/rpmbuild/SOURCES/config-fpga.tgz -C $RPM_BUILD_ROOT
 
 %files
 /usr/local
 /etc
 
 %post
-mkdir -p /lib/modules/`uname -r`/kernel/drivers/igb_uio
-cp /usr/local/lib/igb_uio.ko /lib/modules/`uname -r`/kernel/drivers/igb_uio/
-restorecon -R /lib/modules/`uname -r`/kernel/drivers
+restorecon -R /usr/local/sbin
 
 %systemd_post config-fpga.service
       if [ $1 -eq 1 ]; then
