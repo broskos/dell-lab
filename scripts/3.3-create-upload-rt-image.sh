@@ -24,7 +24,8 @@ virt-customize -a overcloud-realtime-compute.qcow2 -v \
 virt-customize -a overcloud-realtime-compute.qcow2 -v \
 --run-command "subscription-manager unregister" \
 --run-command "subscription-manager clean" \
---copy-in ~/fpga-drivers-1.0-1.el8.x86_64.rpm:/root/ \
+--copy-in ~/config-fpga-2.0-1.el8.x86_64.rpm:/root/ \
+--run-command "dnf localinstall /root/config-fpga-2.0-1.el8.x86_64.rpm"
 --run-command "chmod +x /etc/rc.d/rc.local" \
 --run-command 'cat << EOF >>  /etc/rc.d/rc.local
 
@@ -32,13 +33,6 @@ virt-customize -a overcloud-realtime-compute.qcow2 -v \
 for i in /proc/irq/*/smp_affinity; do
  echo 00000030,00000003 > \$i 2>/dev/null
 done
-
-if rpm -q fpga-drivers-1.0-1.el8.x86_64 > /dev/null;then
- echo "fpga-drivers rpm present"
-else
- echo "install fpga-drivers rpm"
- yum localinstall -y /root/fpga-drivers-1.0-1.el8.x86_64.rpm
-fi
 
 EOF'
 
