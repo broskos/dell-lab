@@ -37,7 +37,7 @@ if rpm -q fpga-drivers-1.0-1.el8.x86_64 > /dev/null;then
  echo "fpga-drivers rpm present"
 else
  echo "install fpga-drivers rpm"
- yum localinstall -y /root/fpga-drivers-1.0-1.el8.x86_64.rpm.rpm
+ yum localinstall -y /root/fpga-drivers-1.0-1.el8.x86_64.rpm
 fi
 
 EOF'
