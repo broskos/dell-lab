@@ -1,0 +1,47 @@
+parameter_defaults:
+
+  DnsServers:
+  - 172.17.118.8
+  NtpServer:
+  - 172.17.118.1
+  - 172.17.118.3
+  - 172.17.118.5
+  BondInterfaceOvsOptions: "mode=4 miimon=100"
+
+  DockerInsecureRegistryAddress:
+  - 172.17.118.8:5000
+  - satellite.lab.roskosb.info:5000
+
+  NeutronNetworkVLANRanges:
+    - management:117:117
+    - sriov-1:200:300
+    - sriov-2:200:300
+    - fronthaul-1:200:300
+    - fronthaul-2:200:300
+  NeutronFlatNetworks:
+    - floating-ips
+
+
+  NeutronBridgeMappings:
+    - tenant:br-tenant
+    - datacentre:br-ex
+    - management:br-mgmt
+    - floating-ips:br-float
+
+  CloudName: overcloud.lab.roskosb.info
+  CloudDomain: lab.local
+
+  NovaReservedHostMemory: 4096
+
+  NeutronEnableIsolatedMetadata: true
+  NeutronEnableForceMetadata: true
+  NeutronEnableMetadataNetwork: true
+#  NeutronGlobalPhysnetMtu: 9000
+
+  RhsmVars:
+    rhsm_method: "satellite"
+    rhsm_server_hostname: "satellite.lab.roskosb.info"
+    rhsm_baseurl: "https://satellite.lab.roskosb.info/pulp/repos"
+    rhsm_activation_key: "osp16-dev"
+    rhsm_org_id: "lab"
+    rhsm_force_register: True
