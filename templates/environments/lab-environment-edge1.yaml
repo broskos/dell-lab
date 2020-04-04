@@ -1,5 +1,7 @@
 resource_registry:
 # Configure Networks
+
+  OS::TripleO::ComputeEdge1::Net::SoftwareConfig:
     ../network/config/bond-with-vlans/compute-e1.yaml
   OS::TripleO::ComputeEdge1vdu::Net::SoftwareConfig:
     ../network/config/bond-with-vlans/compute-e1vdu.yaml

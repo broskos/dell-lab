@@ -23,13 +23,8 @@ time openstack overcloud deploy --templates \
     -e ~/dell-lab/templates/environments/lab-environment-central.yaml \
     --log-file deployment.log
 
-mkdir -p ~/{dcn-common,central/config-download}
-openstack overcloud config download --name central \
-  --config-dir ~/central/config-downloadopenstack overcloud config download \
-  --name central --config-dir ~/central/config-download
+mkdir -p ~/{dcn-common}
 
-openstack overcloud export \
-          --config-download-dir ~/central/config-download/ \
-          --stack central \
-          --output-file ~/dcn-common/control-plane-export.yaml \
+openstack overcloud export --stack central \
+  --output-file ~/dcn-common/control-plane-export.yaml
 #     -e /usr/share/openstack-tripleo-heat-templates/environments/rhsm.yaml \

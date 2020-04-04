@@ -4,8 +4,6 @@ if [ $PWD != $HOME ] ; then echo "USAGE: $0 Must be run from $HOME"; exit 1 ; fi
 source ~/dell-lab/scripts/0-site-settings.sh
 export stack_name='edge1'
 
-
-
 source ~/stackrc
 cd ~
 time openstack overcloud deploy --templates \
@@ -21,7 +19,6 @@ time openstack overcloud deploy --templates \
     -e ~/dell-lab/templates/containers-prepare-parameter.yaml \
     -e ~/dell-lab/templates/environments/lab-environment-common.yaml \
     -e ~/dell-lab/templates/environments/lab-environment-edge1.yaml \
-    -e ~/dcn-common/control-plane-export.yaml \
     --log-file deployment.log
 
 #     -e /usr/share/openstack-tripleo-heat-templates/environments/rhsm.yaml \
