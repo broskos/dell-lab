@@ -12,10 +12,8 @@ parameter_defaults:
   ControllerControlPlaneSubnet: ctlplane-subnet
   ComputeControlPlaneSubnet: ctlplane-subnet
   ComputeHCIControlPlaneSubnet: ctlplane-subnet
-
   VipSubnetMap:
     ctlplane: ctlplane-subnet
-
   OvercloudControllerFlavor: control
   OvercloudComputeFlavor: compute
   OvercloudComputeHCIFlavor: compute-hci

@@ -13,7 +13,6 @@ parameter_defaults:
 
   ComputeEdge2ControlPlaneSubnet: edge2
   ComputeEdge2vduControlPlaneSubnet: edge2
-
   OvercloudComputeEdge2Flavor: compute-edge2
   OvercloudComputeEdge2vduFlavor: compute-edge2vdu
   ComputeEdge2Count: 1
