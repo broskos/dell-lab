@@ -186,8 +186,6 @@
     - OS::TripleO::Services::Vpp
     - OS::TripleO::Services::Zaqar
 
-
-
 ###############################################################################
 # Role: Compute                                                               #
 ###############################################################################
@@ -324,4 +322,3 @@
     - OS::TripleO::Services::Vpp
     - OS::TripleO::Services::OVNController
     - OS::TripleO::Services::OVNMetadataAgent
-

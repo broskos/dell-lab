@@ -20,8 +20,6 @@ parameter_defaults:
     - fronthaul-2:200:300
   NeutronFlatNetworks:
     - floating-ips
-
-
   NeutronBridgeMappings:
     - tenant:br-tenant
     - datacentre:br-ex

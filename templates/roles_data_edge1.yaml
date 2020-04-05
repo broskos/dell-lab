@@ -63,7 +63,6 @@
     - OS::TripleO::Services::OVNController
     - OS::TripleO::Services::OVNMetadataAgent
 
-
 ###############################################################################
 # Role: ComputeEdge1vdu                                                               #
 ###############################################################################
@@ -129,4 +128,3 @@
     - OS::TripleO::Services::Vpp
     - OS::TripleO::Services::OVNController
     - OS::TripleO::Services::OVNMetadataAgent
-    -

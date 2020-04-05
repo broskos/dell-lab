@@ -7,7 +7,8 @@ resource_registry:
     ../network/config/bond-with-vlans/compute-e1vdu.yaml
 
 # configure AZ
-  OS::TripleO::Services::NovaAZConfig: /usr/share/openstack-tripleo-heat-templates/deployment/nova/nova-az-config.yaml
+  OS::TripleO::Services::NovaAZConfig:
+    /usr/share/openstack-tripleo-heat-templates/deployment/nova/nova-az-config.yaml
 
 parameter_defaults:
 
