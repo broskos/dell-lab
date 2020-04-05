@@ -22,6 +22,7 @@ time openstack overcloud deploy --templates \
     -e ~/dell-lab/templates/environments/lab-environment-common.yaml \
     -e ~/dell-lab/templates/environments/lab-environment-edge2.yaml \
     -e ~/dcn-common/control-plane-export.yaml \
-    --log-file deployment.log
+    --log-file deployment.log \
+    --config-download-only
 
 #     -e /usr/share/openstack-tripleo-heat-templates/environments/rhsm.yaml \
