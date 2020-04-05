@@ -8,7 +8,6 @@ source ~/stackrc
 cd ~
 time openstack overcloud deploy --templates \
     --stack $stack_name \
-    -n ~/dell-lab/templates/network_data.yaml \
     -r ~/dell-lab/templates/roles_data_edge2.yaml \
     -e /usr/share/openstack-tripleo-heat-templates/environments/network-isolation.yaml \
     -e /usr/share/openstack-tripleo-heat-templates/environments/network-environment.yaml \
