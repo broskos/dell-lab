@@ -194,6 +194,8 @@
     Basic Compute Node role
   CountDefault: 1
   networks:
+    External:
+      subnet: external_subnet
     InternalApi:
       subnet: internal_api_subnet
     Tenant:
@@ -260,6 +262,8 @@
   description: |
     Compute Node role hosting Ceph OSD too
   networks:
+    External:
+      subnet: external_subnet
     InternalApi:
       subnet: internal_api_subnet
     Tenant:

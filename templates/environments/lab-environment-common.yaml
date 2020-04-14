@@ -14,16 +14,26 @@ parameter_defaults:
 
   NeutronNetworkVLANRanges:
     - management:117:117
+    - mgmt-edge1:117:117
+    - mgmt-edge2:117:117
     - sriov-1:200:300
     - sriov-2:200:300
-    - fronthaul-1:200:300
-    - fronthaul-2:200:300
+    - sriov-edge1-1:1200:1300
+    - sriov-edge1-2:1200:1300
+    - sriov-edge2-1:2200:2300
+    - sriov-edge2-2:2200:2300
+    - fronthaul-edge1-1:1203:1203
+    - fronthaul-edge1-2:1203:1203
+    - fronthaul-edge2-1:2203:2203
+    - fronthaul-edge2-2:2203:2203
   NeutronFlatNetworks:
     - floating-ips
   NeutronBridgeMappings:
     - tenant:br-tenant
     - datacentre:br-ex
     - management:br-mgmt
+    - mgmt-edge1:br-edge1
+    - mgmt-edge2:br-edge2
     - floating-ips:br-float
 
   CloudName: overcloud.lab.roskosb.info

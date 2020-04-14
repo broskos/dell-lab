@@ -6,6 +6,8 @@
     Basic Compute Node role for Edge1
   CountDefault: 1
   networks:
+    External:
+      subnet: external_edge1_subnet
     InternalApi:
       subnet: internal_api_edge1_subnet
     Tenant:
@@ -71,6 +73,8 @@
     Basic ComputeVdu Node role for Edge1
   CountDefault: 1
   networks:
+    External:
+      subnet: external_edge1_subnet
     InternalApi:
       subnet: internal_api_edge1_subnet
     Tenant:

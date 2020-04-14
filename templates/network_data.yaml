@@ -6,7 +6,17 @@
   ip_subnet: '172.17.119.0/26'
   allocation_pools: [{'start': '172.17.119.4', 'end': '172.17.119.9'}]
   gateway_ip: '172.17.119.62'
-
+  subnets:
+    external_edge1_subnet:
+      vlan: 1130
+      ip_subnet: '172.17.119.64/26'
+      allocation_pools: [{'start': '172.17.119.68', 'end': '172.17.119.124'}]
+      gateway_ip: '172.17.119.126'
+    external_edge2_subnet:
+      vlan: 2130
+      ip_subnet: '172.17.119.128/26'
+      allocation_pools: [{'start': '172.17.119.132', 'end': '172.17.119.188'}]
+      gateway_ip: '172.17.119.190'
 - name: InternalApi
   name_lower: internal_api
   vip: true

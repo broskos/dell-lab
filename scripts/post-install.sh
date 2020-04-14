@@ -22,10 +22,15 @@ openstack image create --public --file ~/images/rhel-server-7.7-x86_64-kvm.qcow2
 openstack flavor create --ram 2048 --disk 20 --vcpus 1 m1.small
 
 #############################
-# Create Management Network #
+# Create Management Network as routed provider network#
 #############################
 openstack network create --project admin --no-share --provider-network-type vlan --provider-segment 117 --provider-physical-network management management-net
-openstack subnet create --project admin --network management-net --no-dhcp --subnet-range 172.17.117.0/24 --gateway 172.17.117.254 --allocation-pool start=172.17.117.2,end=172.17.117.100 --dns-nameserver 172.17.118.8 management-subnet
-
+openstack subnet create --project admin --network management-net --no-dhcp --subnet-range 172.17.117.0/26 --gateway 172.17.117.62 --dns-nameserver 172.17.118.8 management-subnet
+uuid=$(openstack network segment list --network management -f value -c ID)
+openstack network segment set --name central $uuid
+openstack network segment create --physical-network mgmt-edge1 --network-type vlan --segment 117 --network management edge1
+openstack subnet create --network management --no-dhcp --network-segment edge1 --ip-version 4 --subnet-range 172.17.117.64/26 --gateway 172.17.117.62 --dns-nameserver 172.17.118.8 mgmt-edge1-subnet
+openstack network segment create --physical-network mgmt-edge2 --network-type vlan --segment 117 --network management edge2
+openstack subnet create --network management --no-dhcp --network-segment edge2 --ip-version 4 --subnet-range 172.17.117.128/26 --gateway 172.17.117.126 --dns-nameserver 172.17.118.8 mgmt-edge2-subnet
 # increase quotas for admin project
 openstack quota set --cores 200 --instances 100 --ram 500000 --volumes 100 --secgroups 100 --volumes 100 --gigabytes 3072 admin
