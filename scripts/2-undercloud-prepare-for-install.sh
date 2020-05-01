@@ -25,3 +25,4 @@ dnf install -y python3-tripleoclient git gcc python3-devel tmux ceph-ansible pyt
 # update all packages and reboot
 dnf update -y && reboot
 
+

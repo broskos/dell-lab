@@ -97,16 +97,18 @@ declare -a PRODUCTS=(
 "Red Hat Enterprise Linux for x86_64"
 "Red Hat Enterprise Linux High Availability for x86_64"
 "Red Hat OpenStack"
-"osp16_containers
+"osp16_containers"
+)
 
 for PRODUCT in "${PRODUCTS[@]}"; do
 hammer product set-sync-plan \
 --organization "${MY_ORG}" \
 --sync-plan "Nightly" \
---name  "${PRODUCT}"
+--name "${PRODUCT}"
+done
 
 hammer product synchronize \
 --organization "${MY_ORG}" \
 --name "${PRODUCT}" \
 --async
-done
+
