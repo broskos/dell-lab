@@ -4,18 +4,18 @@
   name_lower: external
   vlan: 119
   ip_subnet: '172.17.119.0/26'
-  allocation_pools: [{'start': '172.17.119.4', 'end': '172.17.119.9'}]
+  allocation_pools: [{'start': '172.17.119.10', 'end': '172.17.119.61'}]
   gateway_ip: '172.17.119.62'
   subnets:
     external_edge1_subnet:
       vlan: 1130
       ip_subnet: '172.17.119.64/26'
-      allocation_pools: [{'start': '172.17.119.68', 'end': '172.17.119.124'}]
+      allocation_pools: [{'start': '172.17.119.68', 'end': '172.17.119.125'}]
       gateway_ip: '172.17.119.126'
     external_edge2_subnet:
       vlan: 2130
       ip_subnet: '172.17.119.128/26'
-      allocation_pools: [{'start': '172.17.119.132', 'end': '172.17.119.188'}]
+      allocation_pools: [{'start': '172.17.119.132', 'end': '172.17.119.189'}]
       gateway_ip: '172.17.119.190'
 - name: InternalApi
   name_lower: internal_api
@@ -28,12 +28,12 @@
     internal_api_edge1_subnet:
       vlan: 1130
       ip_subnet: '192.168.130.64/26'
-      allocation_pools: [{'start': '192.168.130.68', 'end': '192.168.130.124'}]
+      allocation_pools: [{'start': '192.168.130.68', 'end': '192.168.130.125'}]
       gateway_ip: '192.168.130.126'
     internal_api_edge2_subnet:
       vlan: 2130
       ip_subnet: '192.168.130.128/26'
-      allocation_pools: [{'start': '192.168.130.132', 'end': '192.168.130.188'}]
+      allocation_pools: [{'start': '192.168.130.132', 'end': '192.168.130.189'}]
       gateway_ip: '192.168.130.190'
 
 - name: Storage
