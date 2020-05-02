@@ -6,7 +6,7 @@ source ~/dell-lab/scripts/0-site-settings.sh
 
 # set hostname
 hostnamectl set-hostname $hostname.$domain
-echo "$ip_address $hostname.$domain $hostname" >> /etc/hosts
+echo "$ip_address $hostname.$domain" >> /etc/hosts
 
 # register with satellite
 dnf localinstall -y "http://$satellite/pub/katello-ca-consumer-latest.noarch.rpm"
