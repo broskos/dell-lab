@@ -6,17 +6,20 @@
   ip_subnet: '172.17.119.0/26'
   allocation_pools: [{'start': '172.17.119.10', 'end': '172.17.119.61'}]
   gateway_ip: '172.17.119.62'
+  mtu: 1500
   subnets:
     external_edge1_subnet:
       vlan: 1119
       ip_subnet: '172.17.119.64/26'
       allocation_pools: [{'start': '172.17.119.68', 'end': '172.17.119.125'}]
       gateway_ip: '172.17.119.126'
+      mtu: 1500
     external_edge2_subnet:
       vlan: 2119
       ip_subnet: '172.17.119.128/26'
       allocation_pools: [{'start': '172.17.119.132', 'end': '172.17.119.189'}]
       gateway_ip: '172.17.119.190'
+      mtu: 1500
 - name: InternalApi
   name_lower: internal_api
   vip: true
@@ -24,24 +27,27 @@
   ip_subnet: '192.168.130.0/26'
   allocation_pools: [{'start': '192.168.130.4', 'end': '192.168.130.60'}]
   gateway_ip: '192.168.130.62'
+  mtu: 9000
   subnets:
     internal_api_edge1_subnet:
       vlan: 1130
       ip_subnet: '192.168.130.64/26'
       allocation_pools: [{'start': '192.168.130.68', 'end': '192.168.130.125'}]
       gateway_ip: '192.168.130.126'
+      mtu: 9000
     internal_api_edge2_subnet:
       vlan: 2130
       ip_subnet: '192.168.130.128/26'
       allocation_pools: [{'start': '192.168.130.132', 'end': '192.168.130.189'}]
       gateway_ip: '192.168.130.190'
-
+      mtu: 9000
 - name: Storage
   vip: true
   vlan: 170
   name_lower: storage
   ip_subnet: '192.168.170.0/24'
   allocation_pools: [{'start': '192.168.170.10', 'end': '192.168.170.250'}]
+  mtu: 9000
 
 - name: StorageMgmt
   name_lower: storage_mgmt
@@ -49,6 +55,7 @@
   vlan: 180
   ip_subnet: '192.168.180.0/24'
   allocation_pools: [{'start': '192.168.180.10', 'end': '192.168.180.250'}]
+  mtu: 9000
 
 - name: Tenant
   vip: false  # Tenant network does not use VIPs
@@ -57,15 +64,18 @@
   ip_subnet: '192.168.201.0/26'
   allocation_pools: [{'start': '192.168.201.4', 'end': '192.168.201.60'}]
   gateway_ip: '192.168.201.62'
+  mtu: 9000
   subnets:
     tenant_edge1_subnet:
       vlan: 1201
       ip_subnet: '192.168.201.64/26'
       allocation_pools: [{'start': '192.168.201.68', 'end': '192.168.201.124'}]
       gateway_ip: '192.168.201.126'
+      mtu: 9000
     tenant_edge2_subnet:
       vlan: 2201
       ip_subnet: '192.168.201.128/26'
       allocation_pools: [{'start': '192.168.201.132', 'end': '192.168.201.188'}]
       gateway_ip: '192.168.201.190'
+      mtu: 9000
 
