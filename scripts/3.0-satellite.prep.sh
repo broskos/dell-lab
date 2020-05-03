@@ -71,6 +71,8 @@ declare -a REPOS=(
 "Red Hat OpenStack Platform 16 for RHEL 8 x86_64 (RPMs)"
 "Fast Datapath for RHEL 8 x86_64 (RPMs)"
 "Red Hat Ceph Storage Tools 4 for RHEL 8 x86_64 (RPMs)"
+"Red Hat Enterprise Linux 8 for x86_64 - Real Time for NFV (RPMs)"
+"Red Hat CodeReady Linux Builder for RHEL 8 x86_64 (RPMs)"
 )
 
 for REPO in "${REPOS[@]}"; do
