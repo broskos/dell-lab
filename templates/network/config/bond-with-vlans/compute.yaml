@@ -191,7 +191,7 @@ resources:
                       - get_param: ControlPlaneSubnetCidr
                 routes:
                   list_concat_unique:
-                      - get_param: ControlPlaneInterfaceRoutes
+                      - get_param: ControlPlaneStaticRoutes
                 members:
                 - type: linux_bond
                   name: bond0
