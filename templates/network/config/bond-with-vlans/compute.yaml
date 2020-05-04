@@ -252,7 +252,7 @@ resources:
                       - get_param: ExternalInterfaceRoutes
                       - - default: true
                           next_hop:
-                            get_param: ExternalNetworkDefaultRoute
+                            get_param: ExternalInterfaceDefaultRoute
               - type: ovs_bridge
                 name: br-mgmt
                 use_dhcp: false
