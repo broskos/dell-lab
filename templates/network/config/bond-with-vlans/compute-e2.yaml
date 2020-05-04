@@ -168,10 +168,7 @@ resources:
                       - get_param: ControlPlaneSubnetCidr
                 routes:
                   list_concat_unique:
-                    - get_param: ControlPlaneStaticRoutes
-                    - - default: true
-                        next_hop:
-                          get_param: ControlPlaneDefaultRoute
+                      - get_param: ControlPlaneStaticRoutes
                 members:
                 - type: linux_bond
                   name: bond0
@@ -213,8 +210,22 @@ resources:
                   routes:
                     list_concat_unique:
                       - get_param: TenantInterfaceRoutes
+                - type: vlan
+                  mtu:
+                    get_param: ExternalMtu
+                  vlan_id:
+                    get_param: ExternalNetworkVlanID
+                  addresses:
+                  - ip_netmask:
+                      get_param: ExternalIpSubnet
+                  routes:
+                    list_concat_unique:
+                      - get_param: ExternalInterfaceRoutes
+                      - - default: true
+                          next_hop:
+                            get_param: ExternalDefaultRoute
               - type: ovs_bridge
-                name: br-mgmt
+                name: br-edge2
                 use_dhcp: false
                 mtu: 9000
                 members:
