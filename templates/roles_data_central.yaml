@@ -202,6 +202,7 @@
       subnet: tenant_subnet
     Storage:
       subnet: storage_subnet
+  default_route_networks: ['External']
   HostnameFormatDefault: '%stackname%-compute-%index%'
   RoleParametersDefault:
     TunedProfileName: "cpu-partitioning"
@@ -272,6 +273,7 @@
       subnet: storage_subnet
     StorageMgmt:
       subnet: storage_mgmt_subnet
+  default_route_networks: ['External']
   HostnameFormatDefault: '%stackname%-computehci-%index%'
   RoleParametersDefault:
     TunedProfileName: "cpu-partitioning"

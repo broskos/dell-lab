@@ -80,6 +80,7 @@
       subnet: internal_api_edge1_subnet
     Tenant:
       subnet: tenant_edge1_subnet
+  default_route_networks: ['External']
   HostnameFormatDefault: '%stackname%-computevdu-e1-%index%'
   RoleParametersDefault:
     TunedProfileName: "realtime-virtual-host"

@@ -12,6 +12,7 @@
       subnet: internal_api_edge2_subnet
     Tenant:
       subnet: tenant_edge2_subnet
+  default_route_networks: ['External']
   HostnameFormatDefault: '%stackname%-compute-e2-%index%'
   RoleParametersDefault:
     TunedProfileName: "cpu-partitioning"
@@ -79,6 +80,7 @@
       subnet: internal_api_edge2_subnet
     Tenant:
       subnet: tenant_edge2_subnet
+  default_route_networks: ['External']
   HostnameFormatDefault: '%stackname%-computevdu-e2-%index%'
   RoleParametersDefault:
     TunedProfileName: "realtime-virtual-host"
