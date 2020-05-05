@@ -12,6 +12,7 @@
       subnet: internal_api_edge1_subnet
     Tenant:
       subnet: tenant_edge1_subnet
+  default_route_networks: ['External']
   HostnameFormatDefault: '%stackname%-compute-e1-%index%'
   RoleParametersDefault:
     TunedProfileName: "cpu-partitioning"
