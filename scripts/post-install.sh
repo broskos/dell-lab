@@ -49,7 +49,7 @@ openstack subnet create --network midhaul1-net --no-dhcp --network-segment midha
 openstack network create --provider-physical-network sriov-2 --provider-network-type vlan --provider-segment 205 midhaul2-net
 uuid=$(openstack network segment list --network midhaul2-net -f value -c ID)
 openstack network segment set --name midhaul2-central $uuid
-openstack subnet create --network midhaul2-net --no-dhcp --network-segment midhaul2central --subnet-range 192.168.205.0/26 --gateway 192.168.205.62 --dns-nameserver 172.17.118.8 midhaul2-subnet
+openstack subnet create --network midhaul2-net --no-dhcp --network-segment midhaul2-central --subnet-range 192.168.205.0/26 --gateway 192.168.205.62 --dns-nameserver 172.17.118.8 midhaul2-subnet
 openstack network segment create --network midhaul2-net --physical-network sriov-edge1-2 --network-type vlan --segment 1205  midhaul2-edge1
 openstack subnet create --network midhaul2-net --no-dhcp --network-segment midhaul2-edge1 --subnet-range 192.168.205.64/26 --gateway 192.168.205.62 --dns-nameserver 172.17.118.8 midhaul2-edge1-subnet
 openstack network segment create --network midhaul2-net --physical-network sriov-edge2-2 --network-type vlan --segment 2205 midhaul2-edge2
