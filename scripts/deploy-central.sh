@@ -23,6 +23,7 @@ time openstack overcloud deploy --templates \
     -e ~/dell-lab/templates/environments/lab-environment-central.yaml \
     --log-file deployment.log
 
+rm -rf ~/dcn-common
 mkdir -p ~/dcn-common
 openstack overcloud export --stack central \
   --output-file ~/dcn-common/control-plane-export.yaml
