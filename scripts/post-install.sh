@@ -1,5 +1,5 @@
 source ~/dell-lab/scripts/0-site-settings.sh
-source ~/central
+source ~/centralrc
 stack_name="central"
 
 ####################################
