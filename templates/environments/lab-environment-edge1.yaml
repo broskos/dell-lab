@@ -11,6 +11,10 @@ parameter_defaults:
   NovaComputeAvailabilityZone: edge1
   RootStackName: central
 
+  NeutronBridgeMappings:
+    - tenant:br-tenant
+    - mgmt-edge1:br-edge1
+
   ComputeEdge1ControlPlaneSubnet: edge1
   ComputeEdge1vduControlPlaneSubnet: edge1
   OvercloudComputeEdge1Flavor: compute-edge1

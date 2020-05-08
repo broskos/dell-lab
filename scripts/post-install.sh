@@ -20,7 +20,7 @@ openstack image create --public --file ~/images/rhel-server-7.7-x86_64-kvm.qcow2
 # Create Default Flavors #
 ##########################
 openstack flavor create --ram 2048 --disk 20 --vcpus 1 m1.small
-
+openstack flavor create --ram 2048 --disk 20 --vcpus 1 --property hw:cpu_policy=dedicated --property hw:mem_page_size=1G m1.small-dedicated
 #############################
 # Create Management Network as routed provider network#
 #############################
@@ -71,3 +71,10 @@ openstack subnet create --network fronthaul2-net --no-dhcp --network-segment fro
 
 # increase quotas for admin project
 openstack quota set --cores 200 --instances 100 --ram 500000 --volumes 100 --secgroups 100 --volumes 100 --gigabytes 3072 admin
+
+openstack server create --flavor m1.small \
+--image rhel-77 \
+--network management-net \
+--min 6 --max 6 \
+--config-drive True \
+nettest

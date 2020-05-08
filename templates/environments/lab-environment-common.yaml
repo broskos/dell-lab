@@ -28,13 +28,6 @@ parameter_defaults:
     - fronthaul-edge2-2:2203:2203
   NeutronFlatNetworks:
     - floating-ips
-  NeutronBridgeMappings:
-    - tenant:br-tenant
-    - datacentre:br-ex
-    - management:br-mgmt
-    - mgmt-edge1:br-edge1
-    - mgmt-edge2:br-edge2
-    - floating-ips:br-float
 
   CloudName: overcloud.lab.roskosb.info
   CloudDomain: lab.local

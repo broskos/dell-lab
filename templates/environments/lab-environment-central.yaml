@@ -9,6 +9,12 @@ resource_registry:
 
 parameter_defaults:
 
+  NeutronBridgeMappings:
+    - tenant:br-tenant
+    - datacentre:br-ex
+    - management:br-mgmt
+    - floating-ips:br-float
+
   ControllerControlPlaneSubnet: ctlplane-subnet
   ComputeControlPlaneSubnet: ctlplane-subnet
   ComputeHCIControlPlaneSubnet: ctlplane-subnet
