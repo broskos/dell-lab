@@ -29,9 +29,9 @@ uuid=$(openstack network segment list --network management-net -f value -c ID)
 openstack network segment set --name mgmt-central $uuid
 openstack subnet create --network management-net --no-dhcp --network-segment mgmt-central --subnet-range 172.17.117.0/26 --gateway 172.17.117.62 --dns-nameserver 172.17.118.8 management-subnet
 openstack network segment create --network management-net --physical-network mgmt-edge1 --network-type vlan --segment 117  mgmt-edge1
-openstack subnet create --network management-net --no-dhcp --network-segment mgmt-edge1 --subnet-range 172.17.117.64/26 --gateway 172.17.117.62 --dns-nameserver 172.17.118.8 mgmt-edge1-subnet
+openstack subnet create --network management-net --no-dhcp --network-segment mgmt-edge1 --subnet-range 172.17.117.64/26 --gateway 172.17.117.126 --dns-nameserver 172.17.118.8 mgmt-edge1-subnet
 openstack network segment create --network management-net --physical-network mgmt-edge2 --network-type vlan --segment 117 mgmt-edge2
-openstack subnet create --network management-net --no-dhcp --network-segment mgmt-edge2 --subnet-range 172.17.117.128/26 --gateway 172.17.117.126 --dns-nameserver 172.17.118.8 mgmt-edge2-subnet
+openstack subnet create --network management-net --no-dhcp --network-segment mgmt-edge2 --subnet-range 172.17.117.128/26 --gateway 172.17.117.190 --dns-nameserver 172.17.118.8 mgmt-edge2-subnet
 
 openstack network create --provider-physical-network sriov-1 --provider-network-type vlan --provider-segment 202 backhaul1-net
 openstack subnet create --network backhaul1-net --no-dhcp --subnet-range 192.168.202.0/26 --gateway 192.168.202.62  backhaul1-subnet
@@ -41,40 +41,142 @@ openstack subnet create --network backhaul2-net --no-dhcp --subnet-range 192.168
 openstack network create --provider-physical-network sriov-1 --provider-network-type vlan --provider-segment 205 midhaul1-net
 uuid=$(openstack network segment list --network midhaul1-net -f value -c ID)
 openstack network segment set --name midhaul1-central $uuid
-openstack subnet create --network midhaul1-net --no-dhcp --network-segment midhaul1-central --subnet-range 192.168.205.0/26 --gateway 192.168.205.62 --dns-nameserver 172.17.118.8 midhaul1-subnet
+openstack subnet create --network midhaul1-net --no-dhcp --network-segment midhaul1-central --subnet-range 192.168.205.0/26 --gateway 192.168.205.62 midhaul1-subnet
 openstack network segment create --network midhaul1-net --physical-network sriov-edge1-1 --network-type vlan --segment 1205  midhaul1-edge1
-openstack subnet create --network midhaul1-net --no-dhcp --network-segment midhaul1-edge1 --subnet-range 192.168.205.64/26 --gateway 192.168.205.62 --dns-nameserver 172.17.118.8 mgmt-edge1-subnet
+openstack subnet create --network midhaul1-net --no-dhcp --network-segment midhaul1-edge1 --subnet-range 192.168.205.64/26 --gateway 192.168.205.126 mgmt-edge1-subnet
 openstack network segment create --network midhaul1-net --physical-network sriov-edge2-1 --network-type vlan --segment 2205 midhaul1-edge2
-openstack subnet create --network midhaul1-net --no-dhcp --network-segment midhaul1-edge2 --subnet-range 192.168.205.128/26 --gateway 192.168.205.126 --dns-nameserver 172.17.118.8 mgmt-edge2-subnet
+openstack subnet create --network midhaul1-net --no-dhcp --network-segment midhaul1-edge2 --subnet-range 192.168.205.128/26 --gateway 192.168.205.190 mgmt-edge2-subnet
 openstack network create --provider-physical-network sriov-2 --provider-network-type vlan --provider-segment 205 midhaul2-net
 uuid=$(openstack network segment list --network midhaul2-net -f value -c ID)
 openstack network segment set --name midhaul2-central $uuid
-openstack subnet create --network midhaul2-net --no-dhcp --network-segment midhaul2-central --subnet-range 192.168.205.0/26 --gateway 192.168.205.62 --dns-nameserver 172.17.118.8 midhaul2-subnet
+openstack subnet create --network midhaul2-net --no-dhcp --network-segment midhaul2-central --subnet-range 192.168.205.0/26 --gateway 192.168.205.62 midhaul2-subnet
 openstack network segment create --network midhaul2-net --physical-network sriov-edge1-2 --network-type vlan --segment 1205  midhaul2-edge1
-openstack subnet create --network midhaul2-net --no-dhcp --network-segment midhaul2-edge1 --subnet-range 192.168.205.64/26 --gateway 192.168.205.62 --dns-nameserver 172.17.118.8 midhaul2-edge1-subnet
+openstack subnet create --network midhaul2-net --no-dhcp --network-segment midhaul2-edge1 --subnet-range 192.168.205.64/26 --gateway 192.168.205.126 midhaul2-edge1-subnet
 openstack network segment create --network midhaul2-net --physical-network sriov-edge2-2 --network-type vlan --segment 2205 midhaul2-edge2
-openstack subnet create --network midhaul2-net --no-dhcp --network-segment midhaul2-edge2 --subnet-range 192.168.205.128/26 --gateway 192.168.205.126 --dns-nameserver 172.17.118.8 midhaul2-edge2-subnet
+openstack subnet create --network midhaul2-net --no-dhcp --network-segment midhaul2-edge2 --subnet-range 192.168.205.128/26 --gateway 192.168.205.190 midhaul2-edge2-subnet
 
 openstack network create --provider-physical-network sriov-edge1-1 --provider-network-type vlan --provider-segment 1203 fronthaul1-net
 uuid=$(openstack network segment list --network fronthaul1-net -f value -c ID)
 openstack network segment set --name fronthaul1-edge1 $uuid
-openstack subnet create --network fronthaul1-net --no-dhcp --network-segment fronthaul1-edge1 --subnet-range 192.168.203.0/26 --gateway 192.168.203.62 --dns-nameserver 172.17.118.8 fronthaul1-subnet
+openstack subnet create --network fronthaul1-net --no-dhcp --network-segment fronthaul1-edge1 --subnet-range 192.168.203.64/26 --gateway 192.168.203.126 fronthaul1-subnet
 openstack network segment create --network fronthaul1-net --physical-network sriov-edge2-1 --network-type vlan --segment 2203 fronthaul1-edge2
-openstack subnet create --network fronthaul1-net --no-dhcp --network-segment fronthaul1-edge2 --subnet-range 192.168.203.128/26 --gateway 192.168.203.126 --dns-nameserver 172.17.118.8 fronthaul1-edge2-subnet
+openstack subnet create --network fronthaul1-net --no-dhcp --network-segment fronthaul1-edge2 --subnet-range 192.168.203.128/26 --gateway 192.168.203.190 fronthaul1-edge2-subnet
 openstack network create --provider-physical-network sriov-edge1-2 --provider-network-type vlan --provider-segment 1203 fronthaul2-net
 uuid=$(openstack network segment list --network fronthaul2-net -f value -c ID)
 openstack network segment set --name fronthaul2-edge1 $uuid
-openstack subnet create --network fronthaul2-net --no-dhcp --network-segment fronthaul2-edge1 --subnet-range 192.168.203.0/26 --gateway 192.168.203.62 --dns-nameserver 172.17.118.8 fronthaul2-subnet
+openstack subnet create --network fronthaul2-net --no-dhcp --network-segment fronthaul2-edge1 --subnet-range 192.168.203.64/26 --gateway 192.168.203.126 fronthaul2-subnet
 openstack network segment create --network fronthaul2-net --physical-network sriov-edge2-2 --network-type vlan --segment 2203 fronthaul2-edge2
-openstack subnet create --network fronthaul2-net --no-dhcp --network-segment fronthaul2-edge2 --subnet-range 192.168.203.128/26 --gateway 192.168.203.126 --dns-nameserver 172.17.118.8 fronthaul2-edge2-subnet
+openstack subnet create --network fronthaul2-net --no-dhcp --network-segment fronthaul2-edge2 --subnet-range 192.168.203.128/26 --gateway 192.168.203.190 fronthaul2-edge2-subnet
 
+openstack network create --provider-physical-network sriov-edge1-1 --provider-network-type vlan --provider-segment 1204 ar1-net
+uuid=$(openstack network segment list --network ar1-net -f value -c ID)
+openstack network segment set --name ar1-edge1 $uuid
+openstack subnet create --network ar1-net --no-dhcp --network-segment ar1-edge1 --subnet-range 192.168.204.0/26 --gateway 192.168.204.126 ar1-subnet
+openstack network segment create --network ar1-net --physical-network sriov-edge2-1 --network-type vlan --segment 2204 ar1-edge2
+openstack subnet create --network ar1-net --no-dhcp --network-segment ar1-edge2 --subnet-range 192.168.204.128/26 --gateway 192.168.204.190 ar1-edge2-subnet
+openstack network create --provider-physical-network sriov-edge1-2 --provider-network-type vlan --provider-segment 1204 ar2-net
+uuid=$(openstack network segment list --network ar2-net -f value -c ID)
+openstack network segment set --name ar2-edge1 $uuid
+openstack subnet create --network ar2-net --no-dhcp --network-segment ar2-edge1 --subnet-range 192.168.204.0/26 --gateway 192.168.204.126 ar2-subnet
+openstack network segment create --network ar2-net --physical-network sriov-edge2-2 --network-type vlan --segment 2204 ar2-edge2
+openstack subnet create --network ar2-net --no-dhcp --network-segment ar2-edge2 --subnet-range 192.168.204.128/26 --gateway 192.168.204.190 ar2-edge2-subnet
 
 # increase quotas for admin project
 openstack quota set --cores 200 --instances 100 --ram 500000 --volumes 100 --secgroups 100 --volumes 100 --gigabytes 3072 admin
+openstack keypair create  --public-key ~/.ssh/id_rsa.pub undercloud-key
+
+# create user-data file
+cat << EOF > ~/admin-user-data.txt
+#cloud-config
+# vim:syntax=yaml
+debug: True
+ssh_pwauth: True
+disable_root: false
+chpasswd:
+list: |
+root:redhat
+cloud-user:redhat
+expire: false
+runcmd:
+- sed -i'.orig' -e's/without-password/yes/' /etc/ssh/sshd_config
+- service sshd restart
+EOF
+
+# get security group id for default security group in admin project
+group=$(openstack security group list --project admin -f value -c ID)
+openstack security group rule create $group  \
+  --protocol tcp --dst-port 22:22 --remote-ip 0.0.0.0/0
+openstack security group rule create $group \
+  --protocol icmp --remote-ip 0.0.0.0/0
 
 openstack server create --flavor m1.small \
 --image rhel-77 \
 --network management-net \
---min 6 --max 6 \
+--network backhaul1-net \
+--network midhaul1-net \
+--min 5 --max 5 \
 --config-drive True \
-nettest
+--availability-zone nova \
+--key-name undercloud-key \
+--user-data ~/admin-user-data.txt \
+test-central
+
+openstack server create --flavor m1.small \
+--image rhel-77 \
+--network management-net \
+--min 2 --max 2 \
+--config-drive True \
+--availability-zone edge1 \
+--key-name undercloud-key \
+test-edge1
+
+openstack server create --flavor m1.small \
+--image rhel-77 \
+--network management-net \
+--min 2 --max 2 \
+--config-drive True \
+--availability-zone edge2 \
+--key-name undercloud-key \
+test-edge2
+
+exit 0
+
+#======================= Testing server creation for each network combination  ================================================
+
+
+for EDGE in edge1 edge2; do
+for NETWORK in midhaul1 fronthaul1 ar1 management; do
+for SERVER in {1..2}; do
+
+if [[ $NETWORK = "management" ]]
+then
+  VNIC=''
+else
+  VNIC='--vnic-type direct'
+fi
+
+PORT=$(openstack port create --network $NETWORK-net $VNIC -f value -c id test-$EDGE-$NETWORK-$SERVER)
+
+openstack server create --flavor m1.small \
+--image rhel-77 \
+--port $PORT \
+--config-drive True \
+--availability-zone $EDGE \
+--key-name undercloud-key \
+--user-data ~/admin-user-data.txt \
+test-$EDGE-$NETWORK-$SERVER
+
+done
+done
+done
+
+exit 0
+#--------------- cleanup scripts USE WITH CAUTION, deletes all servers and ports for current tenant ---------------------------
+
+for VM in $( openstack server list -f value -c ID );do
+openstack server delete $VM
+done
+
+for PORT in $( openstack port list -f value -c ID );do
+openstack port delete $PORT
+done
