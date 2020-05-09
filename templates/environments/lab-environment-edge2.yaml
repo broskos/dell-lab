@@ -52,7 +52,7 @@ parameter_defaults:
     nova::cpu_allocation_ratio: 1
     nova::compute::resume_guests_state_on_host_boot: true
     nova::compute::libvirt::libvirt_cpu_model: host-passthrough
-    nova::compute::libvirt::libvirt_cpu_model_extra_flags: host-tsc-deadline
+  #  nova::compute::libvirt::libvirt_cpu_model_extra_flags: host-tsc-deadline
     nova::compute::libvirt::mem_stats_period_seconds: 0
 
   ComputeEdge2vduImage: "overcloud-realtime-compute"

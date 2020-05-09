@@ -20,7 +20,7 @@ openstack image create --public --file ~/images/rhel-server-7.7-x86_64-kvm.qcow2
 # Create Default Flavors #
 ##########################
 openstack flavor create --ram 2048 --disk 20 --vcpus 1 m1.small
-openstack flavor create --ram 2048 --disk 20 --vcpus 1 --property hw:cpu_policy=dedicated --property hw:mem_page_size=1G m1.small-dedicated
+openstack flavor create --ram 2048 --disk 20 --vcpus 1 --property hw:cpu_policy=dedicated --property hw:mem_page_size=1GB m1.small-dedicated
 #############################
 # Create Management Network as routed provider network#
 #############################
@@ -85,6 +85,14 @@ openstack subnet create --network ar2-net --no-dhcp --network-segment ar2-edge2 
 openstack quota set --cores 200 --instances 100 --ram 500000 --volumes 100 --secgroups 100 --volumes 100 --gigabytes 3072 admin
 openstack keypair create  --public-key ~/.ssh/id_rsa.pub undercloud-key
 
+# fixup Availability zones
+openstack aggregate create --zone edge1vdu edge1vdu || true
+openstack aggregate create --zone edge2vdu edge2vdu || true
+openstack aggregate remove host edge1 edge1-computevdu-e1-0.lab.local || true
+openstack aggregate remove host edge2 edge2-computevdu-e2-0.lab.local || true
+openstack aggregate add host edge1vdu edge1-computevdu-e1-0.lab.local || true
+openstack aggregate add host edge2vdu edge2-computevdu-e2-0.lab.local || true
+
 # create user-data file
 cat << EOF > ~/admin-user-data.txt
 #cloud-config
@@ -145,9 +153,17 @@ exit 0
 
 
 for EDGE in edge1 edge2; do
-for NETWORK in midhaul1 fronthaul1 ar1 management; do
-for SERVER in {1..2}; do
+for SERVER in vcu vdu; do
+if [[ $SERVER = "vcu" ]]
+then
+  AZ=$EDGE
+  NETWORKS='backhaul1 midhaul1 management'
+else
+  AZ="${EDGE}vdu"
+  NETWORKS='fronthaul1 midhaul1 ar1 management'
+fi
 
+for NETWORK in $NETWORKS; do
 if [[ $NETWORK = "management" ]]
 then
   VNIC=''
@@ -155,20 +171,21 @@ else
   VNIC='--vnic-type direct'
 fi
 
-PORT=$(openstack port create --network $NETWORK-net $VNIC -f value -c id test-$EDGE-$NETWORK-$SERVER)
+PORT=$(openstack port create --network $NETWORK-net $VNIC -f value -c id test-$EDGE-$SERVER-$NETWORK)
 
-openstack server create --flavor m1.small \
+openstack server create --flavor m1.small-dedicated \
 --image rhel-77 \
 --port $PORT \
 --config-drive True \
---availability-zone $EDGE \
+--availability-zone $AZ \
 --key-name undercloud-key \
 --user-data ~/admin-user-data.txt \
-test-$EDGE-$NETWORK-$SERVER
+test-$EDGE-$SERVER-$NETWORK
 
 done
 done
 done
+
 
 exit 0
 #--------------- cleanup scripts USE WITH CAUTION, deletes all servers and ports for current tenant ---------------------------
