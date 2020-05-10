@@ -9,7 +9,9 @@ resource_registry:
 
 parameter_defaults:
 
-  NovaComputeAvailabilityZone: edge2
+  NovaComputeAvailabilityZone: central
+  RootStackName: central
+
   NeutronBridgeMappings:
     - tenant:br-tenant
     - datacentre:br-ex
