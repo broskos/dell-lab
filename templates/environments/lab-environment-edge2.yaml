@@ -97,14 +97,14 @@ parameter_defaults:
         physical_network: "sriov-edge2-1"
       - devname: "ens8f1"
         physical_network: "sriov-edge2-2"
-      - vendor_id: "1172"
-        product_id: "5050"
+#      - vendor_id: "1172"
+#        product_id: "5050"
 
   ComputeEdge2vduExtraConfig:
     nova::cpu_allocation_ratio: 1
     nova::compute::resume_guests_state_on_host_boot: true
-    nova::pci::aliases:
-      - name: vc_fpga
-        vendor_id: '1172'
-        product_id: '5050'
-        device_type: 'type-VF'
+#    nova::pci::aliases:
+#      - name: vc_fpga
+#        vendor_id: '1172'
+#        product_id: '5050'
+#        device_type: 'type-VF'
