@@ -55,10 +55,10 @@ parameter_defaults:
     NovaComputeCpuDedicatedSet: 2-35,38-71
     NovaComputeCpuSharedSet: 0,1,36,37
     NeutronPhysicalDevMappings:
-      - sriov-1:ens3f0
-      - sriov-2:ens3f1
-      - sriov-1:ens7f0
-      - sriov-2:ens7f1
+      - sriov1:ens3f0
+      - sriov2:ens3f1
+      - sriov1:ens7f0
+      - sriov2:ens7f1
     NeutronSriovNumVFs:
       - ens3f0:8
       - ens3f1:8
@@ -66,13 +66,13 @@ parameter_defaults:
       - ens7f1:8
     NovaPCIPassthrough:
       - devname: "ens3f0"
-        physical_network: "sriov-1"
+        physical_network: "sriov1"
       - devname: "ens3f1"
-        physical_network: "sriov-2"
+        physical_network: "sriov2"
       - devname: "ens7f0"
-        physical_network: "sriov-1"
+        physical_network: "sriov1"
       - devname: "ens7f1"
-        physical_network: "sriov-2"
+        physical_network: "sriov2"
 
   ComputeExtraConfig:
     nova::cpu_allocation_ratio: 1
@@ -85,10 +85,10 @@ parameter_defaults:
     NovaComputeCpuSharedSet: 0,1,36,37
     NovaReservedHostMemory: 30720
     NeutronPhysicalDevMappings:
-      - sriov-1:ens3f0
-      - sriov-2:ens3f1
-      - sriov-1:ens7f0
-      - sriov-2:ens7f1
+      - sriov1:ens3f0
+      - sriov2:ens3f1
+      - sriov1:ens7f0
+      - sriov2:ens7f1
     NeutronSriovNumVFs:
       - ens3f0:8
       - ens3f1:8
@@ -96,13 +96,13 @@ parameter_defaults:
       - ens7f1:8
     NovaPCIPassthrough:
       - devname: "ens3f0"
-        physical_network: "sriov-1"
+        physical_network: "sriov1"
       - devname: "ens3f1"
-        physical_network: "sriov-2"
+        physical_network: "sriov2"
       - devname: "ens7f0"
-        physical_network: "sriov-1"
+        physical_network: "sriov1"
       - devname: "ens7f1"
-        physical_network: "sriov-2"
+        physical_network: "sriov2"
 
   ComputeHCIExtraConfig:
     nova::cpu_allocation_ratio: 1
