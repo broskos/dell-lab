@@ -9,6 +9,7 @@ resource_registry:
 
 parameter_defaults:
 
+  NovaComputeAvailabilityZone: edge2
   NeutronBridgeMappings:
     - tenant:br-tenant
     - datacentre:br-ex

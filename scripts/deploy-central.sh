@@ -17,6 +17,7 @@ time openstack overcloud deploy --templates \
     -e /usr/share/openstack-tripleo-heat-templates/environments/services/neutron-sriov.yaml \
     -e /usr/share/openstack-tripleo-heat-templates/environments/host-config-and-reboot.yaml \
     -e /usr/share/openstack-tripleo-heat-templates/environments/ceph-ansible/ceph-ansible.yaml \
+    -e /usr/share/openstack-tripleo-heat-templates/environments/nova-az-config.yaml \
     -e ~/dell-lab/templates/containers-prepare-parameter.yaml \
     -e ~/dell-lab/templates/environments/storage-config.yaml \
     -e ~/dell-lab/templates/environments/lab-environment-common.yaml \
