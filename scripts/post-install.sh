@@ -28,9 +28,9 @@ openstack network create --provider-physical-network management --provider-netwo
 uuid=$(openstack network segment list --network management-net -f value -c ID)
 openstack network segment set --name mgmt-central $uuid
 openstack subnet create --network management-net --no-dhcp --network-segment mgmt-central --subnet-range 172.17.117.0/26 --gateway 172.17.117.62 --dns-nameserver 172.17.118.8 management-subnet
-openstack network segment create --network management-net --physical-network mgmt-edge1 --network-type vlan --segment 117  mgmt-edge1
+openstack network segment create --network management-net --physical-network mgmt-edge1 --network-type vlan --segment 1117  mgmt-edge1
 openstack subnet create --network management-net --no-dhcp --network-segment mgmt-edge1 --subnet-range 172.17.117.64/26 --gateway 172.17.117.126 --dns-nameserver 172.17.118.8 mgmt-edge1-subnet
-openstack network segment create --network management-net --physical-network mgmt-edge2 --network-type vlan --segment 117 mgmt-edge2
+openstack network segment create --network management-net --physical-network mgmt-edge2 --network-type vlan --segment 2117 mgmt-edge2
 openstack subnet create --network management-net --no-dhcp --network-segment mgmt-edge2 --subnet-range 172.17.117.128/26 --gateway 172.17.117.190 --dns-nameserver 172.17.118.8 mgmt-edge2-subnet
 
 openstack network create --provider-physical-network sriov1 --provider-network-type vlan --provider-segment 202 backhaul1-net
