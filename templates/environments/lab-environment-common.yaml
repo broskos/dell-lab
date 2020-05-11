@@ -14,8 +14,8 @@ parameter_defaults:
 
   NeutronNetworkVLANRanges:
     - management:117:117
-    - mgmt-edge1:117:117
-    - mgmt-edge2:117:117
+    - mgmt-edge1:1117:1117
+    - mgmt-edge2:2117:2117
     - sriov1:200:300
     - sriov2:200:300
     - sriov1-edge1:1200:1300
