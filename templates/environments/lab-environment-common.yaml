@@ -16,16 +16,16 @@ parameter_defaults:
     - management:117:117
     - mgmt-edge1:117:117
     - mgmt-edge2:117:117
-    - sriov-1:200:300
-    - sriov-2:200:300
-    - sriov-edge1-1:1200:1300
-    - sriov-edge1-2:1200:1300
-    - sriov-edge2-1:2200:2300
-    - sriov-edge2-2:2200:2300
-    - fronthaul-edge1-1:1203:1203
-    - fronthaul-edge1-2:1203:1203
-    - fronthaul-edge2-1:2203:2203
-    - fronthaul-edge2-2:2203:2203
+    - sriov1:200:300
+    - sriov2:200:300
+    - sriov1-edge1:1200:1300
+    - sriov2-edge1:1200:1300
+    - sriov1-edge2:2200:2300
+    - sriov2-edge2:2200:2300
+    - fronthaul1-edge1:1203:1203
+    - fronthaul2-edge1:1203:1203
+    - fronthaul1-edge2:2203:2203
+    - fronthaul2-edge2:2203:2203
   NeutronFlatNetworks:
     - floating-ips
 
