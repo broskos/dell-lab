@@ -22,6 +22,8 @@ parameter_defaults:
     - sriov2-edge1:1200:1300
     - sriov1-edge2:2200:2300
     - sriov2-edge2:2200:2300
+    - fronthaul1:203:203
+    - fronthaul2:203:203
     - fronthaul1-edge1:1203:1203
     - fronthaul2-edge1:1203:1203
     - fronthaul1-edge2:2203:2203
