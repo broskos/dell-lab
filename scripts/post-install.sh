@@ -14,13 +14,13 @@ fi
 # Upload RHEL 7 Image to Glance
 #################################
 openstack image create --public --file ~/images/rhel-server-7.7-x86_64-kvm.qcow2 --disk-format qcow2 --container bare rhel-77
-#openstack image create --public --file ~/images/rhel-server-77-RT.qcow2 --disk-format qcow2 --container bare rhel-server-77-RT
 
 ##########################
 # Create Default Flavors #
 ##########################
 openstack flavor create --ram 2048 --disk 20 --vcpus 1 m1.small
 openstack flavor create --ram 2048 --disk 20 --vcpus 1 --property hw:cpu_policy=dedicated --property hw:mem_page_size=1GB m1.small-dedicated
+
 #############################
 # Create Management Network as routed provider network#
 #############################
@@ -125,6 +125,9 @@ openstack security group rule create $group  \
 openstack security group rule create $group \
   --protocol icmp --remote-ip 0.0.0.0/0
 
+exit 0
+====== setup some really basic test VMs
+
 openstack server create --flavor m1.small \
 --image rhel-77 \
 --network management-net \
@@ -157,9 +160,11 @@ test-edge2
 
 exit 0
 
-#======================= Testing server creation for each network combination  ================================================
+#======================= Create Testing server for each network  ================================================
 # seems to be some sort of cli bug, so for now creating policy groups through horizon
-#openstack server group create --policy anti-affinity management-net
+# for GROUP in management backhaul1 midhaul1 fronthaul1 ar1; do
+# openstack server group create --policy anti-affinity $GROUP
+# done
 
 # Create central VMs 1 net per VM
 for EDGE in central; do
@@ -174,9 +179,7 @@ else
 fi
 
 PORT=$(openstack port create --network $NETWORK-net $VNIC -f value -c id test-$EDGE-$NETWORK-$SERVER)
-
-# get group id
-UUID=$(openstack server group show $NETWORK -f value -c id)
+GROUP=$(openstack server group show $NETWORK -f value -c id)
 
 openstack server create --flavor m1.small \
 --image rhel-77 \
@@ -185,7 +188,7 @@ openstack server create --flavor m1.small \
 --availability-zone central \
 --key-name undercloud-key \
 --user-data ~/admin-user-data.txt \
---hint group=$UUID \
+--hint group=$GROUP \
 test-$EDGE-$NETWORK-$SERVER
 
 done
@@ -213,9 +216,7 @@ else
 fi
 
 PORT=$(openstack port create --network $NETWORK-net $VNIC -f value -c id test-$EDGE-$SERVER-$NETWORK)
-
-# get group id
-UUID=$(openstack server group show $NETWORK -f value -c id)
+GROUP=$(openstack server group show $NETWORK -f value -c id)
 
 openstack server create --flavor m1.small-dedicated \
 --image rhel-77 \
@@ -224,7 +225,7 @@ openstack server create --flavor m1.small-dedicated \
 --availability-zone $AZ \
 --key-name undercloud-key \
 --user-data ~/admin-user-data.txt \
---hint group=$UUID \
+--hint group=$GROUP \
 test-$EDGE-$SERVER-$NETWORK
 
 done
