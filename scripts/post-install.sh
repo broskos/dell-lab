@@ -158,8 +158,41 @@ test-edge2
 exit 0
 
 #======================= Testing server creation for each network combination  ================================================
+# seems to be some sort of cli bug, so for now creating policy groups through horizon
+#openstack server group create --policy anti-affinity management-net
 
+# Create central VMs 1 net per VM
+for EDGE in central; do
+for NETWORK in backhaul1 midhaul1 management; do
+for SERVER in {1..5}; do
 
+if [[ $NETWORK = "management" ]]
+then
+  VNIC=''
+else
+  VNIC='--vnic-type direct'
+fi
+
+PORT=$(openstack port create --network $NETWORK-net $VNIC -f value -c id test-$EDGE-$NETWORK-$SERVER)
+
+# get group id
+UUID=$(openstack server group show $NETWORK -f value -c id)
+
+openstack server create --flavor m1.small \
+--image rhel-77 \
+--port $PORT \
+--config-drive True \
+--availability-zone central \
+--key-name undercloud-key \
+--user-data ~/admin-user-data.txt \
+--hint group=$UUID \
+test-$EDGE-$NETWORK-$SERVER
+
+done
+done
+done
+
+# Create edge1/2 VMs 1 net per VM
 for EDGE in edge1 edge2; do
 for SERVER in vcu vdu; do
 if [[ $SERVER = "vcu" ]]
@@ -181,6 +214,9 @@ fi
 
 PORT=$(openstack port create --network $NETWORK-net $VNIC -f value -c id test-$EDGE-$SERVER-$NETWORK)
 
+# get group id
+UUID=$(openstack server group show $NETWORK -f value -c id)
+
 openstack server create --flavor m1.small-dedicated \
 --image rhel-77 \
 --port $PORT \
@@ -188,6 +224,7 @@ openstack server create --flavor m1.small-dedicated \
 --availability-zone $AZ \
 --key-name undercloud-key \
 --user-data ~/admin-user-data.txt \
+--hint group=$UUID \
 test-$EDGE-$SERVER-$NETWORK
 
 done
