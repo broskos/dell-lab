@@ -213,7 +213,7 @@ for SERVER in vcu vdu; do
 if [[ $SERVER = "vcu" ]]
 then
   AZ=$EDGE
-  NETWORKS='midhaul1 management'
+  NETWORKS='backhaul1 midhaul1 management'
 else
   AZ="${EDGE}vdu"
   NETWORKS='fronthaul1 midhaul1 ar1 management'
