@@ -11,6 +11,7 @@ echo "$ip_address $hostname.$domain" >> /etc/hosts
 # register with satellite
 dnf localinstall -y "http://$satellite/pub/katello-ca-consumer-latest.noarch.rpm"
 subscription-manager register --org $org --activationkey $director_activation_key
+subscription-manager release --set 8.1
 dnf clean all
 
 # add stack user

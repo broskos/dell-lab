@@ -11,9 +11,10 @@ then
 fi
 
 #################################
-# Upload RHEL 7 Image to Glance
+# Upload RHEL Images to Glance
 #################################
 openstack image create --public --file ~/images/rhel-server-7.7-x86_64-kvm.qcow2 --disk-format qcow2 --container bare rhel-77
+openstack image create --public --file ~/images/rhel-8.1-x86_64-kvm.qcow2 --disk-format qcow2 --container bare rhel-81
 
 ##########################
 # Create Default Flavors #
@@ -194,7 +195,7 @@ PORT=$(openstack port create --network $NETWORK-net $VNIC -f value -c id test-$E
 GROUP=$(openstack server group show $NETWORK -f value -c id)
 
 openstack server create --flavor m1.small \
---image rhel-77 \
+--image rhel-81 \
 --port $PORT \
 --config-drive True \
 --availability-zone central \
@@ -231,7 +232,7 @@ PORT=$(openstack port create --network $NETWORK-net $VNIC -f value -c id test-$E
 GROUP=$(openstack server group show $NETWORK -f value -c id)
 
 openstack server create --flavor m1.small-dedicated \
---image rhel-77 \
+--image rhel-81 \
 --port $PORT \
 --config-drive True \
 --availability-zone $AZ \
