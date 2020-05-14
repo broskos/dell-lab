@@ -20,7 +20,7 @@ openstack image create --public --file ~/images/rhel-8.1-x86_64-kvm.qcow2 --disk
 # Create Default Flavors #
 ##########################
 openstack flavor create --ram 2048 --disk 20 --vcpus 1 m1.small
-openstack flavor create --ram 2048 --disk 20 --vcpus 1 --property hw:cpu_policy=dedicated --property hw:mem_page_size=1GB m1.small-dedicated
+openstack flavor create --ram 2048 --disk 20 --vcpus 1 --property hw:cpu_policy=dedicated --property hw:mem_page_size=1GB --property hw:emulator_threads_policy=share m1.small-dedicated
 
 #############################
 # Create Management Network as routed provider network#
@@ -103,7 +103,7 @@ openstack network segment create --network ar2-net --physical-network sriov2-edg
 openstack subnet create --network ar2-net --no-dhcp --network-segment ar2-edge2 --subnet-range 192.168.204.128/26 --gateway 192.168.204.190 ar2-edge2-subnet
 
 # increase quotas for admin project
-openstack quota set --cores 200 --instances 100 --ram 500000 --volumes 100 --secgroups 100 --volumes 100 --gigabytes 3072 admin
+openstack quota set --cores 200 --instances 200 --ram 500000 --volumes 200 --secgroups 100 --gigabytes 3072 --server-group-members 20 --server-groups 20 admin
 openstack keypair create  --public-key ~/.ssh/id_rsa.pub undercloud-key
 
 # fixup Availability zones
@@ -176,13 +176,13 @@ exit 0
 #======================= Create Testing server for each network  ================================================
 # seems to be some sort of cli bug, so for now creating policy groups through horizon
 # for GROUP in management backhaul1 midhaul1 fronthaul1 ar1; do
-# openstack server group create --policy anti-affinity $GROUP
+# openstack server group create --policy soft-anti-affinity $GROUP
 # done
 
 # Create central VMs 1 net per VM
 for EDGE in central; do
-for NETWORK in backhaul1 midhaul1 management; do
-for SERVER in {1..5}; do
+for NETWORK in backhaul1 midhaul1 backhaul2 midhaul2 management; do
+for SERVER in {1..10}; do
 
 if [[ $NETWORK = "management" ]]
 then
@@ -194,7 +194,7 @@ fi
 PORT=$(openstack port create --network $NETWORK-net $VNIC -f value -c id test-$EDGE-$NETWORK-$SERVER)
 GROUP=$(openstack server group show $NETWORK -f value -c id)
 
-openstack server create --flavor m1.small \
+openstack server create --flavor m1.small-dedicated \
 --image rhel-81 \
 --port $PORT \
 --config-drive True \
@@ -211,13 +211,14 @@ done
 # Create edge1/2 VMs 1 net per VM
 for EDGE in edge1 edge2; do
 for SERVER in vcu vdu; do
+for COUNT in {1..2}; do
 if [[ $SERVER = "vcu" ]]
 then
   AZ=$EDGE
-  NETWORKS='backhaul1 midhaul1 management'
+  NETWORKS='backhaul1 backhaul2 midhaul1 midhaul2 management'
 else
   AZ="${EDGE}vdu"
-  NETWORKS='fronthaul1 midhaul1 ar1 management'
+  NETWORKS='fronthaul1 fronthaul2 midhaul1 midhaul2 ar1 ar2 management'
 fi
 
 for NETWORK in $NETWORKS; do
@@ -228,7 +229,7 @@ else
   VNIC='--vnic-type direct'
 fi
 
-PORT=$(openstack port create --network $NETWORK-net $VNIC -f value -c id test-$EDGE-$SERVER-$NETWORK)
+PORT=$(openstack port create --network $NETWORK-net $VNIC -f value -c id test-$EDGE-$SERVER-$NETWORK-$COUNT)
 GROUP=$(openstack server group show $NETWORK -f value -c id)
 
 openstack server create --flavor m1.small-dedicated \
@@ -239,8 +240,9 @@ openstack server create --flavor m1.small-dedicated \
 --key-name undercloud-key \
 --user-data ~/admin-user-data.txt \
 --hint group=$GROUP \
-test-$EDGE-$SERVER-$NETWORK
+test-$EDGE-$SERVER-$NETWORK-$COUNT
 
+done
 done
 done
 done
@@ -255,4 +257,9 @@ done
 
 for PORT in $( openstack port list -f value -c ID );do
 openstack port delete $PORT
+done
+
+# ping test for all vms
+for IP in $(openstack server list -f value -c Networks | sed 's/^[^=]*=//g'); do
+ping -c1 $IP> /dev/null && echo "Ping $IP Connected" || echo "Ping $IP Failed"
 done
