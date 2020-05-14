@@ -260,6 +260,6 @@ openstack port delete $PORT
 done
 
 # ping test for all vms
-for IP in $(openstack server list -f value -c Networks | sed 's/^[^=]*=//g'); do
+for IP in $(openstack server list --status ACTIVE -f value -c Networks | sed 's/^[^=]*=//g'); do
 ping -c1 $IP> /dev/null && echo "Ping $IP Connected" || echo "Ping $IP Failed"
 done
