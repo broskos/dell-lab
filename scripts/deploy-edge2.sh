@@ -21,6 +21,7 @@ time openstack overcloud deploy --templates \
     -e ~/dell-lab/templates/containers-prepare-parameter.yaml \
     -e ~/dell-lab/templates/environments/lab-environment-common.yaml \
     -e ~/dell-lab/templates/environments/lab-environment-edge2.yaml \
+    --overcloud-ssh-port-timeout 600 \
     --log-file deployment.log
 
 #     -e /usr/share/openstack-tripleo-heat-templates/environments/rhsm.yaml \
