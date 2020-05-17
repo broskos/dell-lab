@@ -259,6 +259,11 @@ for PORT in $( openstack port list -f value -c ID );do
 openstack port delete $PORT
 done
 
+#remove edge nodes from aggregates
+for AZ in edge1 edge2 ; do
+      openstack aggregate remove host "$AZvdu" "$AZ-computevdu-0.lab.local"
+      openstack aggregate remove host "$AZ" "$AZ-compute-0.lab.local"
+done
 # ping test for all vms
 for IP in $(openstack server list --status ACTIVE -f value -c Networks | sed 's/^[^=]*=//g'); do
 ping -c1 $IP> /dev/null && echo "Ping $IP Connected" || echo "Ping $IP Failed"
