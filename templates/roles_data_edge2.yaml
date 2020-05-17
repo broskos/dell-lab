@@ -13,7 +13,7 @@
     Tenant:
       subnet: tenant_edge2_subnet
   default_route_networks: ['External']
-  HostnameFormatDefault: '%stackname%-compute-e2-%index%'
+  HostnameFormatDefault: '%stackname%-compute-%index%'
   RoleParametersDefault:
     TunedProfileName: "cpu-partitioning"
   update_serial: 25
@@ -81,7 +81,7 @@
     Tenant:
       subnet: tenant_edge2_subnet
   default_route_networks: ['External']
-  HostnameFormatDefault: '%stackname%-computevdu-e2-%index%'
+  HostnameFormatDefault: '%stackname%-computevdu-%index%'
   RoleParametersDefault:
     TunedProfileName: "realtime-virtual-host"
     NovaLibvirtMemStatsPeriodSeconds: 0
