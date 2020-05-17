@@ -40,13 +40,13 @@ parameter_defaults:
       - ens7f1:8
     NovaPCIPassthrough:
       - devname: "ens3f0"
-        physical_network: "sriov1"
+        physical_network: "sriov1-edge1"
       - devname: "ens3f1"
-        physical_network: "sriov2"
+        physical_network: "sriov2-edge1"
       - devname: "ens7f0"
-        physical_network: "sriov1"
+        physical_network: "sriov1-edge1"
       - devname: "ens7f1"
-        physical_network: "sriov2"
+        physical_network: "sriov2-edge1"
 
   ComputeEdge1ExtraConfig:
     nova::cpu_allocation_ratio: 1
@@ -82,21 +82,21 @@ parameter_defaults:
       - ens4f1:8
     NovaPCIPassthrough:
       - devname: "ens1f0"
-        physical_network: "fronthaul1"
+        physical_network: "fronthaul1-edge1"
       - devname: "ens1f1"
-        physical_network: "fronthaul2"
+        physical_network: "fronthaul2-edge1"
       - devname: "ens4f0"
-        physical_network: "fronthaul1"
+        physical_network: "fronthaul1-edge1"
       - devname: "ens4f1"
-        physical_network: "fronthaul2"
+        physical_network: "fronthaul2-edge1"
       - devname: "ens3f0"
-        physical_network: "sriov1"
+        physical_network: "sriov1-edge1"
       - devname: "ens3f1"
-        physical_network: "sriov2"
+        physical_network: "sriov2-edge1"
       - devname: "ens8f0"
-        physical_network: "sriov1"
+        physical_network: "sriov1-edge1"
       - devname: "ens8f1"
-        physical_network: "sriov2"
+        physical_network: "sriov2-edge1
       - vendor_id: "1172"
         product_id: "5050"
 
