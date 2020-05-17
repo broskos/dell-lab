@@ -23,13 +23,13 @@ openstack subnet create --network backhaul2-edge2-net --no-dhcp --subnet-range 1
 
 openstack network create --provider-physical-network sriov1 --provider-network-type vlan --provider-segment 205 midhaul1-central-net
 openstack subnet create --network midhaul1-central-net --no-dhcp --subnet-range 192.168.205.0/26 --gateway 192.168.205.62 midhaul1-central-subnet
-openstack nnetwork create --provider-physical-network sriov1-edge1 --provider-network-type vlan --provider-segment 1205 midhaul1-edge1-net
+openstack network create --provider-physical-network sriov1-edge1 --provider-network-type vlan --provider-segment 1205 midhaul1-edge1-net
 openstack subnet create --network midhaul1-edge1-net --no-dhcp --subnet-range 192.168.205.64/26 --gateway 192.168.205.126 midhaul1-edge1-subnet
 openstack network create --provider-physical-network sriov1-edge2 --provider-network-type vlan --provider-segment 2205 midhaul1-edge2-net
 openstack subnet create --network midhaul1-edge2-net --no-dhcp --subnet-range 192.168.205.128/26 --gateway 192.168.205.190 midhaul1-edge2-subnet
 openstack network create --provider-physical-network sriov2 --provider-network-type vlan --provider-segment 205 midhaul2-central-net
 openstack subnet create --network midhaul2-central-net --no-dhcp --subnet-range 192.168.205.0/26 --gateway 192.168.205.62 midhaul2-central-subnet
-openstack nnetwork create --provider-physical-network sriov2-edge1 --provider-network-type vlan --provider-segment 1205 midhaul2-edge1-net
+openstack network create --provider-physical-network sriov2-edge1 --provider-network-type vlan --provider-segment 1205 midhaul2-edge1-net
 openstack subnet create --network midhaul2-edge1-net --no-dhcp --subnet-range 192.168.205.64/26 --gateway 192.168.205.126 midhaul2-edge1-subnet
 openstack network create --provider-physical-network sriov2-edge2 --provider-network-type vlan --provider-segment 2205 midhaul2-edge2-net
 openstack subnet create --network midhaul2-edge2-net --no-dhcp --subnet-range 192.168.205.128/26 --gateway 192.168.205.190 midhaul2-edge2-subnet
@@ -37,18 +37,18 @@ openstack subnet create --network midhaul2-edge2-net --no-dhcp --subnet-range 19
 
 openstack network create --provider-physical-network fronthaul1-edge1 --provider-network-type vlan --provider-segment 1203 fronthaul1-edge1-net
 openstack subnet create --network fronthaul1-edge1-net --no-dhcp --subnet-range 192.168.203.64/26 --gateway 192.168.203.126 fronthaul1-edge1-subnet
-openstack network --provider-physical-network fronthaul1-edge2 --provider-network-type vlan --provider-segment 2203 fronthaul1-edge2-net
-openstack subnet create --network fronthaul1-edge2-net --no-dhcp--subnet-range 192.168.203.128/26 --gateway 192.168.203.190 fronthaul1-edge2-subnet
+openstack network create --provider-physical-network fronthaul1-edge2 --provider-network-type vlan --provider-segment 2203 fronthaul1-edge2-net
+openstack subnet create --network fronthaul1-edge2-net --no-dhcp --subnet-range 192.168.203.128/26 --gateway 192.168.203.190 fronthaul1-edge2-subnet
 openstack network create --provider-physical-network fronthaul2-edge1 --provider-network-type vlan --provider-segment 1203 fronthaul2-edge1-net
 openstack subnet create --network fronthaul2-edge1-net --no-dhcp --subnet-range 192.168.203.64/26 --gateway 192.168.203.126 fronthaul2-edge1-subnet
-openstack network --provider-physical-network fronthaul2-edge2 --provider-network-type vlan --provider-segment 2203 fronthaul2-edge2-net
-openstack subnet create --network fronthaul2-edge2-net --no-dhcp--subnet-range 192.168.203.128/26 --gateway 192.168.203.190 fronthaul2-edge2-subnet
+openstack network create --provider-physical-network fronthaul2-edge2 --provider-network-type vlan --provider-segment 2203 fronthaul2-edge2-net
+openstack subnet create --network fronthaul2-edge2-net --no-dhcp --subnet-range 192.168.203.128/26 --gateway 192.168.203.190 fronthaul2-edge2-subnet
 
 openstack network create --provider-physical-network sriov1 --provider-network-type vlan --provider-segment 1204 ar1-edge1-net
 openstack subnet create --network ar1-edge1-net --no-dhcp --subnet-range 192.168.204.0/26 --gateway 192.168.204.126 ar1-edge1-subnet
 openstack network create --provider-physical-network sriov1 --provider-network-type vlan --provider-segment 2204 ar1-edge2-net
 openstack subnet create --network ar1-edge2-net --no-dhcp --subnet-range 192.168.204.128/26 --gateway 192.168.204.190 ar1-edge2-subnet
-openstack network create --provider-physical-network sriov1 --provider-network-type vlan --provider-segment 1204 ar2-edge1-net
+openstack network create --provider-physical-network sriov2-edge1 --provider-network-type vlan --provider-segment 1204 ar2-edge1-net
 openstack subnet create --network ar2-edge1-net --no-dhcp --subnet-range 192.168.204.0/26 --gateway 192.168.204.126 ar2-edge1-subnet
-openstack network create --provider-physical-network sriov1 --provider-network-type vlan --provider-segment 2204 ar2-edge2-net
+openstack network create --provider-physical-network sriov2-edge1 --provider-network-type vlan --provider-segment 2204 ar2-edge2-net
 openstack subnet create --network ar2-edge2-net --no-dhcp --subnet-range 192.168.204.128/26 --gateway 192.168.204.190 ar2-edge2-subnet
