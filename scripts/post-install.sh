@@ -83,10 +83,10 @@ openstack keypair create  --public-key ~/.ssh/id_rsa.pub undercloud-key
 # fixup Availability zones
 openstack aggregate create --zone edge1vdu edge1vdu || true
 openstack aggregate create --zone edge2vdu edge2vdu || true
-openstack aggregate remove host edge1 edge1-computevdu-e1-0.lab.local || true
-openstack aggregate remove host edge2 edge2-computevdu-e2-0.lab.local || true
-openstack aggregate add host edge1vdu edge1-computevdu-e1-0.lab.local || true
-openstack aggregate add host edge2vdu edge2-computevdu-e2-0.lab.local || true
+openstack aggregate remove host edge1 edge1-computevdu-0.lab.local || true
+openstack aggregate remove host edge2 edge2-computevdu-0.lab.local || true
+openstack aggregate add host edge1vdu edge1-computevdu-0.lab.local || true
+openstack aggregate add host edge2vdu edge2-computevdu-0.lab.local || true
 
 # create user-data file
 cat << EOF > ~/admin-user-data.txt
@@ -165,14 +165,14 @@ else
   VNIC='--vnic-type direct'
 fi
 
-PORT=$(openstack port create --network $NETWORK-net $VNIC -f value -c id test-$EDGE-$NETWORK-$SERVER)
+PORT=$(openstack port create --network $NETWORK-$EDGE-net $VNIC -f value -c id test-$SERVER-$NETWORK-$EDGE-$COUNT)
 GROUP=$(openstack server group show $NETWORK -f value -c id)
 
 openstack server create --flavor m1.small-dedicated \
 --image rhel-81 \
 --port $PORT \
 --config-drive True \
---availability-zone central \
+--availability-zone $EDGE \
 --key-name undercloud-key \
 --user-data ~/admin-user-data.txt \
 --hint group=$GROUP \
@@ -203,7 +203,7 @@ else
   VNIC='--vnic-type direct'
 fi
 
-PORT=$(openstack port create --network $NETWORK-net $VNIC -f value -c id test-$EDGE-$SERVER-$NETWORK-$COUNT)
+PORT=$(openstack port create --network $NETWORK-$EDGE-net $VNIC -f value -c id test-$SERVER-$NETWORK-$EDGE-$COUNT)
 GROUP=$(openstack server group show $NETWORK -f value -c id)
 
 openstack server create --flavor m1.small-dedicated \
