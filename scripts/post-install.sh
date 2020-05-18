@@ -225,12 +225,35 @@ done
 exit 0
 #--------------- cleanup scripts USE WITH CAUTION, deletes all servers and ports for current tenant ---------------------------
 
+# Delete all VMs and Ports
 for VM in $( openstack server list -f value -c ID );do
 openstack server delete $VM
 done
 
 for PORT in $( openstack port list -f value -c ID );do
 openstack port delete $PORT
+done
+
+# or delete specific VMs and Ports
+
+for EDGE in edge2; do
+for SERVER in vdu; do
+for COUNT in {1..2}; do
+if [[ $SERVER = "vcu" ]]
+then
+  AZ=$EDGE
+  NETWORKS='backhaul1 backhaul2 midhaul1 midhaul2 management'
+else
+  AZ="${EDGE}vdu"
+  NETWORKS='fronthaul1 fronthaul2 midhaul1 midhaul2 ar1 ar2 management'
+fi
+for NETWORK in $NETWORKS; do
+openstack server delete "test-$EDGE-$SERVER-$NETWORK-$COUNT" || true
+openstack port delete "test-$SERVER-$NETWORK-$EDGE-$COUNT" || true
+
+done
+done
+done
 done
 
 #remove edge nodes from aggregates
