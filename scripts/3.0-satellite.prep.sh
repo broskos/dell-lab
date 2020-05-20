@@ -53,6 +53,7 @@ declare -a REPOS=(
 "Red Hat Enterprise Linux 8 for x86_64 - BaseOS (RPMs)"
 "Red Hat Enterprise Linux 8 for x86_64 - AppStream (RPMs)"
 "Red Hat Enterprise Linux 8 for x86_64 - High Availability (RPMs)"
+"Red Hat Enterprise Linux 8 for x86_64 - Real Time for NFV (RPMs)"
 )
 
 for REPO in "${REPOS[@]}"; do
@@ -71,7 +72,6 @@ declare -a REPOS=(
 "Red Hat OpenStack Platform 16 for RHEL 8 x86_64 (RPMs)"
 "Fast Datapath for RHEL 8 x86_64 (RPMs)"
 "Red Hat Ceph Storage Tools 4 for RHEL 8 x86_64 (RPMs)"
-"Red Hat Enterprise Linux 8 for x86_64 - Real Time for NFV (RPMs)"
 "Red Hat CodeReady Linux Builder for RHEL 8 x86_64 (RPMs)"
 )
 
@@ -109,8 +109,10 @@ hammer product set-sync-plan \
 --name "${PRODUCT}"
 done
 
+# cant find a way to trigger the sync-plan
 hammer product synchronize \
 --organization "${MY_ORG}" \
 --name "${PRODUCT}" \
 --async
 
+# TODO: Create content view & activation key
