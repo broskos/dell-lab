@@ -109,10 +109,12 @@ hammer product set-sync-plan \
 --name "${PRODUCT}"
 done
 
-# cant find a way to trigger the sync-plan
+# cant find a way to trigger the sync-plan, so conduct the intial sync for each product
+for PRODUCT in "${PRODUCTS[@]}"; do
 hammer product synchronize \
 --organization "${MY_ORG}" \
 --name "${PRODUCT}" \
 --async
+done
 
 # TODO: Create content view & activation key
