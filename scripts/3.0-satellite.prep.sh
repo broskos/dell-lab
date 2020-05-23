@@ -6,10 +6,10 @@ UPSTREAM_URL="registry.redhat.io"
 curl -s https://${UPSTREAM_URL}/v1/search?q=%27rhosp-rhel8%20or%20rhceph-4%20or%20ose-grafana%20or%20ose-prometheus%27|jq -r .results[].name > satellite_images
 scp satellite_images root@satellite.lab.roskosb.info:
 
-# execute these from the satellite server after configuring hammer for passwordless operation:
-# https://access.redhat.com/solutions/1612123
+# Create a registry service account:
+# https://access.redhat.com/RegistryAuthentication
 
-# now scp the satellite_image_names filr over to the satellite server and run this from the satellite server:
+# insert your registry service account credentials here:
 export USERNAME="5318211|broskos-dell-lab"
 export PASSWORD="eyJhbGciOiJSUzUxMiJ9.eyJzdWIiOiI1MTVlODNiY2E2ZjU0NzI1YmY3ZmRkN2NhMDgzMWE2OCJ9.LccMloFAf3SY9LDkh6wXsECLxmgYopnU_RUeShXSvNzA8DJj5-9w-7pZtSSm00sg0wGt19fmJmFd2MOlGwtzFmKtpSsO0C0PuO9M4M8wWGPITe-dCJcSQAkpl_xg-n6m2EY1IxkZ0K35-BSNfc7OJ95f2lVQc_UBRXc5BLm5OU4z_BeI43wMK2w3bXi_XGj4cmuGw2gg4JBQng-6lSy7auQX_Ad_Y9poNPX40lBtGD93Pe-lZfbAXXOK21V52GfLzAIOWSUkMbtvW_c69-d3i-fGHiSmVUVQGEMxv_zfujlvIuDZ4R4xLnMnBjvqpzZKzlWwNIar8gc6PSarPPdvyacCQTT3C7aRh-Pnj3E-dVrLHnj-ZW2pyjly0FIMOASPdapsK_wjYc5Z35_8hwvClIrS3oSdqWHWu8pB-iHVrdbIhwjxfVneaFMK9nw_ELeb0E_yryHj-cQzXtF0gU7_-pBiSQbXjW0bxxfLNFj_-ENjyodo9-t635CR8_5LCvft8jiBZWIAXr_Ll4aD53tFFAzuTmc9_SsIuBniEOxLdU61mgVe8aIa4lRD-9IlXVeKHq39jIYHwdBQ7YXO-u7mneNMJy4-_s7FS3B_dSsCoyQ5V4DYa3ocTbfFue8mTlcpv1YewSTODJeR2lWlRL-rq7weLUqX5yF-EnVYPAiJaLI"
 
