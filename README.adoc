@@ -64,4 +64,4 @@ stack / redhat
 
 * horizon: +
 http://overcloud.lab.roskosb.info +
-see vranlabrc file for credentials
+see centralrc file for credentials
