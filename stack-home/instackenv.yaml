@@ -40,56 +40,8 @@ nodes:
   pm_vm_name: controller3
   capabilities: profile:control,boot_option:local
 - mac:
-  - e4:43:4b:58:35:30
-  name: compute-hci1
-  cpu: '4'
-  memory: '6144'
-  disk: '40'
-  arch: x86_64
-  pm_type: pxe_drac
-  pm_user: root
-  pm_password: calvin
-  pm_addr: 172.17.120.7
-  capabilities: profile:compute-hci,boot_option:local
-- mac:
-  - e4:43:4b:58:4f:c0
-  name: compute-hci2
-  cpu: '4'
-  memory: '6144'
-  disk: '40'
-  arch: x86_64
-  pm_type: pxe_drac
-  pm_user: root
-  pm_password: calvin
-  pm_addr: 172.17.120.9
-  capabilities: profile:compute-hci,boot_option:local
-- mac:
-  - e4:43:4b:58:33:40
-  name: compute-hci3
-  cpu: '4'
-  memory: '6144'
-  disk: '40'
-  arch: x86_64
-  pm_type: pxe_drac
-  pm_user: root
-  pm_password: calvin
-  pm_addr: 172.17.120.11
-  capabilities: profile:compute-hci,boot_option:local
-- mac:
-  - e4:43:4b:58:35:50
-  name: compute-1
-  cpu: '4'
-  memory: '6144'
-  disk: '40'
-  arch: x86_64
-  pm_type: pxe_drac
-  pm_user: root
-  pm_password: calvin
-  pm_addr: 172.17.120.15
-  capabilities: profile:compute,boot_option:local
-- mac:
   - e4:43:4b:58:53:40
-  name: compute-2
+  name: compute-1
   cpu: '4'
   memory: '6144'
   disk: '40'

@@ -16,11 +16,17 @@ time openstack overcloud deploy --templates \
     -e /usr/share/openstack-tripleo-heat-templates/environments/services/neutron-ovs.yaml \
     -e /usr/share/openstack-tripleo-heat-templates/environments/services/neutron-sriov.yaml \
     -e /usr/share/openstack-tripleo-heat-templates/environments/host-config-and-reboot.yaml \
-    -e /usr/share/openstack-tripleo-heat-templates/environments/ceph-ansible/ceph-ansible.yaml \
+    -e /usr/share/openstack-tripleo-heat-templates/environments/nova-az-config.yaml \
     -e ~/dell-lab/templates/containers-prepare-parameter.yaml \
     -e ~/dell-lab/templates/environments/lab-environment-common.yaml \
     -e ~/dell-lab/templates/environments/lab-environment-central.yaml \
     --log-file deployment.log \
     --config-download-only
 
+rm -rf ~/dcn-common
+mkdir -p ~/dcn-common
+openstack overcloud export --stack central \
+  --output-file ~/dcn-common/control-plane-export.yaml
+
 #     -e /usr/share/openstack-tripleo-heat-templates/environments/rhsm.yaml \
+
