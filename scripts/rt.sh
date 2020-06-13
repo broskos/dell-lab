@@ -2,8 +2,7 @@
 
 set -eux
 
-subscription-manager repos --disable '*'
-subscription-manager repos \
+subscription-manager repos --disable '*' \
 --enable=rhel-8-for-x86_64-baseos-rpms \
 --enable=rhel-8-for-x86_64-appstream-rpms \
 --enable=rhel-8-for-x86_64-highavailability-rpms \
