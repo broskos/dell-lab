@@ -1,0 +1,6 @@
+#
+# Run the following on director for external Ceph
+#
+sudo dnf install -y ceph-ansible
+
+
