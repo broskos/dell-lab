@@ -24,7 +24,7 @@ parameter_defaults:
   OvercloudControllerFlavor: control
   OvercloudComputeFlavor: compute
   ControllerCount: 3
-  ComputeCount: 1
+  ComputeCount: 0
 
   NovaSchedulerDefaultFilters:
     - RetryFilter
