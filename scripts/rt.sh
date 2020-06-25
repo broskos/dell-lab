@@ -16,5 +16,6 @@ dnf -v -y install kernel-rt kernel-rt-kvm kernel-rt-devel tuned-profiles-nfv-hos
 grubby --set-default /boot/vmlinuz*rt*
 # fix until this gets picked up by tuned
 echo "isolate_managed_irq=Y" >> /etc/tuned/realtime-virtual-host-variables.conf
-
+# turn off irqbalance, it can have a negitive impact on RT hosts
+systemctl disable --now irqbalance
 
