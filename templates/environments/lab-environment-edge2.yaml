@@ -69,14 +69,14 @@ parameter_defaults:
       - sriov1-edge2:ens8f0
       - sriov2-edge2:ens8f1
     NeutronSriovNumVFs:
-      - ens3f0:8
-      - ens3f1:8
-      - ens8f0:8
-      - ens8f1:8
-      - ens1f0:8
-      - ens1f1:8
-      - ens4f0:8
-      - ens4f1:8
+      - ens3f0:2
+      - ens3f1:2
+      - ens8f0:2
+      - ens8f1:2
+      - ens1f0:2
+      - ens1f1:2
+      - ens4f0:2
+      - ens4f1:2
     NovaPCIPassthrough:
       - devname: "ens1f0"
         physical_network: "fronthaul1-edge2"
