@@ -49,14 +49,6 @@
   allocation_pools: [{'start': '192.168.170.10', 'end': '192.168.170.250'}]
   mtu: 9000
 
-- name: StorageMgmt
-  name_lower: storage_mgmt
-  vip: true
-  vlan: 180
-  ip_subnet: '192.168.180.0/24'
-  allocation_pools: [{'start': '192.168.180.10', 'end': '192.168.180.250'}]
-  mtu: 9000
-
 - name: Tenant
   vip: false  # Tenant network does not use VIPs
   name_lower: tenant
