@@ -211,17 +211,6 @@ resources:
                 routes:
                   list_concat_unique:
                     - get_param: StorageInterfaceRoutes
-              - type: interface
-                name: nic4
-                mtu:
-                  get_param: StorageMgmtMtu
-                use_dhcp: false
-                addresses:
-                - ip_netmask:
-                    get_param: StorageMgmtIpSubnet
-                routes:
-                  list_concat_unique:
-                    - get_param: StorageMgmtInterfaceRoutes
               - type: ovs_bridge
                 name: br-tenant
                 mtu:
@@ -237,7 +226,7 @@ resources:
                     - get_param: TenantInterfaceRoutes
                 members:
                 - type: interface
-                  name: nic6
+                  name: nic5
                   mtu:
                     get_param: TenantMtu
                   use_dhcp: false
@@ -260,7 +249,7 @@ resources:
                           get_param: ExternalInterfaceDefaultRoute
                 members:
                 - type: interface
-                  name: nic5
+                  name: nic4
                   mtu:
                     get_param: ExternalMtu
                   use_dhcp: false
@@ -271,7 +260,7 @@ resources:
                 mtu: 1500
                 members:
                 - type: interface
-                  name: nic7
+                  name: nic6
                   mtu: 1500
                   use_dhcp: false
               - type: ovs_bridge
@@ -280,7 +269,7 @@ resources:
                 mtu: 9000
                 members:
                 - type: interface
-                  name: nic8
+                  name: nic7
                   mtu: 9000
                   use_dhcp: false
 

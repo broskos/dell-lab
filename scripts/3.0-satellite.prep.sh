@@ -98,6 +98,7 @@ declare -a PRODUCTS=(
 "Red Hat Enterprise Linux Fast Datapath"
 "Red Hat Enterprise Linux for x86_64"
 "Red Hat Enterprise Linux High Availability for x86_64"
+"Red Hat Enterprise Linux for Real Time for NFV"
 "Red Hat OpenStack"
 "osp16_containers"
 )

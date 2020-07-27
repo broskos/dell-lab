@@ -116,10 +116,10 @@ debug: True
 ssh_pwauth: True
 disable_root: false
 chpasswd:
-list: |
-root:redhat
-cloud-user:redhat
-expire: false
+  list: |
+    root:redhat
+    cloud-user:redhat
+  expire: false
 runcmd:
 - sed -i'.orig' -e's/without-password/yes/' /etc/ssh/sshd_config
 - service sshd restart
