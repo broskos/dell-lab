@@ -273,7 +273,7 @@ resources:
                           next_hop:
                             get_param: ExternalInterfaceDefaultRoute
               - type: ovs_bridge
-                name: br-mgmt
+                name: br-provider
                 use_dhcp: false
                 mtu: 9000
                 members:

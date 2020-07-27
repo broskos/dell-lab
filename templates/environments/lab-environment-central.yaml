@@ -18,7 +18,7 @@ parameter_defaults:
   NeutronBridgeMappings:
     - tenant:br-tenant
     - datacentre:br-ex
-    - management:br-mgmt
+    - ovs-provider:br-provider
     - floating-ips:br-float
 
   ControllerControlPlaneSubnet: ctlplane-subnet

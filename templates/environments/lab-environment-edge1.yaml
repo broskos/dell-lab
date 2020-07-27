@@ -13,7 +13,7 @@ parameter_defaults:
 
   NeutronBridgeMappings:
     - tenant:br-tenant
-    - mgmt-edge1:br-edge1
+    - ovs-provider-edge1:br-edge1
 
   ComputeEdge1ControlPlaneSubnet: edge1
   ComputeEdge1vduControlPlaneSubnet: edge1

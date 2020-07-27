@@ -263,15 +263,6 @@ resources:
                   name: nic6
                   mtu: 1500
                   use_dhcp: false
-              - type: ovs_bridge
-                name: br-mgmt
-                use_dhcp: false
-                mtu: 9000
-                members:
-                - type: interface
-                  name: nic7
-                  mtu: 9000
-                  use_dhcp: false
 
 outputs:
   OS::stack_id:
