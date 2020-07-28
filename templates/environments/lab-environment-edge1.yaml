@@ -55,9 +55,9 @@ parameter_defaults:
   ComputeVduEdge1Image: "overcloud-realtime-compute"
   ComputeVduEdge1Parameters:
     KernelArgs: "default_hugepagesz=1GB hugepagesz=1G hugepages=350 nx_huge_pages_recovery_ratio=0 intel_iommu=on iommu=pt elevator=cfq audit=1 nomodeset intel_idle.max_cstate=1 tsc=reliable rcu_nocb_poll=1 clocksource=tsc pcie_aspm.policy=performance"
-    IsolCpusList: 2-35,38-71
-    NovaComputeCpuDedicatedSet: 2-35,38-71
-    NovaComputeCpuSharedSet: 0,1,36,37
+    IsolCpusList:  2-39,42-79
+    NovaComputeCpuDedicatedSet:  2-39,42-79
+    NovaComputeCpuSharedSet:  0,1,40,41
     NovaEnableRbdBackend: false
     NeutronPhysicalDevMappings:
       - fronthaul1-edge1:ens1f0
