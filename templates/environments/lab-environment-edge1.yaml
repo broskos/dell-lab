@@ -1,10 +1,10 @@
 resource_registry:
 # Configure Networks
 
-  OS::TripleO::ComputeEdge1::Net::SoftwareConfig:
-    ../network/config/bond-with-vlans/compute-e1.yaml
-  OS::TripleO::ComputeEdge1vdu::Net::SoftwareConfig:
-    ../network/config/bond-with-vlans/compute-e1vdu.yaml
+  OS::TripleO::ComputeSriovEdge1::Net::SoftwareConfig:
+    ../network/config/bond-with-vlans/computeSriov-e1.yaml
+  OS::TripleO::ComputeVduEdge1::Net::SoftwareConfig:
+    ../network/config/bond-with-vlans/computeVdu-e1.yaml
 
 parameter_defaults:
 
@@ -15,14 +15,14 @@ parameter_defaults:
     - tenant:br-tenant
     - ovs-provider-edge1:br-edge1
 
-  ComputeEdge1ControlPlaneSubnet: edge1
-  ComputeEdge1vduControlPlaneSubnet: edge1
-  OvercloudComputeEdge1Flavor: compute-edge1
-  OvercloudComputeEdge1vduFlavor: compute-edge1vdu
-  ComputeEdge1Count: 1
-  ComputeEdge1vduCount: 1
+  ComputeSriovEdge1ControlPlaneSubnet: edge1
+  ComputeVduEdge1ControlPlaneSubnet: edge1
+  OvercloudComputeSriovEdge1Flavor: computeSriov-edge1
+  OvercloudComputeVduEdge1Flavor: computeVdu-edge1
+  ComputeSriovEdge1Count: 1
+  ComputeVduEdge1vduCount: 1
 
-  ComputeEdge1Parameters:
+  ComputeSriovEdge1Parameters:
     KernelArgs: "default_hugepagesz=1GB hugepagesz=1G hugepages=350 intel_iommu=on iommu=pt"
     IsolCpusList: 2-35,38-71
     NovaComputeCpuDedicatedSet: 2-35,38-71
@@ -48,12 +48,12 @@ parameter_defaults:
       - devname: "ens7f1"
         physical_network: "sriov2-edge1"
 
-  ComputeEdge1ExtraConfig:
+  ComputeSriovEdge1ExtraConfig:
     nova::cpu_allocation_ratio: 1
     nova::compute::resume_guests_state_on_host_boot: true
 
-  ComputeEdge1vduImage: "overcloud-realtime-compute"
-  ComputeEdge1vduParameters:
+  ComputeVduEdge1Image: "overcloud-realtime-compute"
+  ComputeVduEdge1Parameters:
     KernelArgs: "default_hugepagesz=1GB hugepagesz=1G hugepages=350 nx_huge_pages_recovery_ratio=0 intel_iommu=on iommu=pt elevator=cfq audit=1 nomodeset intel_idle.max_cstate=1 tsc=reliable rcu_nocb_poll=1 clocksource=tsc pcie_aspm.policy=performance"
     IsolCpusList: 2-35,38-71
     NovaComputeCpuDedicatedSet: 2-35,38-71
@@ -97,7 +97,7 @@ parameter_defaults:
       - vendor_id: "1172"
         product_id: "5050"
 
-  ComputeEdge1vduExtraConfig:
+  ComputeVduEdge1ExtraConfig:
     nova::cpu_allocation_ratio: 1
     nova::compute::resume_guests_state_on_host_boot: true
     nova::pci::aliases:

@@ -185,9 +185,9 @@
     - OS::TripleO::Services::Zaqar
 
 ###############################################################################
-# Role: Compute                                                               #
+# Role: ComputeSriov                                                          #
 ###############################################################################
-- name: Compute
+- name: ComputeSriov
   description: |
     Basic Compute Node role
   CountDefault: 1
@@ -201,7 +201,7 @@
     Storage:
       subnet: storage_subnet
   default_route_networks: ['External']
-  HostnameFormatDefault: '%stackname%-compute-%index%'
+  HostnameFormatDefault: '%stackname%-computeSriov-%index%'
   RoleParametersDefault:
     TunedProfileName: "cpu-partitioning"
   update_serial: 25

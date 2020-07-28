@@ -13,9 +13,9 @@ parameter_defaults:
   - satellite.lab.roskosb.info:5000
 
   NeutronNetworkVLANRanges:
-    - ovs-provider:117:117
-    - ovs-provider-edge1:1117:1117
-    - ovs-provider-edge2:2117:2117
+    - ovs-provider:117,200:300
+    - ovs-provider-edge1:1117,1200:1300
+    - ovs-provider-edge2:2117,2200:2300
     - sriov1:200:300
     - sriov2:200:300
     - sriov1-edge1:1200:1300

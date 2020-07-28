@@ -47,9 +47,9 @@ virt-customize -a ~/images/overcloud-full.qcow2 --root-password password:redhat
 openstack overcloud image upload --image-path /home/stack/images/ --update-existing
 
 ###########################
-# Create HCI and edge leaf roles #
+# Create Sriov and edge leaf roles #
 ###########################
-ROLES="compute compute-edge1 compute-edge1vdu compute-edge2 compute-edge2vdu"
+ROLES="computeSriov computeSriov-edge1 computeVdu-edge1 computeSriov-edge2 computeVdu-edge2"
 for ROLE in $ROLES;do
  openstack flavor create --id auto --ram 4096 --disk 40 --vcpus 1 $ROLE
  openstack flavor set --property "cpu_arch"="x86_64" --property "capabilities:boot_option"="local" --property "capabilities:profile"="$ROLE" --property "resources:CUSTOM_BAREMETAL"="1" --property "resources:DISK_GB"="0" --property "resources:MEMORY_MB"="0" --property "resources:VCPU"="0" $ROLE

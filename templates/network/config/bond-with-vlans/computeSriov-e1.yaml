@@ -1,6 +1,6 @@
 heat_template_version: rocky
 description: >
-  Software Config to drive os-net-config with 2 bonded nics on a bridge with VLANs attached for the ComputeHCI role.
+  Software Config to drive os-net-config with 2 bonded nics on a bridge with VLANs attached for the ComputeSriovEdge1 role.
 parameters:
   ControlPlaneIp:
     default: ''
@@ -50,50 +50,6 @@ parameters:
     default: []
     description: >
       Routes for the internal_api network traffic.
-      JSON route e.g. [{'destination':'10.0.0.0/16', 'nexthop':'10.0.0.1'}]
-      Unless the default is changed, the parameter is automatically resolved
-      from the subnet host_routes attribute.
-    type: json
-  StorageIpSubnet:
-    default: ''
-    description: IP address/subnet on the storage network
-    type: string
-  StorageNetworkVlanID:
-    default: 170
-    description: Vlan ID for the storage network traffic.
-    type: number
-  StorageMtu:
-    default: 1500
-    description: The maximum transmission unit (MTU) size(in bytes) that is
-      guaranteed to pass through the data path of the segments in the
-      Storage network.
-    type: number
-  StorageInterfaceRoutes:
-    default: []
-    description: >
-      Routes for the storage network traffic.
-      JSON route e.g. [{'destination':'10.0.0.0/16', 'nexthop':'10.0.0.1'}]
-      Unless the default is changed, the parameter is automatically resolved
-      from the subnet host_routes attribute.
-    type: json
-  StorageMgmtIpSubnet:
-    default: ''
-    description: IP address/subnet on the storage_mgmt network
-    type: string
-  StorageMgmtNetworkVlanID:
-    default: 180
-    description: Vlan ID for the storage_mgmt network traffic.
-    type: number
-  StorageMgmtMtu:
-    default: 1500
-    description: The maximum transmission unit (MTU) size(in bytes) that is
-      guaranteed to pass through the data path of the segments in the
-      StorageMgmt network.
-    type: number
-  StorageMgmtInterfaceRoutes:
-    default: []
-    description: >
-      Routes for the storage_mgmt network traffic.
       JSON route e.g. [{'destination':'10.0.0.0/16', 'nexthop':'10.0.0.1'}]
       Unless the default is changed, the parameter is automatically resolved
       from the subnet host_routes attribute.
@@ -181,9 +137,8 @@ resources:
           data:
             - {get_param: ControlPlaneMtu}
             - {get_param: InternalApiMtu}
-            - {get_param: StorageMtu}
-            - {get_param: StorageMgmtMtu}
             - {get_param: TenantMtu}
+
 
   OsNetConfigImpl:
     type: OS::Heat::SoftwareConfig
@@ -198,9 +153,13 @@ resources:
               network_config:
               - type: ovs_bridge
                 name: br-tenant
+                mtu:
+                  get_attr: [MinViableMtu, value]
                 use_dhcp: false
                 dns_servers:
                   get_param: DnsServers
+                domain:
+                  get_param: DnsSearchDomains
                 addresses:
                 - ip_netmask:
                     list_join:
@@ -215,14 +174,23 @@ resources:
                   name: bond0
                   bonding_options:
                     get_param: BondInterfaceOvsOptions
+                  mtu:
+                    get_attr: [MinViableMtu, value]
+                  # force the MAC address of the bridge to this interface
                   members:
                   - type: interface
                     name: nic1
+                    mtu:
+                      get_attr: [MinViableMtu, value]
                     # force the MAC address of the bridge to this interface
                     primary: true
                   - type: interface
                     name: nic2
+                    mtu:
+                      get_attr: [MinViableMtu, value]
                 - type: vlan
+                  mtu:
+                    get_param: InternalApiMtu
                   vlan_id:
                     get_param: InternalApiNetworkVlanID
                   addresses:
@@ -244,22 +212,6 @@ resources:
                       - get_param: TenantInterfaceRoutes
                 - type: vlan
                   mtu:
-                    get_param: StorageMgmtMtu
-                  vlan_id:
-                    get_param: StorageMgmtNetworkVlanID
-                  addresses:
-                  - ip_netmask:
-                      get_param: StorageMgmtIpSubnet
-                - type: vlan
-                  mtu:
-                    get_param: StorageMtu
-                  vlan_id:
-                    get_param: StorageNetworkVlanID
-                  addresses:
-                  - ip_netmask:
-                      get_param: StorageIpSubnet
-                - type: vlan
-                  mtu:
                     get_param: ExternalMtu
                   vlan_id:
                     get_param: ExternalNetworkVlanID
@@ -273,7 +225,7 @@ resources:
                           next_hop:
                             get_param: ExternalInterfaceDefaultRoute
               - type: ovs_bridge
-                name: br-provider
+                name: br-edge1
                 use_dhcp: false
                 mtu: 9000
                 members:

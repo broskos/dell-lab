@@ -2,8 +2,8 @@ resource_registry:
 # Configure Networks
   OS::TripleO::Controller::Net::SoftwareConfig:
     ../network/config/multiple-nics/controller.yaml
-  OS::TripleO::Compute::Net::SoftwareConfig:
-    ../network/config/bond-with-vlans/compute.yaml
+  OS::TripleO::ComputeSriov::Net::SoftwareConfig:
+    ../network/config/bond-with-vlans/computeSriov.yaml
 
 # Disable Swift
   OS::TripleO::Services::SwiftProxy: OS::Heat::None
@@ -22,14 +22,13 @@ parameter_defaults:
     - floating-ips:br-float
 
   ControllerControlPlaneSubnet: ctlplane-subnet
-  ComputeControlPlaneSubnet: ctlplane-subnet
-  ComputeHCIControlPlaneSubnet: ctlplane-subnet
+  ComputeSriovControlPlaneSubnet: ctlplane-subnet
   VipSubnetMap:
     ctlplane: ctlplane-subnet
   OvercloudControllerFlavor: control
-  OvercloudComputeFlavor: compute
+  OvercloudComputeSriovFlavor: computeSriov
   ControllerCount: 3
-  ComputeCount: 0
+  ComputeSriovCount: 1
 
   NovaSchedulerDefaultFilters:
     - RetryFilter
@@ -53,7 +52,7 @@ parameter_defaults:
         product_id: '5050'
         device_type: 'type-VF'
 
-  ComputeParameters:
+  ComputeSriovParameters:
     KernelArgs: "default_hugepagesz=1GB hugepagesz=1G hugepages=128 intel_iommu=on iommu=pt"
     IsolCpusList: 2-35,38-71
     NovaComputeCpuDedicatedSet: 2-35,38-71
@@ -78,7 +77,7 @@ parameter_defaults:
       - devname: "ens7f1"
         physical_network: "sriov2"
 
-  ComputeExtraConfig:
+  ComputeSriovExtraConfig:
     nova::cpu_allocation_ratio: 1
     nova::compute::resume_guests_state_on_host_boot: true
 

@@ -1,7 +1,7 @@
 ###############################################################################
-# Role: ComputeEdge1                                                               #
+# Role: ComputeSriovEdge1                                                     #
 ###############################################################################
-- name: ComputeEdge1
+- name: ComputeSriovEdge1
   description: |
     Basic Compute Node role for Edge1
   CountDefault: 1
@@ -13,7 +13,7 @@
     Tenant:
       subnet: tenant_edge1_subnet
   default_route_networks: ['External']
-  HostnameFormatDefault: '%stackname%-compute-%index%'
+  HostnameFormatDefault: '%stackname%-computeSriov-%index%'
   RoleParametersDefault:
     TunedProfileName: "cpu-partitioning"
   update_serial: 25
@@ -67,9 +67,9 @@
     - OS::TripleO::Services::OVNMetadataAgent
 
 ###############################################################################
-# Role: ComputeEdge1vdu                                                               #
+# Role: ComputeVduEdge1                                                       #
 ###############################################################################
-- name: ComputeEdge1vdu
+- name: ComputeVduEdge1
   description: |
     Basic ComputeVdu Node role for Edge1
   CountDefault: 1
@@ -81,7 +81,7 @@
     Tenant:
       subnet: tenant_edge1_subnet
   default_route_networks: ['External']
-  HostnameFormatDefault: '%stackname%-computevdu-%index%'
+  HostnameFormatDefault: '%stackname%-computeVdu-%index%'
   RoleParametersDefault:
     TunedProfileName: "realtime-virtual-host"
     NovaLibvirtMemStatsPeriodSeconds: 0
