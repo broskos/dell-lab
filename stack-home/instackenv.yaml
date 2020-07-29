@@ -1,7 +1,7 @@
 ---
 nodes:
 - mac:
-  - 56:6f:af:be:00:2e
+  - 56:6f:c3:ba:00:0f
   name: controller1
   cpu: '4'
   memory: '6144'
@@ -10,11 +10,11 @@ nodes:
   pm_type: staging-ovirt
   pm_user: admin@internal
   pm_password: redhat
-  pm_addr: rhvm.lab.roskosb.info
+  pm_addr: rhv-m.escwq.com
   pm_vm_name: controller1
   capabilities: profile:control,boot_option:local
 - mac:
-  - 56:6f:af:be:00:26
+  - 56:6f:c3:ba:00:17
   name: controller2
   cpu: '4'
   memory: '6144'
@@ -23,11 +23,11 @@ nodes:
   pm_type: staging-ovirt
   pm_user: admin@internal
   pm_password: redhat
-  pm_addr: rhvm.lab.roskosb.info
+  pm_addr: rhv-m.escwq.com
   pm_vm_name: controller2
   capabilities: profile:control,boot_option:local
 - mac:
-  - 56:6f:af:be:00:1e
+  - 56:6f:c3:ba:00:1f
   name: controller3
   cpu: '4'
   memory: '6144'
@@ -36,7 +36,7 @@ nodes:
   pm_type: staging-ovirt
   pm_user: admin@internal
   pm_password: redhat
-  pm_addr: rhvm.lab.roskosb.info
+  pm_addr: rhv-m.escwq.com
   pm_vm_name: controller3
   capabilities: profile:control,boot_option:local
 - mac:
@@ -75,27 +75,27 @@ nodes:
   pm_password: calvin
   pm_addr: 172.17.120.13
   capabilities: profile:compute-edge1,boot_option:local
-- mac:
-  - e4:43:4b:58:52:70
-  name: edge2vdu-1
-  cpu: '4'
-  memory: '6144'
-  disk: '40'
-  arch: x86_64
-  pm_type: pxe_drac
-  pm_user: root
-  pm_password: calvin
-  pm_addr: 172.17.120.37
-  capabilities: profile:compute-edge2vdu,boot_option:local
-- mac:
-  - e4:43:4b:58:29:d0
-  name: edge2-1
-  cpu: '4'
-  memory: '6144'
-  disk: '40'
-  arch: x86_64
-  pm_type: pxe_drac
-  pm_user: root
-  pm_password: calvin
-  pm_addr: 172.17.120.35
-  capabilities: profile:compute-edge2,boot_option:local
+#- mac:
+#  - e4:43:4b:58:52:70
+#  name: edge2vdu-1
+#  cpu: '4'
+#  memory: '6144'
+#  disk: '40'
+#  arch: x86_64
+#  pm_type: pxe_drac
+#  pm_user: root
+#  pm_password: calvin
+#  pm_addr: 172.17.120.37
+#  capabilities: profile:compute-edge2vdu,boot_option:local
+#- mac:
+#  - e4:43:4b:58:29:d0
+#  name: edge2-1
+#  cpu: '4'
+#  memory: '6144'
+#  disk: '40'
+#  arch: x86_64
+#  pm_type: pxe_drac
+#  pm_user: root
+#  pm_password: calvin
+#  pm_addr: 172.17.120.35
+#  capabilities: profile:compute-edge2,boot_option:local

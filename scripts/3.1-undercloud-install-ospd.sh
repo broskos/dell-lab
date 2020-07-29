@@ -34,7 +34,7 @@ sudo dnf install -y rhosp-director-images rhosp-director-images-ipa
 #############################
 mkdir -p ~/images
 pushd ~/images
-for i in /usr/share/rhosp-director-images/overcloud-full-latest-16.0.tar /usr/share/rhosp-director-images/ironic-python-agent-latest-16.0.tar; do
+for i in /usr/share/rhosp-director-images/overcloud-full-latest-16.1.tar /usr/share/rhosp-director-images/ironic-python-agent-latest-16.1.tar; do
 	tar -xvf $i;
 done
 popd
