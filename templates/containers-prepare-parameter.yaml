@@ -6,10 +6,10 @@
 parameter_defaults:
   ContainerImagePrepare:
   - set:
-      ceph_image: default-dev-osp16-1-osp16_containers-rhceph-4-rhel8
+      ceph_image: default-dev-osp16_1-osp16_containers-rhceph-4-rhel8
       ceph_namespace: satellite2.lab.roskosb.info:5000
       ceph_tag: latest
-      name_prefix: default-dev-osp16-1-osp16_containers
+      name_prefix: default-dev-osp16_1-osp16_containers
       name_suffix: ''
       namespace: satellite2.lab.roskosb.info:5000
       neutron_driver: ovs
