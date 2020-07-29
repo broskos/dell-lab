@@ -6,25 +6,13 @@
 parameter_defaults:
   ContainerImagePrepare:
   - set:
-      ceph_alertmanager_image: lab-dev-osp16-osp16_containers-ose-prometheus-alertmanager
-      ceph_alertmanager_namespace: satellite.lab.roskosb.info:5000
-      ceph_alertmanager_tag: 4.1
-      ceph_grafana_image: lab-dev-osp16-osp16_containers-ose-grafana
-      ceph_grafana_namespace: satellite.lab.roskosb.info:5000
-      ceph_grafana_tag: 4.1
-      ceph_image: lab-dev-osp16-osp16_containers-rhceph-4-rhel8
-      ceph_namespace: satellite.lab.roskosb.info:5000
-      ceph_node_exporter_image: lab-dev-osp16-osp16_containers-ose-prometheus-node-exporter
-      ceph_node_exporter_namespace: satellite.lab.roskosb.info:5000
-      ceph_node_exporter_tag: v4.1
-      ceph_prometheus_image: lab-dev-osp16-osp16_containers-ose-prometheus
-      ceph_prometheus_namespace: satellite.lab.roskosb.info:5000
-      ceph_prometheus_tag: 4.1
+      ceph_image: default-dev-osp16-1-osp16_containers-rhceph-4-rhel8
+      ceph_namespace: satellite2.lab.roskosb.info:5000
       ceph_tag: latest
-      name_prefix: lab-dev-osp16-osp16_containers
+      name_prefix: default-dev-osp16-1-osp16_containers
       name_suffix: ''
-      namespace: satellite.lab.roskosb.info:5000
+      namespace: satellite2.lab.roskosb.info:5000
       neutron_driver: ovs
       rhel_containers: false
-      tag: '16.0'
+      tag: '16.1'
     tag_from_label: '{version}-{release}'
