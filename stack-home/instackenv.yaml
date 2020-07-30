@@ -27,7 +27,7 @@ nodes:
   pm_vm_name: controller2
   capabilities: profile:control,boot_option:local
 - mac:
-  - 56:6f:c3:ba:00:1f
+  - 56:6f:c3:ba:00:03
   name: controller3
   cpu: '4'
   memory: '6144'
