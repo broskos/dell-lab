@@ -43,8 +43,8 @@ parameter_defaults:
 
   RhsmVars:
     rhsm_method: "satellite"
-    rhsm_server_hostname: "satellite.lab.roskosb.info"
-    rhsm_baseurl: "https://satellite.lab.roskosb.info/pulp/repos"
-    rhsm_activation_key: "osp16-dev"
-    rhsm_org_id: "lab"
+    rhsm_server_hostname: "satellite2.lab.roskosb.info"
+    rhsm_baseurl: "https://satellite2.lab.roskosb.info/pulp/repos"
+    rhsm_activation_key: "osp16-1-dev-overcloud"
+    rhsm_org_id: "Default"
     rhsm_force_register: True
