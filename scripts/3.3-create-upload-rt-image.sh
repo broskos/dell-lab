@@ -32,7 +32,7 @@ virt-customize -a overcloud-realtime-compute.qcow2 -v \
 
 # loop to set smp_affinity at boot time
 for i in /proc/irq/*/smp_affinity; do
- echo 00000030,00000003 > \$i 2>/dev/null
+ echo 00000300,00000003 > \$i 2>/dev/null
 done
 
 EOF'
