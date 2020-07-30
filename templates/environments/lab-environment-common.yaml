@@ -9,8 +9,8 @@ parameter_defaults:
   BondInterfaceOvsOptions: "mode=4 miimon=100"
 
   DockerInsecureRegistryAddress:
-  - 172.17.118.8:5000
-  - satellite.lab.roskosb.info:5000
+  - 172.17.118.6:5000
+  - satellite2.lab.roskosb.info:5000
 
   NeutronNetworkVLANRanges:
     - ovs-provider:117,200:300
