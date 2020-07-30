@@ -60,7 +60,7 @@ for REPO in "${REPOS[@]}"; do
   echo "Working on: ${REPO}"
   hammer repository-set enable \
   --organization "${MY_ORG}" \
-  --releasever 8.1 \
+  --releasever 8.2 \
   --name "${REPO}"
 done
 

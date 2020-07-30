@@ -14,7 +14,7 @@ fi
 # Upload RHEL Images to Glance
 #################################
 openstack image create --public --file ~/images/rhel-server-7.7-x86_64-kvm.qcow2 --disk-format qcow2 --container bare rhel-77
-openstack image create --public --file ~/images/rhel-8.1-x86_64-kvm.qcow2 --disk-format qcow2 --container bare rhel-81
+openstack image create --public --file ~/images/rhel-8.2-x86_64-kvm.qcow2 --disk-format qcow2 --container bare rhel-82
 
 ##########################
 # Create Default Flavors #
