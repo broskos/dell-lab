@@ -12,7 +12,7 @@ export org=Default
 export director_activation_key='osp16-1-dev-director'
 
 
-export hostname='brents-director'
+export hostname='director'
 export ip_address='172.17.118.14'
 export domain='lab.roskosb.info'
 export stack_password='redhat'
