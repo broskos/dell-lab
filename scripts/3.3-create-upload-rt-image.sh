@@ -15,7 +15,7 @@ cp -f overcloud-full.qcow2 overcloud-realtime-compute.qcow2
 
 virt-customize -a overcloud-realtime-compute.qcow2 --run-command \
 "subscription-manager register --username=$cdn_user --password=$CDNPASS" \
---run-command "subscription-manager attach --pool $pool" \
+--run-command "subscription-manager attach --auto" \
 --run-command "subscription-manager release --set 8.2"
 
 virt-customize -a overcloud-realtime-compute.qcow2 -v \
