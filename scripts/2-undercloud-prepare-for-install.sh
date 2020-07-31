@@ -20,7 +20,7 @@ echo "stack ALL=(root) NOPASSWD:ALL" | tee -a /etc/sudoers.d/stack
 chmod 0440 /etc/sudoers.d/stack
 
 # install director installer package
-dnf install -y python3-tripleoclient git gcc python3-devel tmux python3-ovirt-engine-sdk4.x86_64 libguestfs-tools katello-agent
+dnf install -y python3-tripleoclient git gcc python3-devel tmux python3-ovirt-engine-sdk4.x86_64 libguestfs-tools katello-agent ceph-ansible
 
 # update all packages and reboot
 dnf update -y && reboot
