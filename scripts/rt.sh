@@ -12,7 +12,7 @@ subscription-manager repos \
 --enable=rhel-8-for-x86_64-nfv-rpms \
 --enable=advanced-virt-for-rhel-8-x86_64-rpms \
 --enable=fast-datapath-for-rhel-8-x86_64-rpms
-dnf -v -y --setopt=protected_packages= erase kernel.$(uname -m)
+#dnf -v -y --setopt=protected_packages= erase kernel.$(uname -m)
 dnf -v -y install kernel-rt kernel-rt-kvm tuned-profiles-nfv-host kernel-rt-devel kernel-devel gcc make elfutils-libelf-devel libuuid-devel
 echo "isolate_managed_irq=Y" >> /etc/tuned/realtime-virtual-host-variables.conf
 grubby --set-default /boot/vmlinuz*rt*
