@@ -25,11 +25,11 @@ openstack flavor create --ram 2048 --disk 10 --vcpus 1 --property hw:cpu_policy=
 #############################
 # Create Networks without routed provider network#
 #############################
-openstack network create --provider-physical-network management --provider-network-type vlan --provider-segment 117 management-central-net
+openstack network create --provider-physical-network ovs-provider --provider-network-type vlan --provider-segment 117 management-central-net
 openstack subnet create --network management-central-net --no-dhcp --subnet-range 172.17.117.0/26 --gateway 172.17.117.62 --dns-nameserver 172.17.118.8 management-central-subnet
-openstack network create --provider-physical-network mgmt-edge1 --provider-network-type vlan --provider-segment 1117 management-edge1-net
+openstack network create --provider-physical-network ovs-provider-edge1 --provider-network-type vlan --provider-segment 1117 management-edge1-net
 openstack subnet create --network management-edge1-net --no-dhcp --subnet-range 172.17.117.64/26 --gateway 172.17.117.126 --dns-nameserver 172.17.118.8 management-edge1-subnet
-openstack network create --provider-physical-network mgmt-edge2 --provider-network-type vlan --provider-segment 2117 management-edge2-net
+openstack network create --provider-physical-network ovs-provider-edge2 --provider-network-type vlan --provider-segment 2117 management-edge2-net
 openstack subnet create --network management-edge2-net --no-dhcp --subnet-range 172.17.117.128/26 --gateway 172.17.117.190 --dns-nameserver 172.17.118.8 management-edge2-subnet
 
 openstack network create --provider-physical-network sriov1 --provider-network-type vlan --provider-segment 202 backhaul1-central-net
