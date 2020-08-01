@@ -168,10 +168,6 @@ test-edge2
 exit 0
 
 #======================= Create Testing server for each network  ================================================
-# seems to be some sort of cli bug, so for now creating policy groups through horizon
-# for GROUP in management backhaul1 midhaul1 fronthaul1 ar1; do
-# openstack server group create --policy soft-anti-affinity $GROUP
-# done
 
 # Create central VMs 1 net per VM
 for EDGE in central; do
