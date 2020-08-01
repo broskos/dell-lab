@@ -20,7 +20,7 @@ openstack image create --public --file ~/images/rhel-8.2-x86_64-kvm.qcow2 --disk
 # Create Default Flavors #
 ##########################
 openstack flavor create --ram 2048 --disk 10 --vcpus 1 m1.small
-openstack flavor create --ram 2048 --disk 10 --vcpus 1 --property hw:cpu_policy=dedicated --property hw:mem_page_size=1GB --property hw:emulator_threads_policy=share m1.small-dedicated
+openstack flavor create --ram 2048 --disk 10 --vcpus 1 --property hw:cpu_policy=dedicated --property hw:mem_page_size=1GB --property hw:pci_numa_affinity_policy=required --property hw:emulator_threads_policy=share m1.small-dedicated
 
 #############################
 # Create Networks without routed provider network#
@@ -34,66 +34,86 @@ openstack subnet create --network management-edge2-net --no-dhcp --subnet-range 
 
 openstack network create --provider-physical-network sriov1 --provider-network-type vlan --provider-segment 202 backhaul1-central-net
 openstack subnet create --network backhaul1-central-net --no-dhcp --subnet-range 192.168.202.0/26 --gateway 192.168.202.62 \
+--allocation-pool start=192.168.202.1,end=192.168.202.30 \
 --host-route destination=192.168.202.64/26,gateway=192.168.202.62 --host-route destination=192.168.202.128/26,gateway=192.168.202.62 backhaul1-central-subnet
 openstack network create --provider-physical-network sriov1-edge1 --provider-network-type vlan --provider-segment 1202 backhaul1-edge1-net
 openstack subnet create --network backhaul1-edge1-net --no-dhcp --subnet-range 192.168.202.64/26 --gateway 192.168.202.126 \
+--allocation-pool start=192.168.202.65,end=192.168.202.94 \
 --host-route destination=192.168.202.0/26,gateway=192.168.202.126 --host-route destination=192.168.202.128/26,gateway=192.168.202.126 backhaul1-edge1-subnet
 openstack network create --provider-physical-network sriov1-edge2 --provider-network-type vlan --provider-segment 2202 backhaul1-edge2-net
 openstack subnet create --network backhaul1-edge2-net --no-dhcp --subnet-range 192.168.202.128/26 --gateway 192.168.202.190 \
+--allocation-pool start=192.168.202.129,end=192.168.202.158 \
 --host-route destination=192.168.202.0/26,gateway=192.168.202.190 --host-route destination=192.168.202.64/26,gateway=192.168.202.190 backhaul1-edge2-subnet
 openstack network create --provider-physical-network sriov2 --provider-network-type vlan --provider-segment 202 backhaul2-central-net
 openstack subnet create --network backhaul2-central-net --no-dhcp --subnet-range 192.168.202.0/26 --gateway 192.168.202.62 \
+--allocation-pool start=192.168.202.31,end=192.168.202.60 \
 --host-route destination=192.168.202.64/26,gateway=192.168.202.62 --host-route destination=192.168.202.128/26,gateway=192.168.202.62 backhaul2-central-subnet
 openstack network create --provider-physical-network sriov2-edge1 --provider-network-type vlan --provider-segment 1202 backhaul2-edge1-net
 openstack subnet create --network backhaul2-edge1-net --no-dhcp --subnet-range 192.168.202.64/26 --gateway 192.168.202.126 \
+--allocation-pool start=192.168.202.95,end=192.168.202.124 \
 --host-route destination=192.168.202.0/26,gateway=192.168.202.126 --host-route destination=192.168.202.128/26,gateway=192.168.202.126 backhaul2-edge1-subnet
 openstack network create --provider-physical-network sriov2-edge2 --provider-network-type vlan --provider-segment 2202 backhaul2-edge2-net
 openstack subnet create --network backhaul2-edge2-net --no-dhcp --subnet-range 192.168.202.128/26 --gateway 192.168.202.190 \
+--allocation-pool start=192.168.202.159,end=192.168.202.188 \
 --host-route destination=192.168.202.0/26,gateway=192.168.202.190 --host-route destination=192.168.202.64/26,gateway=192.168.202.190 backhaul2-edge2-subnet
 
 openstack network create --provider-physical-network sriov1 --provider-network-type vlan --provider-segment 205 midhaul1-central-net
 openstack subnet create --network midhaul1-central-net --no-dhcp --subnet-range 192.168.205.0/26 --gateway 192.168.205.62 \
+--allocation-pool start=192.168.205.1,end=192.168.205.30 \
 --host-route destination=192.168.205.64/26,gateway=192.168.205.62 --host-route destination=192.168.205.128/26,gateway=192.168.205.62 midhaul1-central-subnet
 openstack network create --provider-physical-network sriov1-edge1 --provider-network-type vlan --provider-segment 1205 midhaul1-edge1-net
 openstack subnet create --network midhaul1-edge1-net --no-dhcp --subnet-range 192.168.205.64/26 --gateway 192.168.205.126 \
+--allocation-pool start=192.168.205.65,end=192.168.205.94 \
 --host-route destination=192.168.205.0/26,gateway=192.168.205.126 --host-route destination=192.168.205.128/26,gateway=192.168.205.126 midhaul1-edge1-subnet
 openstack network create --provider-physical-network sriov1-edge2 --provider-network-type vlan --provider-segment 2205 midhaul1-edge2-net
 openstack subnet create --network midhaul1-edge2-net --no-dhcp --subnet-range 192.168.205.128/26 --gateway 192.168.205.190 \
+--allocation-pool start=192.168.205.129,end=192.168.205.158 \
 --host-route destination=192.168.205.0/26,gateway=192.168.205.190 --host-route destination=192.168.205.64/26,gateway=192.168.205.190 midhaul1-edge2-subnet
 openstack network create --provider-physical-network sriov2 --provider-network-type vlan --provider-segment 205 midhaul2-central-net
 openstack subnet create --network midhaul2-central-net --no-dhcp --subnet-range 192.168.205.0/26 --gateway 192.168.205.62 \
+--allocation-pool start=192.168.205.31,end=192.168.205.60 \
 --host-route destination=192.168.205.64/26,gateway=192.168.205.62 --host-route destination=192.168.205.128/26,gateway=192.168.205.62 midhaul2-central-subnet
 openstack network create --provider-physical-network sriov2-edge1 --provider-network-type vlan --provider-segment 1205 midhaul2-edge1-net
 openstack subnet create --network midhaul2-edge1-net --no-dhcp --subnet-range 192.168.205.64/26 --gateway 192.168.205.126 \
+--allocation-pool start=192.168.205.95,end=192.168.205.124 \
 --host-route destination=192.168.205.0/26,gateway=192.168.205.126 --host-route destination=192.168.205.128/26,gateway=192.168.205.126 midhaul2-edge1-subnet
 openstack network create --provider-physical-network sriov2-edge2 --provider-network-type vlan --provider-segment 2205 midhaul2-edge2-net
 openstack subnet create --network midhaul2-edge2-net --no-dhcp --subnet-range 192.168.205.128/26 --gateway 192.168.205.190 \
+--allocation-pool start=192.168.205.159,end=192.168.205.188 \
 --host-route destination=192.168.205.0/26,gateway=192.168.205.190 --host-route destination=192.168.205.64/26,gateway=192.168.205.190 midhaul2-edge2-subnet
 
 openstack network create --provider-physical-network sriov1-edge1 --provider-network-type vlan --provider-segment 1203 fronthaul1-edge1-net
 openstack subnet create --network fronthaul1-edge1-net --no-dhcp --subnet-range 192.168.203.64/26 --gateway 192.168.203.126 \
+--allocation-pool start=192.168.203.65,end=192.168.203.94 \
 --host-route destination=192.168.203.0/26,gateway=192.168.203.126 --host-route destination=192.168.203.128/26,gateway=192.168.203.126 fronthaul1-edge1-subnet
 openstack network create --provider-physical-network sriov1-edge2 --provider-network-type vlan --provider-segment 2203 fronthaul1-edge2-net
 openstack subnet create --network fronthaul1-edge2-net --no-dhcp --subnet-range 192.168.203.128/26 --gateway 192.168.203.190 \
+--allocation-pool start=192.168.203.129,end=192.168.203.158 \
 --host-route destination=192.168.203.0/26,gateway=192.168.203.190 --host-route destination=192.168.203.64/26,gateway=192.168.203.190 fronthaul1-edge2-subnet
 openstack network create --provider-physical-network sriov2-edge1 --provider-network-type vlan --provider-segment 1203 fronthaul2-edge1-net
 openstack subnet create --network fronthaul2-edge1-net --no-dhcp --subnet-range 192.168.203.64/26 --gateway 192.168.203.126 \
+--allocation-pool start=192.168.203.95,end=192.168.203.124 \
 --host-route destination=192.168.203.0/26,gateway=192.168.203.126 --host-route destination=192.168.203.128/26,gateway=192.168.203.126 fronthaul2-edge1-subnet
 openstack network create --provider-physical-network sriov2-edge2 --provider-network-type vlan --provider-segment 2203 fronthaul2-edge2-net
 openstack subnet create --network fronthaul2-edge2-net --no-dhcp --subnet-range 192.168.203.128/26 --gateway 192.168.203.190 \
+--allocation-pool start=192.168.203.159,end=192.168.203.188 \
 --host-route destination=192.168.203.0/26,gateway=192.168.203.190 --host-route destination=192.168.203.64/26,gateway=192.168.203.190 fronthaul2-edge2-subnet
 
 openstack network create --provider-physical-network sriov1-edge1 --provider-network-type vlan --provider-segment 1204 ar1-edge1-net
 openstack subnet create --network ar1-edge1-net --no-dhcp --subnet-range 192.168.204.64/26 --gateway 192.168.204.126 \
+--allocation-pool start=192.168.204.65,end=192.168.204.94 \
 --host-route destination=192.168.204.0/26,gateway=192.168.204.126 --host-route destination=192.168.204.128/26,gateway=192.168.204.126 ar1-edge1-subnet
 openstack network create --provider-physical-network sriov1-edge2 --provider-network-type vlan --provider-segment 2204 ar1-edge2-net
 openstack subnet create --network ar1-edge2-net --no-dhcp --subnet-range 192.168.204.128/26 --gateway 192.168.204.190 \
+--allocation-pool start=192.168.204.129,end=192.168.204.158 \
 --host-route destination=192.168.204.0/26,gateway=192.168.204.190 --host-route destination=192.168.204.64/26,gateway=192.168.204.190 ar1-edge2-subnet
 openstack network create --provider-physical-network sriov2-edge1 --provider-network-type vlan --provider-segment 1204 ar2-edge1-net
 openstack subnet create --network ar2-edge1-net --no-dhcp --subnet-range 192.168.204.64/26 --gateway 192.168.204.126 \
+--allocation-pool start=192.168.204.95,end=192.168.204.124 \
 --host-route destination=192.168.204.0/26,gateway=192.168.204.126 --host-route destination=192.168.204.128/26,gateway=192.168.204.126 ar2-edge1-subnet
 openstack network create --provider-physical-network sriov2-edge2 --provider-network-type vlan --provider-segment 2204 ar2-edge2-net
 openstack subnet create --network ar2-edge2-net --no-dhcp --subnet-range 192.168.204.128/26 --gateway 192.168.204.190 \
+--allocation-pool start=192.168.204.159,end=192.168.204.188 \
 --host-route destination=192.168.204.0/26,gateway=192.168.204.190 --host-route destination=192.168.204.64/26,gateway=192.168.204.190 ar2-edge2-subnet
 
 # increase quotas for admin project
