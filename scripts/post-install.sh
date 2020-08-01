@@ -26,11 +26,11 @@ openstack flavor create --ram 2048 --disk 10 --vcpus 1 --property hw:cpu_policy=
 # Create Networks without routed provider network#
 #############################
 openstack network create --provider-physical-network ovs-provider --provider-network-type vlan --provider-segment 117 management-central-net
-openstack subnet create --network management-central-net --no-dhcp --subnet-range 172.17.117.0/26 --gateway 172.17.117.62 --dns-nameserver 172.17.118.8 management-central-subnet
+openstack subnet create --network management-central-net --no-dhcp --subnet-range 172.17.117.0/26 --gateway 172.17.117.62 --dns-nameserver 172.17.118.6 management-central-subnet
 openstack network create --provider-physical-network ovs-provider-edge1 --provider-network-type vlan --provider-segment 1117 management-edge1-net
-openstack subnet create --network management-edge1-net --no-dhcp --subnet-range 172.17.117.64/26 --gateway 172.17.117.126 --dns-nameserver 172.17.118.8 management-edge1-subnet
+openstack subnet create --network management-edge1-net --no-dhcp --subnet-range 172.17.117.64/26 --gateway 172.17.117.126 --dns-nameserver 172.17.118.6 management-edge1-subnet
 openstack network create --provider-physical-network ovs-provider-edge2 --provider-network-type vlan --provider-segment 2117 management-edge2-net
-openstack subnet create --network management-edge2-net --no-dhcp --subnet-range 172.17.117.128/26 --gateway 172.17.117.190 --dns-nameserver 172.17.118.8 management-edge2-subnet
+openstack subnet create --network management-edge2-net --no-dhcp --subnet-range 172.17.117.128/26 --gateway 172.17.117.190 --dns-nameserver 172.17.118.6 management-edge2-subnet
 
 openstack network create --provider-physical-network sriov1 --provider-network-type vlan --provider-segment 202 backhaul1-central-net
 openstack subnet create --network backhaul1-central-net --no-dhcp --subnet-range 192.168.202.0/26 --gateway 192.168.202.62 \
@@ -176,7 +176,8 @@ exit 0
 # Create central VMs 1 net per VM
 for EDGE in central; do
 for NETWORK in backhaul1 midhaul1 backhaul2 midhaul2 management; do
-for SERVER in {1..10}; do
+openstack server group create --policy soft-anti-affinity --os-compute-api 2.15 $NETWORK ||true
+for COUNT in {1..5}; do
 
 if [[ $NETWORK = "management" ]]
 then
@@ -185,18 +186,18 @@ else
   VNIC='--vnic-type direct'
 fi
 
-PORT=$(openstack port create --network $NETWORK-$EDGE-net $VNIC -f value -c id test-$SERVER-$NETWORK-$EDGE-$COUNT)
+PORT=$(openstack port create --network $NETWORK-$EDGE-net $VNIC -f value -c id test-$NETWORK-$EDGE-$COUNT)
 GROUP=$(openstack server group show $NETWORK -f value -c id)
 
 openstack server create --flavor m1.small-dedicated \
---image rhel-81 \
+--image rhel-82 \
 --port $PORT \
 --config-drive True \
 --availability-zone $EDGE \
 --key-name undercloud-key \
 --user-data ~/admin-user-data.txt \
 --hint group=$GROUP \
-test-$EDGE-$NETWORK-$SERVER
+test-$EDGE-$NETWORK-$COUNT
 
 done
 done
@@ -216,6 +217,7 @@ else
 fi
 
 for NETWORK in $NETWORKS; do
+openstack server group create --policy soft-anti-affinity --os-compute-api 2.15 $NETWORK ||true
 if [[ $NETWORK = "management" ]]
 then
   VNIC=''
@@ -227,7 +229,7 @@ PORT=$(openstack port create --network $NETWORK-$EDGE-net $VNIC -f value -c id t
 GROUP=$(openstack server group show $NETWORK -f value -c id)
 
 openstack server create --flavor m1.small-dedicated \
---image rhel-81 \
+--image rhel-82 \
 --port $PORT \
 --config-drive True \
 --availability-zone $AZ \
