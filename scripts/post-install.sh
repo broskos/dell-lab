@@ -176,7 +176,11 @@ exit 0
 # Create central VMs 1 net per VM
 for EDGE in central; do
 for NETWORK in backhaul1 midhaul1 backhaul2 midhaul2 management; do
-openstack server group create --policy soft-anti-affinity --os-compute-api 2.15 $NETWORK ||true
+openstack server group show $NETWORK -f value -c id
+if [[ $? -ne 0 ]]
+then
+  openstack server group create --policy soft-anti-affinity --os-compute-api 2.15 $NETWORK
+fi
 for COUNT in {1..5}; do
 
 if [[ $NETWORK = "management" ]]
@@ -204,7 +208,7 @@ done
 done
 
 # Create edge1/2 VMs 1 net per VM
-for EDGE in edge1 edge2; do
+for EDGE in edge1; do
 for SERVER in vcu vdu; do
 for COUNT in {1..2}; do
 if [[ $SERVER = "vcu" ]]
@@ -217,7 +221,11 @@ else
 fi
 
 for NETWORK in $NETWORKS; do
-openstack server group create --policy soft-anti-affinity --os-compute-api 2.15 $NETWORK ||true
+openstack server group show $NETWORK -f value -c id
+if [[ $? -ne 0 ]]
+then
+  openstack server group create --policy soft-anti-affinity --os-compute-api 2.15 $NETWORK
+fi
 if [[ $NETWORK = "management" ]]
 then
   VNIC=''
