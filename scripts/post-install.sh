@@ -21,7 +21,9 @@ openstack image create --public --file ~/images/rhel-8.2-x86_64-kvm.qcow2 --disk
 # Create Default Flavors #
 ##########################
 openstack flavor create --ram 2048 --disk 10 --vcpus 1 m1.small
-openstack flavor create --ram 2048 --disk 10 --vcpus 1 --property hw:cpu_policy=dedicated --property hw:mem_page_size=1GB --property hw:pci_numa_affinity_policy=required --property hw:emulator_threads_policy=share m1.small-dedicated
+openstack flavor create --ram 2048 --disk 10 --vcpus 1 --property hw:cpu_policy=dedicated \
+--property hw:mem_page_size=1GB --property hw:pci_numa_affinity_policy=required --property \
+hw:emulator_threads_policy=share m1.small-dedicated
 
 #############################
 # Create Networks without routed provider network#
