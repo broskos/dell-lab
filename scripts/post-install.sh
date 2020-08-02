@@ -89,11 +89,11 @@ openstack network create --provider-physical-network fronthaul1-edge1 --provider
 openstack subnet create --network fronthaul1-edge1-net --no-dhcp --subnet-range 192.168.203.64/26 --gateway 192.168.203.126 \
 --allocation-pool start=192.168.203.65,end=192.168.203.94 \
 --host-route destination=192.168.203.0/26,gateway=192.168.203.126 --host-route destination=192.168.203.128/26,gateway=192.168.203.126 fronthaul1-edge1-subnet
-openstack network create --provider-physical-network fronthaul2-edge2 --provider-network-type vlan --provider-segment 2203 fronthaul1-edge2-net
+openstack network create --provider-physical-network fronthaul1-edge2 --provider-network-type vlan --provider-segment 2203 fronthaul1-edge2-net
 openstack subnet create --network fronthaul1-edge2-net --no-dhcp --subnet-range 192.168.203.128/26 --gateway 192.168.203.190 \
 --allocation-pool start=192.168.203.129,end=192.168.203.158 \
 --host-route destination=192.168.203.0/26,gateway=192.168.203.190 --host-route destination=192.168.203.64/26,gateway=192.168.203.190 fronthaul1-edge2-subnet
-openstack network create --provider-physical-network fronthaul1-edge1 --provider-network-type vlan --provider-segment 1203 fronthaul2-edge1-net
+openstack network create --provider-physical-network fronthaul2-edge1 --provider-network-type vlan --provider-segment 1203 fronthaul2-edge1-net
 openstack subnet create --network fronthaul2-edge1-net --no-dhcp --subnet-range 192.168.203.64/26 --gateway 192.168.203.126 \
 --allocation-pool start=192.168.203.95,end=192.168.203.124 \
 --host-route destination=192.168.203.0/26,gateway=192.168.203.126 --host-route destination=192.168.203.128/26,gateway=192.168.203.126 fronthaul2-edge1-subnet
