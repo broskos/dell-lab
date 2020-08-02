@@ -210,7 +210,7 @@ PORT=$(openstack port create --network $NETWORK-$EDGE-net $VNIC -f value -c id t
 GROUP=$(openstack server group show $NETWORK -f value -c id)
 
 openstack server create --flavor m1.small-dedicated \
---image rhel-82 \
+--image rhel-77 \
 --port $PORT \
 --config-drive True \
 --availability-zone $EDGE \
@@ -253,7 +253,7 @@ PORT=$(openstack port create --network $NETWORK-$EDGE-net $VNIC -f value -c id t
 GROUP=$(openstack server group show $NETWORK -f value -c id)
 
 openstack server create --flavor m1.small-dedicated \
---image rhel-82 \
+--image rhel-77 \
 --port $PORT \
 --config-drive True \
 --availability-zone $AZ \
