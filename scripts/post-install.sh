@@ -25,6 +25,20 @@ openstack flavor create --ram 2048 --disk 10 --vcpus 1 --property hw:cpu_policy=
 --property hw:mem_page_size=1GB --property hw:pci_numa_affinity_policy=required --property \
 hw:emulator_threads_policy=share m1.small-dedicated
 
+openstack flavor create --ram 24576 --disk 20 --vcpus 18 \
+--property=hw:cpu_l3_cachelines='4' \
+--property hw:cpu_policy='dedicated' \
+--property hw:mem_page_size='1GB' \
+--property hw:pci_numa_affinity_policy='required' \
+--property=hw:cpu_thread_policy='require' \
+--property=hw:numa_mempolicy='strict' \
+--property hw:emulator_threads_policy='share' \
+--property "pci_passthrough:alias"='vc_fpga:1' \
+--property hw:cpu_realtime='yes' \
+--property hw:cpu_realtime_mask='^0-1' \
+--property hw:pmu='False' \
+vdu-test-dedicated
+
 #############################
 # Create Networks without routed provider network#
 #############################
@@ -304,6 +318,28 @@ done
 done
 done
 done
+
+# launch 4 test VDU VMs for Cyclictest
+EDGE=edge2
+NETWORK1=management
+NETWORK2=fronthaul1
+NETWORK3=ar1
+NETWORK4=midhaul1
+for COUNT in {1..4}; do
+PORT1=$(openstack port create --tag cyclictest --network $NETWORK1-$EDGE-net -f value -c id cyclictest-vdu-$NETWORK1-$EDGE-$COUNT)
+#PORT2=$(openstack port create --tag cyclictest --network $NETWORK2-$EDGE-net -f value -c id cyclictest-vdu-$NETWORK2-$EDGE-$COUNT)
+#PORT3=$(openstack port create --tag cyclictest --network $NETWORK3-$EDGE-net -f value -c id cyclictest-vdu-$NETWORK3-$EDGE-$COUNT)
+#PORT4=$(openstack port create --tag cyclictest --network $NETWORK4-$EDGE-net -f value -c id cyclictest-vdu-$NETWORK4-$EDGE-$COUNT)
+openstack server create --flavor vdu-test-dedicated \
+--image vdu-test-image \
+--port $PORT1 \
+--config-drive True \
+--availability-zone edge2vdu \
+--key-name undercloud-key \
+--user-data ~/admin-user-data.txt \
+cyclictest-$EDGE-$NETWORK1-$COUNT
+done
+
 
 #remove edge nodes from aggregates
 for AZ in edge1 edge2 ; do

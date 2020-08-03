@@ -3,8 +3,8 @@ parameter_defaults:
   DnsServers:
   - 172.17.118.6
   NtpServer:
-  - 172.17.120.44
-  - 172.17.120.45
+  - 172.17.118.15
+
   BondInterfaceOvsOptions: "mode=4 miimon=100"
 
   DockerInsecureRegistryAddress:
