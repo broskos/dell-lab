@@ -26,17 +26,17 @@ openstack flavor create --ram 2048 --disk 10 --vcpus 1 --property hw:cpu_policy=
 hw:emulator_threads_policy=share m1.small-dedicated
 
 openstack flavor create --ram 24576 --disk 20 --vcpus 18 \
---property=hw:cpu_l3_cachelines='4' \
+--property hw:cpu_l3_cachelines='4' \
 --property hw:cpu_policy='dedicated' \
 --property hw:mem_page_size='1GB' \
 --property hw:pci_numa_affinity_policy='required' \
---property=hw:cpu_thread_policy='require' \
---property=hw:numa_mempolicy='strict' \
+--property hw:cpu_thread_policy='require' \
+--property hw:numa_mempolicy='strict' \
 --property hw:emulator_threads_policy='share' \
---property "pci_passthrough:alias"='vc_fpga:1' \
 --property hw:cpu_realtime='yes' \
 --property hw:cpu_realtime_mask='^0-1' \
---property hw:pmu='False' \
+--property hw:pmu='false' \
+--property pci_passthrough:alias='vc_fpga:1' \
 vdu-test-dedicated
 
 #############################
