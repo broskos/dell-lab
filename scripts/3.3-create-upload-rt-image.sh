@@ -22,8 +22,6 @@ virt-customize -a overcloud-realtime-compute.qcow2 -v \
 --run-command "subscription-manager unregister || true" \
 --run-command "subscription-manager clean" \
 --run-command "systemctl disable irqbalance.service" \
---copy-in ~/dell-lab/config-fpga/config-fpga-2.0-1.el8.x86_64.rpm:/root/ \
---run-command "dnf localinstall -y /root/config-fpga-2.0-1.el8.x86_64.rpm" \
 --run-command "chmod +x /etc/rc.d/rc.local" \
 --run-command 'cat << EOF >>  /etc/rc.d/rc.local
 
