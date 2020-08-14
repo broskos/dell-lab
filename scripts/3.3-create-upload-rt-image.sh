@@ -6,22 +6,18 @@ source /home/stack/stackrc
 
 export LIBGUESTFS_BACKEND=direct
 
-# CDN
-echo "enter cdn password: "
-read CDNPASS
 
 cd ~/images
 cp -f overcloud-full.qcow2 overcloud-realtime-compute.qcow2
 
-virt-customize -a overcloud-realtime-compute.qcow2 --run-command \
-"subscription-manager register --username=$cdn_user --password=$CDNPASS" \
---run-command "subscription-manager attach --auto" \
---run-command "subscription-manager release --set 8.2"
+virt-customize -a overcloud-realtime-compute.qcow2 \
+--run-command "dnf localinstall -y http://$satellite/pub/katello-ca-consumer-latest.noarch.rpm" \
+--run-command "/usr/bin/hostname realtime-image.vran.lab; export HOSTNAME=realtime-image.vran.lab;" \
+--run-command "subscription-manager register --name realtime-image.vran.lab --org $org --activationkey $realtime_activation_key"
 
 virt-customize -a overcloud-realtime-compute.qcow2 -v \
 --run ~/dell-lab/scripts/rt.sh 2>&1 | tee ~/virt-customize.log
 
-# now that the new kernel is installed we can install the igb_uio driver and config tools
 virt-customize -a overcloud-realtime-compute.qcow2 -v \
 --run-command "subscription-manager unregister || true" \
 --run-command "subscription-manager clean" \
