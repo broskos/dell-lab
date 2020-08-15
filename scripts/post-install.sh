@@ -245,7 +245,7 @@ done
 done
 
 # Create edge1/2 VMs 1 net per VM
-for EDGE in edge1; do
+for EDGE in edge2; do
 for SERVER in vcu vdu; do
 for COUNT in {1..2}; do
 if [[ $SERVER = "vcu" ]]
