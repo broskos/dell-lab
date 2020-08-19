@@ -13,7 +13,7 @@ parameter_defaults:
 
   NeutronBridgeMappings:
     - tenant:br-tenant
-    - ovs-provider-edge2:br-edge2
+    - ovs-edge2:br-edge2
 
   ComputeSriovEdge2ControlPlaneSubnet: edge2
   ComputeVduEdge2ControlPlaneSubnet: edge2

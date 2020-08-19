@@ -46,14 +46,14 @@ vdu-test-dedicated
 #############################
 # Create Networks without routed provider network#
 #############################
-openstack network create --provider-physical-network ovs-provider --provider-network-type vlan --provider-segment 117 management-central-net
+openstack network create --provider-physical-network ovs-central --provider-network-type vlan --provider-segment 117 management-central-net
 openstack subnet create --network management-central-net --no-dhcp --subnet-range 172.17.117.0/26 --gateway 172.17.117.62 --dns-nameserver 172.17.118.6 management-central-subnet
-openstack network create --provider-physical-network ovs-provider-edge1 --provider-network-type vlan --provider-segment 1117 management-edge1-net
+openstack network create --provider-physical-network ovs-edge1  --provider-network-type vlan --provider-segment 1117 management-edge1-net
 openstack subnet create --network management-edge1-net --no-dhcp --subnet-range 172.17.117.64/26 --gateway 172.17.117.126 --dns-nameserver 172.17.118.6 management-edge1-subnet
-openstack network create --provider-physical-network ovs-provider-edge2 --provider-network-type vlan --provider-segment 2117 management-edge2-net
+openstack network create --provider-physical-network ovs-edge2  --provider-network-type vlan --provider-segment 2117 management-edge2-net
 openstack subnet create --network management-edge2-net --no-dhcp --subnet-range 172.17.117.128/26 --gateway 172.17.117.190 --dns-nameserver 172.17.118.6 management-edge2-subnet
 
-openstack network create --provider-physical-network sriov1 --provider-network-type vlan --provider-segment 202 backhaul1-central-net
+openstack network create --provider-physical-network sriov1-central --provider-network-type vlan --provider-segment 202 backhaul1-central-net
 openstack subnet create --network backhaul1-central-net --no-dhcp --subnet-range 192.168.202.0/26 --gateway 192.168.202.62 \
 --allocation-pool start=192.168.202.1,end=192.168.202.30 \
 --host-route destination=192.168.202.64/26,gateway=192.168.202.62 --host-route destination=192.168.202.128/26,gateway=192.168.202.62 backhaul1-central-subnet
@@ -65,7 +65,7 @@ openstack network create --provider-physical-network sriov1-edge2 --provider-net
 openstack subnet create --network backhaul1-edge2-net --no-dhcp --subnet-range 192.168.202.128/26 --gateway 192.168.202.190 \
 --allocation-pool start=192.168.202.129,end=192.168.202.158 \
 --host-route destination=192.168.202.0/26,gateway=192.168.202.190 --host-route destination=192.168.202.64/26,gateway=192.168.202.190 backhaul1-edge2-subnet
-openstack network create --provider-physical-network sriov2 --provider-network-type vlan --provider-segment 202 backhaul2-central-net
+openstack network create --provider-physical-network sriov2-central --provider-network-type vlan --provider-segment 202 backhaul2-central-net
 openstack subnet create --network backhaul2-central-net --no-dhcp --subnet-range 192.168.202.0/26 --gateway 192.168.202.62 \
 --allocation-pool start=192.168.202.31,end=192.168.202.60 \
 --host-route destination=192.168.202.64/26,gateway=192.168.202.62 --host-route destination=192.168.202.128/26,gateway=192.168.202.62 backhaul2-central-subnet
@@ -78,7 +78,7 @@ openstack subnet create --network backhaul2-edge2-net --no-dhcp --subnet-range 1
 --allocation-pool start=192.168.202.159,end=192.168.202.188 \
 --host-route destination=192.168.202.0/26,gateway=192.168.202.190 --host-route destination=192.168.202.64/26,gateway=192.168.202.190 backhaul2-edge2-subnet
 
-openstack network create --provider-physical-network sriov1 --provider-network-type vlan --provider-segment 205 midhaul1-central-net
+openstack network create --provider-physical-network sriov1-central --provider-network-type vlan --provider-segment 205 midhaul1-central-net
 openstack subnet create --network midhaul1-central-net --no-dhcp --subnet-range 192.168.205.0/26 --gateway 192.168.205.62 \
 --allocation-pool start=192.168.205.1,end=192.168.205.30 \
 --host-route destination=192.168.205.64/26,gateway=192.168.205.62 --host-route destination=192.168.205.128/26,gateway=192.168.205.62 midhaul1-central-subnet
@@ -90,7 +90,7 @@ openstack network create --provider-physical-network sriov1-edge2 --provider-net
 openstack subnet create --network midhaul1-edge2-net --no-dhcp --subnet-range 192.168.205.128/26 --gateway 192.168.205.190 \
 --allocation-pool start=192.168.205.129,end=192.168.205.158 \
 --host-route destination=192.168.205.0/26,gateway=192.168.205.190 --host-route destination=192.168.205.64/26,gateway=192.168.205.190 midhaul1-edge2-subnet
-openstack network create --provider-physical-network sriov2 --provider-network-type vlan --provider-segment 205 midhaul2-central-net
+openstack network create --provider-physical-network sriov2-central --provider-network-type vlan --provider-segment 205 midhaul2-central-net
 openstack subnet create --network midhaul2-central-net --no-dhcp --subnet-range 192.168.205.0/26 --gateway 192.168.205.62 \
 --allocation-pool start=192.168.205.31,end=192.168.205.60 \
 --host-route destination=192.168.205.64/26,gateway=192.168.205.62 --host-route destination=192.168.205.128/26,gateway=192.168.205.62 midhaul2-central-subnet
@@ -256,7 +256,7 @@ then
   NETWORKS='backhaul1 backhaul2 midhaul1 midhaul2 management'
 else
   AZ="${EDGE}vdu"
-  NETWORKS='fronthaul1 fronthaul2 midhaul1 midhaul2 ar1 ar2 management'
+  NETWORKS='fronthaul1-central fronthaul2-central midhaul1 midhaul2 ar1 ar2 management'
 fi
 
 for NETWORK in $NETWORKS; do
@@ -314,7 +314,7 @@ then
   NETWORKS='backhaul1 backhaul2 midhaul1 midhaul2 management'
 else
   AZ="${EDGE}vdu"
-  NETWORKS='fronthaul1 fronthaul2 midhaul1 midhaul2 ar1 ar2 management'
+  NETWORKS='fronthaul1-central fronthaul2-central midhaul1 midhaul2 ar1 ar2 management'
 fi
 for NETWORK in $NETWORKS; do
 openstack server delete "test-$EDGE-$SERVER-$NETWORK-$COUNT" || true
