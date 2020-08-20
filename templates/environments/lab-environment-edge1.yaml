@@ -2,9 +2,9 @@ resource_registry:
 # Configure Networks
 
   OS::TripleO::ComputeSriovEdge1::Net::SoftwareConfig:
-    ../network/config/bond-with-vlans/computeSriov-e1.yaml
+    ../network/config/bond-with-vlans/computeSriov.yaml
   OS::TripleO::ComputeVduEdge1::Net::SoftwareConfig:
-    ../network/config/bond-with-vlans/computeVdu-e1.yaml
+    ../network/config/bond-with-vlans/computeVdu.yaml
 
 parameter_defaults:
 
@@ -13,7 +13,7 @@ parameter_defaults:
 
   NeutronBridgeMappings:
     - tenant:br-tenant
-    - ovs-edge1:br-edge1
+    - ovs-edge1:br-provider
 
   ComputeSriovEdge1ControlPlaneSubnet: edge1
   ComputeVduEdge1ControlPlaneSubnet: edge1

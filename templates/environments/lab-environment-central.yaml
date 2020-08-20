@@ -19,7 +19,6 @@ parameter_defaults:
     - tenant:br-tenant
     - datacentre:br-ex
     - ovs-central:br-provider
-    - floating-ips:br-float
 
   ControllerControlPlaneSubnet: ctlplane-subnet
   ComputeSriovControlPlaneSubnet: ctlplane-subnet
