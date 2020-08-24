@@ -5,7 +5,9 @@ resource_registry:
     ../network/config/bond-with-vlans/computeSriov.yaml
   OS::TripleO::ComputeVduEdge1::Net::SoftwareConfig:
     ../network/config/bond-with-vlans/computeVdu.yaml
-
+  OS::TripleO::ComputeCentral::Net::SoftwareConfig:
+    ../network/config/multiple-nics/compute.yaml
+  
 parameter_defaults:
 
   NovaComputeAvailabilityZone: edge1
@@ -20,7 +22,14 @@ parameter_defaults:
   OvercloudComputeSriovEdge1Flavor: computeSriov-edge1
   OvercloudComputeVduEdge1Flavor: computeVdu-edge1
   ComputeSriovEdge1Count: 1
-  ComputeVduEdge1vduCount: 1
+  ComputeVduEdge1Count: 1
+
+  ComputeEdge1ControlPlaneSubnet: edge1
+  OvercloudComputeEdge1Flavor: compute-edge1
+  ComputeEdge1Count: 1
+
+  ComputeEdge1Parameters:
+    NovaEnableRbdBackend: false
 
   ComputeSriovEdge1Parameters:
     KernelArgs: "default_hugepagesz=1GB hugepagesz=1G hugepages=350 intel_iommu=on iommu=pt"
@@ -105,3 +114,4 @@ parameter_defaults:
         vendor_id: '1172'
         product_id: '5050'
         device_type: 'type-VF'
+

@@ -1,0 +1,80 @@
+---
+nodes:
+- mac:
+  - 56:6f:c3:ba:00:19
+  name: compute-central-1
+  cpu: '4'
+  memory: '6144'
+  disk: '40'
+  arch: x86_64
+  pm_type: staging-ovirt
+  pm_user: admin@internal
+  pm_password: redhat
+  pm_addr: rhv-m.escwq.com
+  pm_vm_name: compute-central-1
+  capabilities: profile:compute-central,boot_option:local
+- mac:
+  - 56:6f:c3:ba:00:02
+  name: compute-central-2
+  cpu: '4'
+  memory: '6144'
+  disk: '40'
+  arch: x86_64
+  pm_type: staging-ovirt
+  pm_user: admin@internal
+  pm_password: redhat
+  pm_addr: rhv-m.escwq.com
+  pm_vm_name: compute-central-2
+  capabilities: profile:compute-central,boot_option:local
+- mac:
+  - 56:6f:c3:ba:00:20
+  name: compute-edge1-1
+  cpu: '4'
+  memory: '6144'
+  disk: '40'
+  arch: x86_64
+  pm_type: staging-ovirt
+  pm_user: admin@internal
+  pm_password: redhat
+  pm_addr: rhv-m.escwq.com
+  pm_vm_name: compute-edge1-1
+  capabilities: profile:compute-edge1,boot_option:local
+- mac:
+  - 56:6f:c3:ba:00:27
+  name: compute-edge1-2
+  cpu: '4'
+  memory: '6144'
+  disk: '40'
+  arch: x86_64
+  pm_type: staging-ovirt
+  pm_user: admin@internal
+  pm_password: redhat
+  pm_addr: rhv-m.escwq.com
+  pm_vm_name: compute-edge1-2
+  capabilities: profile:compute-edge1,boot_option:local
+- mac:
+  - 56:6f:c3:ba:00:2c
+  name: compute-edge2-1
+  cpu: '4'
+  memory: '6144'
+  disk: '40'
+  arch: x86_64
+  pm_type: staging-ovirt
+  pm_user: admin@internal
+  pm_password: redhat
+  pm_addr: rhv-m.escwq.com
+  pm_vm_name: compute-edge2-1
+  capabilities: profile:compute-edge2,boot_option:local
+- mac:
+  - 56:6f:c3:ba:00:31
+  name: compute-edge2-2
+  cpu: '4'
+  memory: '6144'
+  disk: '40'
+  arch: x86_64
+  pm_type: staging-ovirt
+  pm_user: admin@internal
+  pm_password: redhat
+  pm_addr: rhv-m.escwq.com
+  pm_vm_name: compute-edge2-2
+  capabilities: profile:compute-edge2,boot_option:local

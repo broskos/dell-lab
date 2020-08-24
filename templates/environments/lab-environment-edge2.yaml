@@ -5,6 +5,8 @@ resource_registry:
     ../network/config/bond-with-vlans/computeSriov.yaml
   OS::TripleO::ComputeVduEdge2::Net::SoftwareConfig:
     ../network/config/bond-with-vlans/computeVdu.yaml
+  OS::TripleO::ComputeCentral::Net::SoftwareConfig:
+    ../network/config/multiple-nics/compute.yaml
 
 parameter_defaults:
 
@@ -21,6 +23,13 @@ parameter_defaults:
   OvercloudComputeVduEdge2Flavor: computeVdu-edge2
   ComputeSriovEdge2Count: 1
   ComputeVduEdge2Count: 1
+
+  ComputeEdge2ControlPlaneSubnet: edge2
+  OvercloudComputeEdge2Flavor: compute-edge2
+  ComputeEdge2Count: 1
+
+  ComputeEdge2Parameters:
+    NovaEnableRbdBackend: false
 
   ComputeSriovEdge2Parameters:
     KernelArgs: "default_hugepagesz=1GB hugepagesz=1G hugepages=350 intel_iommu=on iommu=pt"
@@ -105,3 +114,4 @@ parameter_defaults:
         vendor_id: '1172'
         product_id: '5050'
         device_type: 'type-VF'
+

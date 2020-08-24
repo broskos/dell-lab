@@ -4,6 +4,8 @@ resource_registry:
     ../network/config/multiple-nics/controller.yaml
   OS::TripleO::ComputeSriov::Net::SoftwareConfig:
     ../network/config/bond-with-vlans/computeSriov.yaml
+  OS::TripleO::ComputeCentral::Net::SoftwareConfig:
+    ../network/config/multiple-nics/compute.yaml
 
 # Disable Swift
   OS::TripleO::Services::SwiftProxy: OS::Heat::None
@@ -28,6 +30,13 @@ parameter_defaults:
   OvercloudComputeSriovFlavor: computeSriov
   ControllerCount: 3
   ComputeSriovCount: 1
+
+  ComputeCentralControlPlaneSubnet: ctlplane-subnet
+  OvercloudComputeCentralFlavor: compute-central
+  ComputeCentralCount: 1
+
+  ComputeCentralParameters:
+    NovaEnableRbdBackend: false
 
   NovaSchedulerDefaultFilters:
     - RetryFilter
@@ -79,3 +88,4 @@ parameter_defaults:
   ComputeSriovExtraConfig:
     nova::cpu_allocation_ratio: 1
     nova::compute::resume_guests_state_on_host_boot: true
+
