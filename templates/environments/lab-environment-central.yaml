@@ -3,7 +3,7 @@ resource_registry:
   OS::TripleO::Controller::Net::SoftwareConfig:
     ../network/config/multiple-nics/controller.yaml
   OS::TripleO::ComputeSriov::Net::SoftwareConfig:
-    ../network/config/bond-with-vlans/computeSriov.yaml
+    ../network/config/bond-with-vlans/computeSriov-central.yaml
   OS::TripleO::ComputeCentral::Net::SoftwareConfig:
     ../network/config/multiple-nics/compute.yaml
 
@@ -88,4 +88,3 @@ parameter_defaults:
   ComputeSriovExtraConfig:
     nova::cpu_allocation_ratio: 1
     nova::compute::resume_guests_state_on_host_boot: true
-
