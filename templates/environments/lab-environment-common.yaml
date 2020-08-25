@@ -43,6 +43,9 @@ parameter_defaults:
   NeutronEnableMetadataNetwork: true
 #  NeutronGlobalPhysnetMtu: 9000
 
+  ExtraConfig:
+    nova::compute::force_config_drive: true
+
   RhsmVars:
     rhsm_method: "satellite"
     rhsm_server_hostname: "satellite2.lab.roskosb.info"
