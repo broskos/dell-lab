@@ -208,17 +208,6 @@ resources:
                     name: nic2
                 - type: vlan
                   mtu:
-                    get_param: StorageMtu
-                  vlan_id:
-                    get_param: StorageNetworkVlanID
-                  addresses:
-                  - ip_netmask:
-                      get_param: StorageIpSubnet
-                  routes:
-                    list_concat_unique:
-                      - get_param: StorageInterfaceRoutes
-                - type: vlan
-                  mtu:
                     get_param: InternalApiMtu
                   vlan_id:
                     get_param: InternalApiNetworkVlanID
