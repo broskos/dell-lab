@@ -35,6 +35,13 @@ done
 
 EOF'
 
+# Work around naming collisions issue bz-1858417 putting it in the image so that it runs on firstboot
+# which avoids issues with provisioning nic getting named before tripleo kernel cmdline is written
+virt-customize -a overcloud-realtime-compute.qcow2 \
+    --edit '/etc/default/grub:
+      s/^GRUB_CMDLINE_LINUX="/GRUB_CMDLINE_LINUX="biosdevname=1 /' \
+    --run-command 'grub2-mkconfig -o /boot/grub2/grub.cfg'
+
 virt-sysprep -a overcloud-realtime-compute.qcow2 --selinux-relabel
 
 #############################
