@@ -12,11 +12,6 @@ resource_registry:
   OS::TripleO::Services::SwiftStorage: OS::Heat::None
   OS::TripleO::Services::SwiftRingBuilder: OS::Heat::None
 
-# Disable Swift
-  OS::TripleO::Services::SwiftProxy: OS::Heat::None
-  OS::TripleO::Services::SwiftStorage: OS::Heat::None
-  OS::TripleO::Services::SwiftRingBuilder: OS::Heat::None
-
 parameter_defaults:
 
   NovaComputeAvailabilityZone: central
