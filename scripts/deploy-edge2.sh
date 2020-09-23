@@ -22,6 +22,6 @@ time openstack overcloud deploy --templates \
     -e ~/dell-lab/templates/environments/lab-environment-common.yaml \
     -e ~/dell-lab/templates/environments/lab-environment-edge2.yaml \
     --overcloud-ssh-port-timeout 600 \
-    --log-file deployment.log
+    --log-file deployment.log > edge2_deploy.log
 
 #     -e /usr/share/openstack-tripleo-heat-templates/environments/rhsm.yaml \

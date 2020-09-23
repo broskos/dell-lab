@@ -185,9 +185,9 @@
     - OS::TripleO::Services::Zaqar
 
 ###############################################################################
-# Role: Compute                                                               #
+# Role: ComputeSriov                                                          #
 ###############################################################################
-- name: Compute
+- name: ComputeSriov
   description: |
     Basic Compute Node role
   CountDefault: 1
@@ -201,7 +201,7 @@
     Storage:
       subnet: storage_subnet
   default_route_networks: ['External']
-  HostnameFormatDefault: '%stackname%-compute-%index%'
+  HostnameFormatDefault: '%stackname%-computeSriov-%index%'
   RoleParametersDefault:
     TunedProfileName: "cpu-partitioning"
   update_serial: 25
@@ -255,11 +255,12 @@
     - OS::TripleO::Services::OVNMetadataAgent
 
 ###############################################################################
-# Role: ComputeHCI                                                            #
+# Role: ComputeCentral                                                          #
 ###############################################################################
-- name: ComputeHCI
+- name: ComputeCentral
   description: |
-    Compute Node role hosting Ceph OSD too
+    Basic Compute Node role
+  CountDefault: 1
   networks:
     External:
       subnet: external_subnet
@@ -269,21 +270,17 @@
       subnet: tenant_subnet
     Storage:
       subnet: storage_subnet
-    StorageMgmt:
-      subnet: storage_mgmt_subnet
   default_route_networks: ['External']
-  HostnameFormatDefault: '%stackname%-computehci-%index%'
+  HostnameFormatDefault: '%stackname%-compute-%index%'
   RoleParametersDefault:
     TunedProfileName: "cpu-partitioning"
-  # CephOSD present so serial has to be 1
-  update_serial: 1
+  update_serial: 25
   ServicesDefault:
     - OS::TripleO::Services::Aide
     - OS::TripleO::Services::AuditD
     - OS::TripleO::Services::BootParams
     - OS::TripleO::Services::CACerts
     - OS::TripleO::Services::CephClient
-    - OS::TripleO::Services::CephOSD
     - OS::TripleO::Services::CephExternal
     - OS::TripleO::Services::CertmongerUser
     - OS::TripleO::Services::Collectd
@@ -302,8 +299,6 @@
     - OS::TripleO::Services::Multipathd
     - OS::TripleO::Services::MySQLClient
     - OS::TripleO::Services::NeutronBgpVpnBagpipe
-    - OS::TripleO::Services::NeutronSriovAgent
-    - OS::TripleO::Services::NeutronSriovHostConfig
     - OS::TripleO::Services::NeutronVppAgent
     - OS::TripleO::Services::NovaAZConfig
     - OS::TripleO::Services::NovaCompute
@@ -326,3 +321,4 @@
     - OS::TripleO::Services::Vpp
     - OS::TripleO::Services::OVNController
     - OS::TripleO::Services::OVNMetadataAgent
+

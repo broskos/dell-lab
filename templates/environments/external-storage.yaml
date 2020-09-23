@@ -1,0 +1,4 @@
+parameter_defaults:
+  CephClientKey: AQAbg+pezENOJRAAjY1og9Q7vYUlvb5P5T34qw==
+  CephClusterFSID: 81c5768f-1151-44af-b40f-7d2bdac0eb0e
+  CephExternalMonHost: '192.168.170.7, 192.168.170.8, 192.168.170.9'

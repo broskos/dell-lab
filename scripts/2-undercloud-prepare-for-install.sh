@@ -13,6 +13,8 @@ dnf localinstall -y "http://$satellite/pub/katello-ca-consumer-latest.noarch.rpm
 subscription-manager register --org $org --activationkey $director_activation_key
 subscription-manager release --set 8.1
 dnf clean all
+dnf module disable -y container-tools:rhel8
+dnf module enable -y container-tools:2.0
 
 # add stack user
 useradd stack
@@ -21,7 +23,7 @@ echo "stack ALL=(root) NOPASSWD:ALL" | tee -a /etc/sudoers.d/stack
 chmod 0440 /etc/sudoers.d/stack
 
 # install director installer package
-dnf install -y python3-tripleoclient git gcc python3-devel tmux ceph-ansible python3-ovirt-engine-sdk4.x86_64 libguestfs-tools katello-agent
+dnf install -y python3-tripleoclient git gcc python3-devel tmux python3-ovirt-engine-sdk4.x86_64 libguestfs-tools katello-agent ceph-ansible python3-osc-placement
 
 # update all packages and reboot
 dnf update -y && reboot

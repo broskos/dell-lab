@@ -1,6 +1,6 @@
 heat_template_version: rocky
 description: >
-  Software Config to drive os-net-config with 2 bonded nics on a bridge with VLANs attached for the Compute role.
+  Software Config to drive os-net-config to configure VLANs for the Compute role.
 parameters:
   ControlPlaneIp:
     default: ''
@@ -32,6 +32,28 @@ parameters:
       (The parameter is automatically resolved from the ctlplane network's mtu attribute.)
     type: number
 
+  StorageIpSubnet:
+    default: ''
+    description: IP address/subnet on the storage network
+    type: string
+  StorageNetworkVlanID:
+    default: 170
+    description: Vlan ID for the storage network traffic.
+    type: number
+  StorageMtu:
+    default: 1500
+    description: The maximum transmission unit (MTU) size(in bytes) that is
+      guaranteed to pass through the data path of the segments in the
+      Storage network.
+    type: number
+  StorageInterfaceRoutes:
+    default: []
+    description: >
+      Routes for the storage network traffic.
+      JSON route e.g. [{'destination':'10.0.0.0/16', 'nexthop':'10.0.0.1'}]
+      Unless the default is changed, the parameter is automatically resolved
+      from the subnet host_routes attribute.
+    type: json
   InternalApiIpSubnet:
     default: ''
     description: IP address/subnet on the internal_api network
@@ -87,9 +109,10 @@ parameters:
     default: []
     description: A list of DNS search domains to be added (in order) to resolv.conf.
     type: comma_delimited_list
+
   BondInterfaceOvsOptions:
     default: bond_mode=active-backup
-    description: 'The ovs_options or bonding_options string for the bond
+    description: 'The bonding_options or bonding_options string for the bond
       interface. Set things like lacp=active and/or bond_mode=balance-slb
       for OVS bonds or like mode=4 for Linux bonds using this option.'
     type: string
@@ -136,9 +159,9 @@ resources:
           expression: $.data.max()
           data:
             - {get_param: ControlPlaneMtu}
+            - {get_param: StorageMtu}
             - {get_param: InternalApiMtu}
             - {get_param: TenantMtu}
-
 
   OsNetConfigImpl:
     type: OS::Heat::SoftwareConfig
@@ -172,22 +195,17 @@ resources:
                 members:
                 - type: linux_bond
                   name: bond0
-                  bonding_options:
-                    get_param: BondInterfaceOvsOptions
                   mtu:
                     get_attr: [MinViableMtu, value]
-                  # force the MAC address of the bridge to this interface
+                  bonding_options:
+                    get_param: BondInterfaceOvsOptions
                   members:
                   - type: interface
                     name: nic1
-                    mtu:
-                      get_attr: [MinViableMtu, value]
                     # force the MAC address of the bridge to this interface
                     primary: true
                   - type: interface
                     name: nic2
-                    mtu:
-                      get_attr: [MinViableMtu, value]
                 - type: vlan
                   mtu:
                     get_param: InternalApiMtu
@@ -225,7 +243,7 @@ resources:
                           next_hop:
                             get_param: ExternalInterfaceDefaultRoute
               - type: ovs_bridge
-                name: br-edge2
+                name: br-provider
                 use_dhcp: false
                 mtu: 9000
                 members:
@@ -271,6 +289,7 @@ resources:
                 defroute: false
                 nm_controlled: true
                 hotplug: true
+
 outputs:
   OS::stack_id:
     description: The OsNetConfigImpl resource.
