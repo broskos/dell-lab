@@ -20,7 +20,7 @@ MY_LE="dev"
 UPSTREAM_URL="registry.redhat.io"
 SATELLITE_SERVER="satellite2.lab.roskosb.info"
 TEMPLATE_PATH="~/dell-lab/templates"
-OSPVER="16.2"
+OSPVER="16.1"
 
 hammer product create \
   --organization "${MY_ORG}" \
