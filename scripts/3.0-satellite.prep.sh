@@ -20,6 +20,7 @@ MY_LE="dev"
 UPSTREAM_URL="registry.redhat.io"
 SATELLITE_SERVER="satellite2.lab.roskosb.info"
 TEMPLATE_PATH="~/dell-lab/templates"
+OSPVER="16.2"
 
 hammer product create \
   --organization "${MY_ORG}" \
@@ -45,6 +46,7 @@ while read IMAGE; do \
   --docker-upstream-name $IMAGE \
   --upstream-username $USERNAME \
   --upstream-password $PASSWORD \
+  --docker-tags-whitelist ${OSPVER} \
   --name $IMAGENAME ; done < satellite_images
 
 
